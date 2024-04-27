@@ -1,52 +1,64 @@
 <p-card>
-  <p-header>
-    <h1 class="text-3xl text-center">Inscription</h1>
-  </p-header>
-  <form class="flex flex-col gap-8">
-    <div class="flex flex-row justify-between">
-      <div>
-        <label for="firstname" class="block">
-          Prénom
-        </label>
-        <input pInputText id="firstname" name="firstname" [(ngModel)]="user.firstname"/>
-      </div>
-      <div>
-        <label for="lastname" class="block">
-          Nom
-        </label>
-        <input pInputText id="lastname" name="lastname" [(ngModel)]="user.lastname"/>
-      </div>
-    </div>
-    <div class="flex flex-row justify-between">
-      <div>
-        <label for="email" class="block">
-          Email
-        </label>
-        <input pInputText id="email" name="email" [(ngModel)]="user.email"/>
-      </div>
-      <div>
-              <label for="username" class="block">
-          Nom d'utilisateur
-        </label>
-        <input pInputText id="username" name="username" [(ngModel)]="user.username"/>
-      </div>
-    </div>
-    <div class="flex flex-row justify-between">
-      <p-iconField iconPosition="right">
-        <p-inputIcon class="cursor-pointer" [styleClass]="hide1 ? 'pi pi-eye' : 'pi pi-eye-slash'"/>
-        <label class="block" for="password">Mot de passe</label>
-        <input pInputText id="password" name="password" [type]="hide1 ? 'password' : 'text'"
-               [(ngModel)]="user.password"/>
-      </p-iconField>
-      <p-iconField iconPosition="right">
-        <p-inputIcon class="cursor-pointer" [styleClass]="hide2 ? 'pi pi-eye' : 'pi pi-eye-slash'"/>
-        <label for="confirmPassword" class="block">
-          Confirmer mot de passe
-        </label>
-        <input pInputText id="confirmPassword" name="confirmPassword" [type]="hide2 ? 'password' : 'text'"
-               [(ngModel)]="confirmPassword"/>
-      </p-iconField>
-    </div>
-    <p-button styleClass="p-button-internal" class="w-3/4 self-center" (click)="register()" type="submit">Valider</p-button>
-  </form>
+    <p-header>
+        <h1 class="text-3xl text-center">Inscription</h1>
+    </p-header>
+    <form class="flex flex-col gap-8">
+        <div class="flex flex-row justify-between">
+            <div>
+                <label for="firstname" class="block"> Prénom </label>
+                <input pInputText id="firstname" name="firstname" [(ngModel)]="user.firstname" />
+            </div>
+            <div>
+                <label for="lastname" class="block"> Nom </label>
+                <input pInputText id="lastname" name="lastname" [(ngModel)]="user.lastname" />
+            </div>
+        </div>
+        <div class="flex flex-row justify-between">
+            <div>
+                <label for="email" class="block"> Email </label>
+                <input pInputText id="email" name="email" [(ngModel)]="user.email" />
+            </div>
+            <div>
+                <label for="username" class="block"> Nom d'utilisateur </label>
+                <input pInputText id="username" name="username" [(ngModel)]="user.username" />
+            </div>
+        </div>
+        <div class="flex flex-row justify-between">
+            <p-iconField iconPosition="right">
+                <p-inputIcon
+                    class="cursor-pointer"
+                    [styleClass]="hide1 ? 'pi pi-eye' : 'pi pi-eye-slash'"
+                />
+                <label class="block" for="password">Mot de passe</label>
+                <input
+                    pInputText
+                    id="password"
+                    name="password"
+                    [type]="hide1 ? 'password' : 'text'"
+                    [(ngModel)]="user.password"
+                />
+            </p-iconField>
+            <p-iconField iconPosition="right">
+                <p-inputIcon
+                    class="cursor-pointer"
+                    [styleClass]="hide2 ? 'pi pi-eye' : 'pi pi-eye-slash'"
+                />
+                <label for="confirmPassword" class="block"> Confirmer mot de passe </label>
+                <input
+                    pInputText
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    [type]="hide2 ? 'password' : 'text'"
+                    [(ngModel)]="confirmPassword"
+                />
+            </p-iconField>
+        </div>
+        <p-button
+            styleClass="p-button-internal"
+            class="w-3/4 self-center"
+            (click)="register()"
+            type="submit"
+            >Valider</p-button
+        >
+    </form>
 </p-card>
