@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../models/user';
-import { HttpClient, HttpContext } from '@angular/common/http';
+import { HttpClient, HttpContext, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NO_AUTH } from '../request.interceptor';
 import { environment } from '../../../environments/environment';
+import { ResetPasswordModel } from '../../models/reset-password.model';
 
 const URL = environment.apiUrl + '/auth/';
 const httpOptions = {
@@ -52,5 +53,28 @@ export class AuthService {
         this.user = null;
         localStorage.removeItem('user');
         this.router.navigate(['/auth']);
+    }
+
+    resetPassword(email: User) {
+        return this.http.post(URL + 'forgot-password', {
+            email: email.email,
+        });
+    }
+
+    newPassword(user: ResetPasswordModel, token: string) {
+        const headers = {
+            headers: new HttpHeaders({
+                'Content-Type': 'Application/json',
+                Authorization: 'Bearer ' + token,
+            }),
+            context: new HttpContext().set(NO_AUTH, true),
+        };
+        return this.http.put(
+            URL + `password`,
+            {
+                password: user.password,
+            },
+            headers,
+        );
     }
 }

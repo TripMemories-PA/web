@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { User } from '../../models/user';
 import { AuthService } from '../../services/auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
@@ -25,6 +25,7 @@ import { NgIf } from '@angular/common';
         MessagesModule,
         MessageModule,
         NgIf,
+        RouterLink,
     ],
     templateUrl: './login-form.component.html',
     styleUrl: './login-form.component.css',
