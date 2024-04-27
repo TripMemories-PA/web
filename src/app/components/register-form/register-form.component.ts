@@ -8,6 +8,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
+import { MessageModule } from 'primeng/message';
+import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-register-form',
@@ -19,6 +21,8 @@ import { InputIconModule } from 'primeng/inputicon';
         FormsModule,
         IconFieldModule,
         InputIconModule,
+        MessageModule,
+        NgIf,
     ],
     templateUrl: './register-form.component.html',
     styleUrl: './register-form.component.css',

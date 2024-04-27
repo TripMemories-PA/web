@@ -3,7 +3,7 @@ import { User } from '../../models/user';
 import { HttpClient, HttpContext } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NO_AUTH } from '../request.interceptor';
-import { environment } from '../../../environnments/environment';
+import { environment } from '../../../environments/environment';
 
 const URL = environment.apiUrl + '/auth/';
 const httpOptions = {
@@ -29,7 +29,7 @@ export class AuthService {
         return this.http.post(
             URL + 'login',
             {
-                email: user.email,
+                login: user.username ?? user.email,
                 password: user.password,
             },
             httpOptions,

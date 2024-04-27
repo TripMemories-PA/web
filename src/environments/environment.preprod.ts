@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    apiUrl: 'https://api-test.tripmemories.fr',
+    apiUrl: 'https://api-fcvt.onrender.com',
     peerPort: 3001,
 };

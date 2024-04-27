@@ -9,6 +9,7 @@ import {
 } from '@angular/common/http';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { AuthService } from './auth/auth.service';
+import { environment } from '../../environments/environment';
 
 export const NO_AUTH = new HttpContextToken(() => false);
 
@@ -44,15 +45,26 @@ export class RequestInterceptor implements HttpInterceptor {
                 if (error.error instanceof ErrorEvent) {
                     // client-side error
                     console.log('client-side error');
+                    if (!environment.production) {
+                        console.log(error);
+                    }
                     errorMessage = error.error.message;
                 } else {
                     // server-side error
                     console.log('server-side error');
-                    if (Array.isArray(error.error.message)) {
+                    if (!environment.production) {
+                        console.log(error);
+                    }
+                    if (Array.isArray(error.error.errors)) {
+                        errorMessage = error.error.errors[0].message;
+                    } else {
+                        errorMessage = error.message;
+                    }
+                    /*if (Array.isArray(error.error.message)) {
                         errorMessage = error.error.message[0];
                     } else {
                         errorMessage = error.error.message;
-                    }
+                    }*/
                 }
 
                 return throwError(() => new Error(errorMessage));

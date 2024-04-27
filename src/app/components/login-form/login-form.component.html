@@ -1,1 +1,44 @@
-<p>login-form works!</p>
+<p-card>
+    <p-header>
+        <h1 class="text-3xl text-center pt-4">Connexion</h1>
+    </p-header>
+    <form class="flex flex-col">
+        <div class="p-field p-fluid mb-6">
+            <input
+                pInputText
+                id="usernameLogin"
+                placeholder="Nom d'utilisateur"
+                name="username"
+                aria-describedby="username-help"
+                [class]="error ? 'ng-invalid ng-dirty' : ''"
+                [(ngModel)]="user.username"
+            />
+        </div>
+        <p-iconField iconPosition="right" class="mb-6 h-fit">
+            <p-inputIcon
+                class="cursor-pointer text-4xl"
+                (click)="hide = !hide"
+                [styleClass]="hide ? 'pi pi-eye' : 'pi pi-eye-slash'"
+            />
+            <input
+                pInputText
+                id="passwordLogin"
+                placeholder="Mot de passe"
+                name="password"
+                class="w-full"
+                [class]="error ? 'ng-invalid ng-dirty' : ''"
+                [type]="hide ? 'password' : 'text'"
+                [(ngModel)]="user.password"
+            />
+        </p-iconField>
+        <button pButton (click)="login()" class="w-1/3 self-center justify-center">
+            Se connecter
+        </button>
+        <p-message
+            *ngIf="error"
+            class="self-center mt-6"
+            severity="error"
+            text="Le nom d'utilisateur ou le mot de passe est incorrect. Veuillez réessayer."
+        ></p-message>
+    </form>
+</p-card>
