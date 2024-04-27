@@ -1,0 +1,8 @@
+input {
+  min-width: 300px;
+}
+
+.p-button {
+  min-width: 100%;
+  max-width: 100%;
+}
