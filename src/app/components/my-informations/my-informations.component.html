@@ -1,0 +1,68 @@
+<p-card>
+    <ng-template pTemplate="header" class="flex justify-center">
+        <h2 class="text-xl text-center p-2 font-bold">Mes informations personnelles</h2>
+    </ng-template>
+    <ng-template pTemplate="content">
+        <form class="flex flex-col gap-6">
+            <div class="!flex !justify-center !flex-col !items-center">
+                <span class="p-float-label w-3/4">
+                    <input
+                        id="username"
+                        name="username"
+                        type="text"
+                        class="w-full"
+                        [(ngModel)]="user.username"
+                        [placeholder]="this.userPlaceholder.username!"
+                        pInputText
+                    />
+                </span>
+                <span class="p-float-label mt-5 w-3/4">
+                    <input
+                        id="firstname"
+                        type="text"
+                        name="firstname"
+                        class="w-full"
+                        [(ngModel)]="user.firstname"
+                        [placeholder]="this.userPlaceholder.firstname || 'Prénom'"
+                        pInputText
+                    />
+                </span>
+                <span class="p-float-label mt-5 w-3/4">
+                    <input
+                        id="lastname"
+                        type="text"
+                        name="lastname"
+                        class="w-full"
+                        [(ngModel)]="user.lastname"
+                        [placeholder]="this.userPlaceholder.lastname || 'Nom'"
+                        pInputText
+                    />
+                </span>
+                <span class="p-float-label mt-5 w-3/4">
+                    <input
+                        id="email"
+                        type="text"
+                        name="email"
+                        class="w-full"
+                        [(ngModel)]="user.email"
+                        [placeholder]="this.userPlaceholder.email!"
+                        pInputText
+                    />
+                </span>
+            </div>
+            <div class="!flex !justify-center !flex-col !items-center">
+                <button
+                    (click)="submit()"
+                    id="submit-button"
+                    class="text-white bg-[color:var(--primary)]"
+                    pButton
+                    label="Enregistrer"
+                ></button>
+                <span class="mt-5 text-white text-[color:var(--success)]" *ngIf="ok">{{ ok }}</span>
+                <span class="mt-5 text-white text-[color:var(--error)]" *ngIf="error">{{
+                    error
+                }}</span>
+            </div>
+        </form>
+    </ng-template>
+</p-card>

@@ -50,11 +50,18 @@ export class LoginFormComponent {
 
         this.authService.login(this.user).subscribe({
             next: (res: any) => {
-                let user: User = res.user;
-                user.access_token = res.access_token;
-
+                let user: User = {
+                    firstname: '',
+                    lastname: '',
+                    username: '',
+                    email: '',
+                    password: '',
+                    access_token: '',
+                };
+                user.access_token = res.token;
                 this.authService.user = user;
                 localStorage.setItem('user', JSON.stringify(user));
+                localStorage.setItem('token', res.token);
                 this.router.navigate(['/profil']);
             },
             error: (err: Error) => {

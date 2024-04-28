@@ -1,0 +1,35 @@
+<div class="!mt-5 flex flex-col gap-5 items-center">
+    <div class="profile-pic">
+        <app-picture-server
+            class="pic-server"
+            [pictureServerUrl]="
+                pictureURL
+                    ? pictureURL
+                    : profilPicOnServer
+                      ? profilPicOnServer
+                      : 'https://oasys.ch/wp-content/uploads/2019/03/photo-avatar-profil.png'
+            "
+        ></app-picture-server>
+        <label class="-label" for="file">
+            <p-inputIcon class="cursor-pointer text-4xl" [styleClass]="'pi pi-camera'" />
+            <span>Changer ma photo de profil</span>
+        </label>
+        <input
+            type="file"
+            id="file"
+            (change)="imgCompil.handleFileInput($event)"
+            (input)="picture.picture = getValue($event)"
+        />
+    </div>
+    <button
+        pButton
+        *ngIf="pictureURL"
+        class="bg-[color:var(--success)] text-white w-full"
+        (click)="submitFile()"
+        [disabled]="!picture.picture || isLoading"
+    >
+        Enregistrer
+    </button>
+    <span class="block text-[color:var(--error)] mt-5" *ngIf="error">{{ error }}</span>
+    <span class="block text-[color:var(--success)] mt-5" *ngIf="ok">{{ ok }}</span>
+</div>

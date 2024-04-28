@@ -56,14 +56,8 @@ export class RegisterFormComponent {
         }
 
         this.authService.register(this.user).subscribe({
-            next: (res: any) => {
-                const user: User = res.user;
-                user.access_token = res.access_token;
-
-                this.authService.user = user;
-                localStorage.setItem('user', JSON.stringify(user));
+            next: (_: any) => {
                 this.ok = 'Inscription réussie !';
-                this.router.navigate(['/profil']);
             },
             error: (err: Error) => {
                 this.error = err.message;
