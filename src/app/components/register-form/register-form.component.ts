@@ -40,6 +40,7 @@ export class RegisterFormComponent {
     hide1: boolean = true;
     hide2: boolean = true;
     error: string | null = null;
+    ok: string | null = null;
 
     constructor(
         private authService: AuthService,
@@ -61,6 +62,7 @@ export class RegisterFormComponent {
 
                 this.authService.user = user;
                 localStorage.setItem('user', JSON.stringify(user));
+                this.ok = 'Inscription réussie !';
                 this.router.navigate(['/profil']);
             },
             error: (err: Error) => {

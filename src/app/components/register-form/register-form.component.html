@@ -3,7 +3,7 @@
         <h1 class="text-3xl text-center pt-4">Inscription</h1>
     </p-header>
     <form class="flex flex-col gap-8">
-        <div class="flex flex-row justify-evenly">
+        <div class="flex flex-row justify-evenly flex-wrap">
             <div>
                 <input
                     pInputText
@@ -25,7 +25,7 @@
                 />
             </div>
         </div>
-        <div class="flex flex-row justify-evenly">
+        <div class="flex flex-row justify-evenly flex-wrap">
             <div>
                 <input
                     pInputText
@@ -48,7 +48,7 @@
                 />
             </div>
         </div>
-        <div class="flex flex-row justify-evenly">
+        <div class="flex flex-row justify-evenly flex-wrap">
             <p-iconField iconPosition="right">
                 <p-inputIcon
                     class="cursor-pointer"
@@ -91,5 +91,6 @@
             severity="error"
             [text]="error"
         ></p-message>
+        <p-message *ngIf="ok" class="self-center mt-6" severity="success" [text]="ok"></p-message>
     </form>
 </p-card>
