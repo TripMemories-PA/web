@@ -9,11 +9,12 @@ import { PictureServerComponent } from '../picture-server/picture-server.compone
 import { InputIconModule } from 'primeng/inputicon';
 import { ButtonModule } from 'primeng/button';
 import { NgIf } from '@angular/common';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
     selector: 'app-change-profil-pic',
     standalone: true,
-    imports: [PictureServerComponent, InputIconModule, ButtonModule, NgIf],
+    imports: [PictureServerComponent, InputIconModule, ButtonModule, NgIf, ProgressSpinnerModule],
     templateUrl: './change-profil-pic.component.html',
     styleUrl: './change-profil-pic.component.css',
 })
@@ -58,7 +59,7 @@ export class ChangeProfilPicComponent {
                 this.ok = 'Image enregistrée';
 
                 const user: User = JSON.parse(localStorage.getItem('user') as string);
-                user.avatar = { location: value.pic };
+                user.avatar = { url: value.pic };
                 localStorage.setItem('user', JSON.stringify(user));
                 this.authService.user = user;
 

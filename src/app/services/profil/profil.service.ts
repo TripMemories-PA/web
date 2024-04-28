@@ -14,41 +14,14 @@ export class ProfilService {
     uploadImage(file: File) {
         const formData: FormData = new FormData();
         formData.append('file', file, file.name);
-        return this.http.post(URL + '/photo', formData);
+        return this.http.post(URL + '/avatar', formData);
     }
 
     updateMe(user: User) {
         return this.http.put(`${URL}`, user);
     }
 
-    updatePassword(password: string) {
-        return this.http.put(`${URL}/password`, { password: password });
-    }
-
     getMe() {
         return this.http.get(`${URL}`);
-    }
-
-    getFriends() {
-        return this.http.get(`${URL}/friends`);
-    }
-
-    getGameSessions() {
-        return this.http.get(`${URL}/game-sessions`);
-    }
-
-    getInvitations() {
-        return this.http.get(`${URL}/invitations`);
-    }
-
-    getInvitation(id: string) {
-        return this.http.get(`${URL}/invitations/${id}`);
-    }
-    getConversations() {
-        return this.http.get(`${URL}/conversations`);
-    }
-
-    getConversation(id: string) {
-        return this.http.get(`${URL}/conversations/${id}`);
     }
 }

@@ -24,12 +24,17 @@
     <button
         pButton
         *ngIf="pictureURL"
-        class="bg-[color:var(--success)] text-white w-full"
+        class="bg-[color:var(--success)] text-white w-full justify-center"
         (click)="submitFile()"
         [disabled]="!picture.picture || isLoading"
     >
         Enregistrer
     </button>
-    <span class="block text-[color:var(--error)] mt-5" *ngIf="error">{{ error }}</span>
-    <span class="block text-[color:var(--success)] mt-5" *ngIf="ok">{{ ok }}</span>
+    <p-progressSpinner
+        *ngIf="isLoading"
+        styleClass="w-2rem h-2rem"
+        ariaLabel="loading"
+    ></p-progressSpinner>
+    <span class="block text-[color:var(--error)] mt-2 text-base" *ngIf="error">{{ error }}</span>
+    <span class="block text-[color:var(--success)] mt-2 text-base" *ngIf="ok">{{ ok }}</span>
 </div>

@@ -24,7 +24,7 @@ export class ProfilPageComponent implements OnInit {
             return;
         }
         if (this.authServices.user?.avatar) {
-            this.profilPic = user.avatar.location;
+            this.profilPic = user.avatar.url;
         }
     }
 
@@ -36,7 +36,7 @@ export class ProfilPageComponent implements OnInit {
                 localStorage.setItem('user', JSON.stringify(user));
                 console.log(this.authServices.user);
                 if (this.authServices.user?.avatar) {
-                    this.profilPic = user.avatar.location;
+                    this.profilPic = user.avatar.url;
                 }
             },
         });
