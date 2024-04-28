@@ -48,6 +48,7 @@ export class ChangeProfilPicComponent {
 
     submitFile(): void {
         this.error = undefined;
+        if (this.isLoading) return;
         if (!this.imgCompil.FileUpload) {
             this.error = 'Veuillez sélectionner une image';
             return;

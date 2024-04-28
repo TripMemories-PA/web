@@ -49,6 +49,7 @@ export class MyInformationsComponent implements OnInit {
     }
 
     submit(): void {
+        if (this.isLoading) return;
         this.error = null;
         this.isLoading = true;
         this.profilServices.updateMe(this.user).subscribe({

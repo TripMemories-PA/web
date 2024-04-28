@@ -53,6 +53,7 @@
             <div class="!flex !justify-center !flex-col !items-center">
                 <button
                     (click)="submit()"
+                    [disabled]="isLoading"
                     id="submit-button"
                     class="text-white bg-[color:var(--primary)]"
                     pButton
