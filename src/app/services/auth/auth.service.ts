@@ -43,6 +43,7 @@ export class AuthService {
                 username: user.username,
                 email: user.email,
                 password: user.password,
+                password_confirmation: user.password,
             },
             httpOptions,
         );
