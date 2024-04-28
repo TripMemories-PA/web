@@ -58,11 +58,14 @@
                     pButton
                     label="Enregistrer"
                 ></button>
-                <span class="mt-5 text-white text-[color:var(--success)]" *ngIf="ok">{{ ok }}</span>
-                <span class="mt-5 text-white text-[color:var(--error)]" *ngIf="error">{{
-                    error
-                }}</span>
+                <span class="mt-5 text-[color:var(--success)]" *ngIf="ok">{{ ok }}</span>
+                <span class="mt-5 text-[color:var(--error)]" *ngIf="error">{{ error }}</span>
             </div>
         </form>
+        <p-progressBar
+            mode="indeterminate"
+            *ngIf="isLoading"
+            [style]="{ height: '6px', width: '100%', marginTop: '10px' }"
+        ></p-progressBar>
     </ng-template>
 </p-card>
