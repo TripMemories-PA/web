@@ -10,6 +10,7 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { MessageModule } from 'primeng/message';
 import { NgIf } from '@angular/common';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 @Component({
     selector: 'app-register-form',
@@ -23,6 +24,7 @@ import { NgIf } from '@angular/common';
         InputIconModule,
         MessageModule,
         NgIf,
+        ProgressBarModule,
     ],
     templateUrl: './register-form.component.html',
     styleUrl: './register-form.component.css',
@@ -42,6 +44,8 @@ export class RegisterFormComponent {
     error: string | null = null;
     ok: string | null = null;
 
+    isLoading: boolean = false;
+
     constructor(
         private authService: AuthService,
         private router: Router,
@@ -49,7 +53,8 @@ export class RegisterFormComponent {
 
     register(): void {
         this.error = null;
-
+        if (this.isLoading) return;
+        this.isLoading = true;
         if (this.user.password !== this.confirmPassword) {
             this.error = 'Les mots de passe ne correspondent pas';
             return;
@@ -57,6 +62,7 @@ export class RegisterFormComponent {
 
         this.authService.register(this.user).subscribe({
             next: (res: any) => {
+                this.isLoading = false;
                 const user: User = res.user;
                 user.access_token = res.access_token;
 
@@ -66,6 +72,7 @@ export class RegisterFormComponent {
                 this.router.navigate(['/profil']);
             },
             error: (err: Error) => {
+                this.isLoading = false;
                 this.error = err.message;
             },
         });
