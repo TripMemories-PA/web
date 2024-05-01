@@ -7,11 +7,12 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { PasswordFieldComponent } from '../password-field/password-field.component';
 import { NgIf } from '@angular/common';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 @Component({
     selector: 'app-change-password',
     standalone: true,
-    imports: [CardModule, ButtonModule, PasswordFieldComponent, NgIf],
+    imports: [CardModule, ButtonModule, PasswordFieldComponent, NgIf, ProgressBarModule],
     templateUrl: './change-password.component.html',
     styleUrl: './change-password.component.css',
 })
@@ -25,6 +26,7 @@ export class ChangePasswordComponent implements OnInit {
 
     ok: string | null = null;
     error: string | null = null;
+    isLoading: boolean = false;
     constructor(
         private authService: AuthService,
         private http: HttpClient,
@@ -42,6 +44,7 @@ export class ChangePasswordComponent implements OnInit {
     }
 
     resetPassword(): void {
+        if (this.isLoading) return;
         if (!this.user.password || !this.user.checkPassword) {
             this.error = 'Vous réinitialisez votre mot de passe sans le changer ? 🤔';
             return;
@@ -54,8 +57,10 @@ export class ChangePasswordComponent implements OnInit {
             this.router.navigate(['/auth']);
             return;
         }
+        this.isLoading = true;
         this.authService.newPassword(this.user, this.token).subscribe({
             next: (data: any) => {
+                this.isLoading = false;
                 this.error = '';
                 this.ok = data.message;
                 setTimeout(() => {
@@ -63,6 +68,7 @@ export class ChangePasswordComponent implements OnInit {
                 }, 7000);
             },
             error: (err) => {
+                this.isLoading = false;
                 this.error = err.message;
                 setTimeout(() => {
                     this.router.navigate(['/auth']);

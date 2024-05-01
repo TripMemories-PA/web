@@ -11,6 +11,7 @@ import { ButtonModule } from 'primeng/button';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { NgIf } from '@angular/common';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 @Component({
     selector: 'app-login-form',
@@ -26,6 +27,7 @@ import { NgIf } from '@angular/common';
         MessageModule,
         NgIf,
         RouterLink,
+        ProgressBarModule,
     ],
     templateUrl: './login-form.component.html',
     styleUrl: './login-form.component.css',
@@ -39,6 +41,7 @@ export class LoginFormComponent {
     error: string | null = null;
     hide: boolean = true;
     resetPassword: boolean = false;
+    isLoading: boolean = false;
 
     constructor(
         private authService: AuthService,
@@ -47,9 +50,12 @@ export class LoginFormComponent {
 
     login(): void {
         this.error = null;
+        if (this.isLoading) return;
+        this.isLoading = true;
 
         this.authService.login(this.user).subscribe({
             next: (res: any) => {
+                this.isLoading = false;
                 let user: User = {
                     firstname: '',
                     lastname: '',
@@ -65,6 +71,7 @@ export class LoginFormComponent {
                 this.router.navigate(['/profil']);
             },
             error: (err: Error) => {
+                this.isLoading = false;
                 this.error = err.message;
             },
         });
