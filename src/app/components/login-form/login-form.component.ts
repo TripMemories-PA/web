@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { User } from '../../models/user';
 import { AuthService } from '../../services/auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
@@ -26,6 +26,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
         MessagesModule,
         MessageModule,
         NgIf,
+        RouterLink,
         ProgressBarModule,
     ],
     templateUrl: './login-form.component.html',
@@ -39,6 +40,7 @@ export class LoginFormComponent {
     };
     error: string | null = null;
     hide: boolean = true;
+    resetPassword: boolean = false;
     isLoading: boolean = false;
 
     constructor(
@@ -54,11 +56,18 @@ export class LoginFormComponent {
         this.authService.login(this.user).subscribe({
             next: (res: any) => {
                 this.isLoading = false;
-                let user: User = res.user;
-                user.access_token = res.access_token;
-
+                let user: User = {
+                    firstname: '',
+                    lastname: '',
+                    username: '',
+                    email: '',
+                    password: '',
+                    access_token: '',
+                };
+                user.access_token = res.token;
                 this.authService.user = user;
                 localStorage.setItem('user', JSON.stringify(user));
+                localStorage.setItem('token', res.token);
                 this.router.navigate(['/profil']);
             },
             error: (err: Error) => {

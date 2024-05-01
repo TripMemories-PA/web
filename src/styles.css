@@ -6,6 +6,19 @@
   -moz-box-shadow:none !important;
 }
 
+:root {
+  --primary: #4F52BD;
+  --secondary: #02324F;
+  --accent: #ED6A5B;
+  --error: #FF5252;
+  --info: #2196F3;
+  --success: #4CAF50;
+  --warning: #FC9674;
+  --disabled: #CECECE;
+  --message:#EBEBEB;
+  --myMessage:#AFF5FF
+}
+
 @layer tailwind-base, primeng, tailwind-utilities;
 
 @layer tailwind-base {
