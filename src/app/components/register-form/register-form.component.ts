@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { User } from '../../models/user';
+import { User, UserRegister } from '../../models/user';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { CardModule } from 'primeng/card';
@@ -30,15 +30,15 @@ import { ProgressBarModule } from 'primeng/progressbar';
     styleUrl: './register-form.component.css',
 })
 export class RegisterFormComponent {
-    user: User = {
+    user: UserRegister = {
         username: '',
         firstname: '',
         lastname: '',
         email: '',
         password: '',
+        password_confirmation: '',
     };
 
-    confirmPassword = '';
     hide1: boolean = true;
     hide2: boolean = true;
     error: string | null = null;
@@ -55,8 +55,9 @@ export class RegisterFormComponent {
         this.error = null;
         if (this.isLoading) return;
         this.isLoading = true;
-        if (this.user.password !== this.confirmPassword) {
+        if (this.user.password !== this.user.password_confirmation) {
             this.error = 'Les mots de passe ne correspondent pas';
+            this.isLoading = false;
             return;
         }
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../../models/user';
+import { User, UserRegister } from '../../models/user';
 import { HttpClient, HttpContext } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NO_AUTH } from '../request.interceptor';
@@ -36,14 +36,14 @@ export class AuthService {
         );
     }
 
-    register(user: User) {
+    register(user: UserRegister) {
         return this.http.post(
             URL + 'register',
             {
                 username: user.username,
                 email: user.email,
                 password: user.password,
-                password_confirmation: user.password,
+                password_confirmation: user.password_confirmation,
             },
             httpOptions,
         );
