@@ -39,6 +39,9 @@
         >
             Se connecter
         </button>
+        <a [routerLink]="['/forgotPassword']" class="password-reset self-center mt-4"
+            >Mot de passe oublié</a
+        >
         <p-progressBar
             mode="indeterminate"
             *ngIf="isLoading"
