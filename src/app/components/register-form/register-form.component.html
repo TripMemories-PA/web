@@ -78,13 +78,24 @@
                     name="confirmPassword"
                     [class]="error ? 'ng-invalid ng-dirty' : ''"
                     [type]="hide2 ? 'password' : 'text'"
-                    [(ngModel)]="confirmPassword"
+                    [(ngModel)]="user.password_confirmation"
                 />
             </p-iconField>
         </div>
-        <button pButton class="w-1/4 self-center justify-center" (click)="register()" type="submit">
-            Valider
+        <button
+            [disabled]="isLoading"
+            pButton
+            class="w-1/4 self-center justify-center"
+            (click)="register()"
+            type="submit"
+        >
+            S'inscrire
         </button>
+        <p-progressBar
+            mode="indeterminate"
+            *ngIf="isLoading"
+            [style]="{ height: '6px', width: '100%' }"
+        ></p-progressBar>
         <p-message
             *ngIf="error"
             class="self-center mt-6"
