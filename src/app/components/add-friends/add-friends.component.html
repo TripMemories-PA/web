@@ -1,0 +1,23 @@
+<button pButton (click)="openDialog()">Ajouter un ami</button>
+<p-dialog
+    header="Ajouter un ami"
+    [modal]="true"
+    [draggable]="false"
+    [(visible)]="showDialog"
+    [style]="{ width: '50rem' }"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+>
+    <ng-template pTemplate="content">
+        <div class="p-toolbar-group-center">
+            <span class="p-input-icon-left">
+                <i class="pi pi-search cursor-pointer"></i>
+                <input pInputText placeholder="Search" />
+            </span>
+        </div>
+        <div
+            class="w-3/4 border-solid border-2 border-gray-300 rounded m-auto mt-5 max-h-52 p-4 overflow-auto"
+        >
+            <app-user-card-add-friend></app-user-card-add-friend>
+        </div>
+    </ng-template>
+</p-dialog>
