@@ -1,16 +1,16 @@
-interface avatar {
-    location?: string;
+interface IAvatar {
+    url?: string;
 }
 
 export class User {
-    _id?: string;
+    id?: string;
     firstname?: string;
     lastname?: string;
     username?: string;
     email?: string;
     password?: string;
     access_token?: string;
-    avatar?: avatar;
+    avatar?: IAvatar;
     friends?: any[];
 }
 
