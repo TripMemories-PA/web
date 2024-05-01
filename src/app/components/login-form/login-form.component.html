@@ -31,12 +31,22 @@
                 [(ngModel)]="user.password"
             />
         </p-iconField>
-        <button pButton (click)="login()" class="w-1/3 self-center justify-center">
+        <button
+            pButton
+            [disabled]="isLoading"
+            (click)="login()"
+            class="w-1/3 self-center justify-center"
+        >
             Se connecter
         </button>
         <a [routerLink]="['/forgotPassword']" class="password-reset self-center mt-4"
             >Mot de passe oublié</a
         >
+        <p-progressBar
+            mode="indeterminate"
+            *ngIf="isLoading"
+            [style]="{ height: '6px', width: '100%' }"
+        ></p-progressBar>
         <p-message
             *ngIf="error"
             class="self-center mt-6"
