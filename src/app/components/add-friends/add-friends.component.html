@@ -10,14 +10,17 @@
     <ng-template pTemplate="content">
         <div class="p-toolbar-group-center">
             <span class="p-input-icon-left">
-                <i class="pi pi-search cursor-pointer"></i>
-                <input pInputText placeholder="Search" />
+                <i (click)="searchUsers()" class="pi pi-search cursor-pointer"></i>
+                <input [(ngModel)]="searchUser.search" pInputText placeholder="Search" />
             </span>
         </div>
         <div
-            class="w-3/4 border-solid border-2 border-gray-300 rounded m-auto mt-5 max-h-52 p-4 overflow-auto"
+            class="w-3/4 border-solid border-2 border-gray-300 rounded m-auto mt-5 max-h-52 p-4 overflow-auto flex gap-4 flex-col"
         >
-            <app-user-card-add-friend></app-user-card-add-friend>
+            <app-user-card-add-friend
+                *ngFor="let user of users"
+                [user]="user"
+            ></app-user-card-add-friend>
         </div>
     </ng-template>
 </p-dialog>

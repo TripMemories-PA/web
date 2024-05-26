@@ -63,6 +63,7 @@ export class RegisterFormComponent {
 
         this.authService.register(this.user).subscribe({
             next: (_: any) => {
+                this.isLoading = false;
                 this.ok = 'Inscription réussie !';
             },
             error: (err: Error) => {
