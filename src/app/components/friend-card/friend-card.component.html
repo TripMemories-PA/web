@@ -1,0 +1,51 @@
+<p-card class="max-w-24">
+    <ng-template pTemplate="content">
+        <div class="flex flex-row justify-between items-center">
+            <p-avatar
+                shape="circle"
+                size="large"
+                [image]="
+                    user?.avatar?.url ??
+                    'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png'
+                "
+            ></p-avatar>
+            <div class="flex flex-col">
+                <span class="text-xl font-bold">{{ user?.firstname }} {{ user?.lastname }}</span>
+                <span class="text-xl font-bold">&#64;{{ user?.username }}</span>
+            </div>
+            <div>
+                <p-button
+                    [rounded]="false"
+                    size="small"
+                    label="Ajouter"
+                    severity="info"
+                    class="mr-4"
+                ></p-button>
+                <p-button
+                    icon="pi pi-eye"
+                    [rounded]="true"
+                    size="small"
+                    label="Supprimer"
+                    severity="danger"
+                ></p-button>
+            </div>
+        </div>
+        <p-progressBar
+            mode="indeterminate"
+            *ngIf="isLoading"
+            [style]="{ height: '6px', width: '100%' }"
+        ></p-progressBar>
+        <p-message
+            *ngIf="message"
+            class="self-center mt-6"
+            severity="success"
+            [text]="message"
+        ></p-message>
+        <p-message
+            *ngIf="error"
+            class="self-center mt-6"
+            severity="error"
+            text="Une erreur est survenue lors de l'ajout de l'ami."
+        ></p-message>
+    </ng-template>
+</p-card>
