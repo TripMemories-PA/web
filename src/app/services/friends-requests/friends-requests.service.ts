@@ -15,10 +15,10 @@ export class FriendsRequestsService {
         return this.http.post(URL, { userId: id });
     }
 
-    getFriendsRequests() {
+    getFriendsRequests(page: number = 1, perPage: number = 10) {
         const params = new URLSearchParams();
-        params.append('page', '1');
-        params.append('perPage', '10');
+        params.append('page', page.toString());
+        params.append('perPage', perPage.toString());
         return this.http.get<FriendRequestResponse>(`${URL}?${params.toString()}`);
     }
 

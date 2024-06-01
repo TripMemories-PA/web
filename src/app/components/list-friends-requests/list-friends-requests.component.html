@@ -1,9 +1,25 @@
-<div class="w-full h-full border-gray-400 border-solid border-2 rounded shadow p-4">
+<div class="w-full border-gray-400 border-solid border-2 rounded shadow p-4">
     <h2 class="text-center text-xl mb-6">Nouvelles demandes d'amis</h2>
-    <div *ngFor="let friend of friends" class="mb-4">
-        <app-friend-request-card
-            (reload)="getFriendsRequests()"
-            [friendRequest]="friend"
-        ></app-friend-request-card>
-    </div>
+    <ng-container
+        *ngIf="friends && friends.length > 0; else noFriendsRequests"
+        class="h-3/4 overflow-auto"
+    >
+        <div *ngFor="let friend of friends" class="mb-4">
+            <app-friend-request-card
+                (reload)="getFriendsRequests()"
+                [friendRequest]="friend"
+            ></app-friend-request-card>
+        </div>
+    </ng-container>
+    <ng-template #noFriendsRequests>
+        <p class="text-center text-red-500">Vous n'avez pas de nouvelles demandes d'amis 😥</p>
+    </ng-template>
+    <p-paginator
+        *ngIf="totalPages > 1"
+        (onPageChange)="onPageChange($event)"
+        [first]="firstPage"
+        [rows]="meta.perPage"
+        [totalRecords]="totalPages"
+        [rowsPerPageOptions]="[10, 20, 30]"
+    />
 </div>
