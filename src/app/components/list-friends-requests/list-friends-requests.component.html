@@ -1,0 +1,9 @@
+<div class="w-full h-full border-gray-400 border-solid border-2 rounded shadow p-4">
+    <h2 class="text-center text-xl mb-6">Nouvelles demandes d'amis</h2>
+    <div *ngFor="let friend of friends" class="mb-4">
+        <app-friend-request-card
+            (reload)="getFriendsRequests()"
+            [friendRequest]="friend"
+        ></app-friend-request-card>
+    </div>
+</div>
