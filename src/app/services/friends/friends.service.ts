@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { MyFriendsResponse } from '../../models/response/myFriends.response';
 
 const URL = environment.apiUrl + '/me/friends';
 
@@ -10,11 +11,14 @@ const URL = environment.apiUrl + '/me/friends';
 export class FriendsService {
     constructor(private http: HttpClient) {}
 
-    getFriends() {
-        return this.http.get(URL);
+    getFriends(page: number = 1, perPage: number = 10) {
+        const params = new URLSearchParams();
+        params.append('page', page.toString());
+        params.append('perPage', perPage.toString());
+        return this.http.get<MyFriendsResponse>(`${URL}?${params.toString()}`);
     }
 
-    deleteFriend(id: number) {
+    deleteFriend(id: string) {
         return this.http.delete(`${URL}/${id}`);
     }
 }
