@@ -10,8 +10,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
-import { NgIf } from '@angular/common';
+import { NgIf, NgOptimizedImage } from '@angular/common';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { CheckboxModule } from 'primeng/checkbox';
+import { PasswordModule } from 'primeng/password';
 
 @Component({
     selector: 'app-login-form',
@@ -28,6 +30,9 @@ import { ProgressBarModule } from 'primeng/progressbar';
         NgIf,
         RouterLink,
         ProgressBarModule,
+        CheckboxModule,
+        PasswordModule,
+        NgOptimizedImage,
     ],
     templateUrl: './login-form.component.html',
     styleUrl: './login-form.component.css',
@@ -51,6 +56,11 @@ export class LoginFormComponent {
     login(): void {
         this.error = null;
         if (this.isLoading) return;
+        if (!this.user.username || !this.user.password) {
+            this.error =
+                "Un nom d'utilisateur et un mot de passe sont nécessaire avant de se connecter";
+            return;
+        }
         this.isLoading = true;
 
         this.authService.login(this.user).subscribe({

@@ -56,7 +56,7 @@ export class AuthService {
         this.user = null;
         localStorage.removeItem('user');
         localStorage.removeItem('token');
-        this.router.navigate(['/auth']);
+        this.router.navigate(['/login']);
     }
 
     resetPassword(email: User) {

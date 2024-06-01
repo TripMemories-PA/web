@@ -37,7 +37,7 @@ export class ChangePasswordComponent implements OnInit {
     ngOnInit(): void {
         this.route.queryParams.subscribe((params) => {
             if (!params['token']) {
-                this.router.navigate(['/auth']);
+                this.router.navigate(['/login']);
             }
             this.token = params['token'];
         });
@@ -54,7 +54,7 @@ export class ChangePasswordComponent implements OnInit {
             return;
         }
         if (!this.token) {
-            this.router.navigate(['/auth']);
+            this.router.navigate(['/login']);
             return;
         }
         this.isLoading = true;
@@ -64,20 +64,20 @@ export class ChangePasswordComponent implements OnInit {
                 this.error = '';
                 this.ok = data.message;
                 setTimeout(() => {
-                    this.router.navigate(['/auth']);
+                    this.router.navigate(['/login']);
                 }, 7000);
             },
             error: (err) => {
                 this.isLoading = false;
                 this.error = err.message;
                 setTimeout(() => {
-                    this.router.navigate(['/auth']);
+                    this.router.navigate(['/login']);
                 }, 10000);
             },
         });
     }
 
     redirect(): void {
-        this.router.navigate(['/auth']);
+        this.router.navigate(['/login']);
     }
 }

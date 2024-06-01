@@ -47,6 +47,5 @@ export class HeaderComponent implements OnInit {
 
     disconnect() {
         this.auth.logout();
-        this.router.navigate(['/']);
     }
 }
