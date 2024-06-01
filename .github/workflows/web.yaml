@@ -51,15 +51,15 @@ jobs:
         run: npm ci
       - name: lint
         run: npm run lint --if-present
-      #- name: Test
-      #  run: npm run test --if-present
+      - name: Test
+        run: npm run test --if-present
       - name: Build with Angular
         run: npm run build
       - name: zip artifact all
-        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: zip all.zip ./* -r
       - name: Upload artifact
-        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: actions/upload-artifact@v4
         with:
           name: all
