@@ -6,7 +6,6 @@ import { FriendCardComponent } from '../friend-card/friend-card.component';
 import { MyFriendsResponse } from '../../models/response/myFriends.response';
 import { MetaModel } from '../../models/meta.model';
 import { PaginatorModule } from 'primeng/paginator';
-import { FriendRequestResponse } from '../../models/response/friendRequest.response';
 
 @Component({
     selector: 'app-list-friends',
