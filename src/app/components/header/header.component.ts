@@ -3,6 +3,8 @@ import { MenubarModule } from 'primeng/menubar';
 import { MenuItem } from 'primeng/api';
 import { NgIf, NgOptimizedImage } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
+import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-header',
@@ -12,6 +14,11 @@ import { ButtonModule } from 'primeng/button';
     styleUrl: './header.component.css',
 })
 export class HeaderComponent implements OnInit {
+    constructor(
+        private auth: AuthService,
+        private router: Router,
+    ) {}
+
     items: MenuItem[] | undefined;
 
     isConnect: boolean = false;
@@ -34,5 +41,19 @@ export class HeaderComponent implements OnInit {
                 routerLink: ['/friends'],
             },
         ];
+        if (this.auth.user?.access_token) {
+            this.isConnect = true;
+        }
+    }
+
+    login() {
+        this.router.navigate(['/login']);
+    }
+
+    disconnect() {
+        console.log('disconnect', this.isConnect);
+        this.isConnect = false;
+        this.auth.logout();
+        this.router.navigate(['/']);
     }
 }

@@ -8,6 +8,9 @@
         />
     </ng-template>
     <ng-template pTemplate="end" [ngIf]="!isConnect">
-        <button pButton type="button">S'inscrire</button>
+        <button (click)="login()" pButton type="button">S'inscrire</button>
+    </ng-template>
+    <ng-template pTemplate="end" [ngIf]="isConnect">
+        <button (click)="disconnect()" pButton type="button">Me déconnecter</button>
     </ng-template>
 </p-menubar>
