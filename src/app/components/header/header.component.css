@@ -1,0 +1,14 @@
+::ng-deep .p-menubar {
+  background: transparent;
+  border: none
+}
+
+::ng-deep .p-menuitem {
+  font-family: "Urbanist", sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+::ng-deep .p-menu-list {
+  margin: 150px
+}

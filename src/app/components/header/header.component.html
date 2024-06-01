@@ -1,15 +1,27 @@
 <p-menubar [model]="items">
     <ng-template pTemplate="start">
-        <img
-            ngSrc="https://s3-alpha-sig.figma.com/img/6c5b/9775/4a93ca05d34c3f133fa250fc496e24df?Expires=1714953600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=gslmJAj06j~5MSsiqtlt~nwNojprLen89cOrJIsRW0~sZMjXMZ0TBACKyUOPbvuu014~MtVg7UU5X9Bd-TZ7ay7fKTCdw4T2S8R08XU4~PLH7R7WMwgySLfjgNh5bU4cRR~bUti77cyAxL-QaqaAEylOJfI39UA5AAZ5yvcpFdDIKARTWskTDl7d7ngNvTCACFj6hpxXToXK-mUiuJhlvPegkVyPL3soKmOwr914RXTv13u1SVonolB7pW4tIrzQZioHh52yI5A861ZhzFBJ5L-1UlebMN7BQdSz6KkX-3a8alZXgHF2cbfR1lL5Hba18DyO~WwpfoDTnx7pzxjzFA__"
-            alt="Logo"
-            height="40"
-            width="40"
-        />
+        <img ngSrc="assets/logo/logo_tripMemories_header.png" alt="Logo" height="50" width="260" />
     </ng-template>
     <ng-template pTemplate="end">
-        <button (click)="auth.user?.access_token ? disconnect() : login()" pButton type="button">
-            {{ auth.user?.access_token ? 'Se déconnecter' : "S'inscrire" }}
-        </button>
+        <div>
+            <p-inputIcon class="cursor-pointer text-4xl mr-4" [styleClass]="'pi pi-search'" />
+            <button
+                *ngIf="!auth.user?.access_token"
+                class="mr-4 bg-inherit text-black border-none font-['Urbanist'] font-semibold"
+                (click)="login()"
+                pButton
+                type="button"
+            >
+                Créer un compte
+            </button>
+            <button
+                (click)="auth.user?.access_token ? disconnect() : login()"
+                pButton
+                class="rounded-full font-['Urbanist'] font-semibold"
+                type="button"
+            >
+                {{ auth.user?.access_token ? 'Se déconnecter' : 'Se connecter' }}
+            </button>
+        </div>
     </ng-template>
 </p-menubar>

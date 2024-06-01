@@ -5,11 +5,12 @@ import { NgIf, NgOptimizedImage } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
+import { InputIconModule } from 'primeng/inputicon';
 
 @Component({
     selector: 'app-header',
     standalone: true,
-    imports: [MenubarModule, NgOptimizedImage, ButtonModule, NgIf],
+    imports: [MenubarModule, NgOptimizedImage, ButtonModule, NgIf, InputIconModule],
     templateUrl: './header.component.html',
     styleUrl: './header.component.css',
 })
@@ -24,19 +25,20 @@ export class HeaderComponent implements OnInit {
     ngOnInit() {
         this.items = [
             {
-                label: 'Accueil',
-                icon: 'pi pi-fw pi-home',
+                label: 'Carte',
+                routerLink: ['/'],
+            },
+            {
+                label: 'Feed',
+                routerLink: ['/'],
+            },
+            {
+                label: 'Magasin',
                 routerLink: ['/'],
             },
             {
                 label: 'Profil',
-                icon: 'pi pi-fw pi-user',
                 routerLink: ['/profil'],
-            },
-            {
-                label: 'Mes Amis',
-                icon: 'pi pi-fw pi-users',
-                routerLink: ['/friends'],
             },
         ];
     }
