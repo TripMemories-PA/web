@@ -18,7 +18,6 @@ export class ProfilPageComponent implements OnInit {
         private authServices: AuthService,
     ) {
         const user = JSON.parse(localStorage.getItem('user') as string);
-        console.log(this.authServices.user);
         if (!this.authServices.user?.access_token) {
             this.authServices.logout();
             return;
@@ -34,7 +33,6 @@ export class ProfilPageComponent implements OnInit {
                 user.access_token = this.authServices.user?.access_token;
                 this.authServices.user = user;
                 localStorage.setItem('user', JSON.stringify(user));
-                console.log(this.authServices.user);
                 if (this.authServices.user?.avatar) {
                     this.profilPic = user.avatar.url;
                 }

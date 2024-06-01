@@ -15,13 +15,11 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
     constructor(
-        private auth: AuthService,
+        public auth: AuthService,
         private router: Router,
     ) {}
 
     items: MenuItem[] | undefined;
-
-    isConnect: boolean = false;
 
     ngOnInit() {
         this.items = [
@@ -41,9 +39,6 @@ export class HeaderComponent implements OnInit {
                 routerLink: ['/friends'],
             },
         ];
-        if (this.auth.user?.access_token) {
-            this.isConnect = true;
-        }
     }
 
     login() {
@@ -51,8 +46,6 @@ export class HeaderComponent implements OnInit {
     }
 
     disconnect() {
-        console.log('disconnect', this.isConnect);
-        this.isConnect = false;
         this.auth.logout();
         this.router.navigate(['/']);
     }
