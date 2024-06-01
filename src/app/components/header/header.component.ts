@@ -3,6 +3,8 @@ import { MenubarModule } from 'primeng/menubar';
 import { MenuItem } from 'primeng/api';
 import { NgIf, NgOptimizedImage } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
+import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-header',
@@ -12,9 +14,12 @@ import { ButtonModule } from 'primeng/button';
     styleUrl: './header.component.css',
 })
 export class HeaderComponent implements OnInit {
-    items: MenuItem[] | undefined;
+    constructor(
+        public auth: AuthService,
+        private router: Router,
+    ) {}
 
-    isConnect: boolean = false;
+    items: MenuItem[] | undefined;
 
     ngOnInit() {
         this.items = [
@@ -31,8 +36,17 @@ export class HeaderComponent implements OnInit {
             {
                 label: 'Mes Amis',
                 icon: 'pi pi-fw pi-users',
-                routerLink: ['/contact'],
+                routerLink: ['/friends'],
             },
         ];
+    }
+
+    login() {
+        this.router.navigate(['/login']);
+    }
+
+    disconnect() {
+        this.auth.logout();
+        this.router.navigate(['/']);
     }
 }

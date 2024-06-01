@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    apiUrl: 'https://api-fcvt.onrender.com',
+    apiUrl: 'http://89.168.46.217',
     peerPort: 3001,
 };
