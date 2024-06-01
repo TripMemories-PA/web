@@ -15,15 +15,15 @@
             </div>
             <div>
                 <p-button
-                    [rounded]="false"
+                    [rounded]="true"
                     size="small"
-                    label="Ajouter"
+                    label="Voir le profil"
                     severity="info"
                     class="mr-4"
                 ></p-button>
                 <p-button
-                    icon="pi pi-eye"
                     [rounded]="true"
+                    (click)="visible = true"
                     size="small"
                     label="Supprimer"
                     severity="danger"
@@ -49,3 +49,24 @@
         ></p-message>
     </ng-template>
 </p-card>
+<div class="card flex justify-content-center">
+    <p-dialog
+        header="Êtes-vous sûr de vouloir supprimer {{ user?.username }} en tant qu'ami ?"
+        [modal]="true"
+        [(visible)]="visible"
+        [style]="{ width: '25rem' }"
+    >
+        <span class="p-text-secondary block mb-5"
+            >L'action que vous compter faire est irréversible et ne peut être annulé</span
+        >
+        <div class="flex justify-content-end gap-2">
+            <p-button label="Non" severity="secondary" (click)="visible = false" />
+            <p-button label="Oui" (click)="deleteFriend(user?.id)" />
+        </div>
+        <p-progressBar
+            mode="indeterminate"
+            *ngIf="isLoading"
+            [style]="{ height: '6px', width: '100%' }"
+        ></p-progressBar>
+    </p-dialog>
+</div>
