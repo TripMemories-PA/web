@@ -6,12 +6,30 @@ import { User } from '../../models/user';
 import { AuthService } from '../../services/auth/auth.service';
 import { RouterLink } from '@angular/router';
 import { ProgressBarModule } from 'primeng/progressbar';
-import { NgIf } from '@angular/common';
+import { NgIf, NgOptimizedImage } from '@angular/common';
+import { CheckboxModule } from 'primeng/checkbox';
+import { FormsModule } from '@angular/forms';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
+import { MessageModule } from 'primeng/message';
 
 @Component({
     selector: 'app-new-password',
     standalone: true,
-    imports: [CardModule, ButtonModule, InputTextModule, RouterLink, ProgressBarModule, NgIf],
+    imports: [
+        CardModule,
+        ButtonModule,
+        InputTextModule,
+        RouterLink,
+        ProgressBarModule,
+        NgIf,
+        CheckboxModule,
+        FormsModule,
+        IconFieldModule,
+        InputIconModule,
+        MessageModule,
+        NgOptimizedImage,
+    ],
     templateUrl: './new-password.component.html',
     styleUrl: './new-password.component.css',
 })
