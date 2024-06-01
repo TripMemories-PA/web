@@ -5,13 +5,17 @@ import { NewPasswordPageComponent } from './pages/new-password-page/new-password
 import { ProfilPageComponent } from './pages/profil-page/profil-page.component';
 import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
 
 export const routes: Routes = [
     {
-        path: 'auth',
-        component: AuthComponent,
+        path: 'login',
+        component: LoginPageComponent,
     },
-    { path: 'login', component: LoginPageComponent },
+    {
+        path: 'register',
+        component: RegisterPageComponent,
+    },
     {
         path: 'forgotPassword',
         component: ResetPasswordComponent,
@@ -30,7 +34,7 @@ export const routes: Routes = [
     },
     {
         path: '',
-        redirectTo: 'auth',
+        redirectTo: 'login',
         pathMatch: 'full',
     },
     {

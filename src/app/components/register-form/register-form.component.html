@@ -1,107 +1,128 @@
-<p-card>
-    <p-header>
-        <h1 class="text-3xl text-center pt-4">Inscription</h1>
-    </p-header>
-    <form class="flex flex-col gap-8">
-        <div class="flex flex-row justify-evenly flex-wrap">
-            <div>
-                <input
-                    pInputText
-                    placeholder="Prénom"
-                    id="firstname"
-                    name="firstname"
-                    [class]="error ? 'ng-invalid ng-dirty' : ''"
-                    [(ngModel)]="user.firstname"
-                />
-            </div>
-            <div>
-                <input
-                    pInputText
-                    placeholder="Nom de famille"
-                    id="lastname"
-                    name="lastname"
-                    [class]="error ? 'ng-invalid ng-dirty' : ''"
-                    [(ngModel)]="user.lastname"
-                />
-            </div>
+<div class="p-d-flex p-jc-center p-ai-center w-full mt-12">
+    <div class="p-card p-shadow-5 h-full w-3/5 m-auto">
+        <div class="p-card-header p-text-center">
+            <img
+                ngSrc="assets/logo/Logo_tripmemories.png"
+                alt="tripmemories logo"
+                width="250"
+                height="250"
+            />
         </div>
-        <div class="flex flex-row justify-evenly flex-wrap">
-            <div>
-                <input
-                    pInputText
-                    type="email"
-                    id="email"
-                    placeholder="email"
-                    name="email"
-                    [class]="error ? 'ng-invalid ng-dirty' : ''"
-                    [(ngModel)]="user.email"
-                />
+        <div class="p-card-body">
+            <h3 class="p-text-center !text-3xl font-bold">Prêt à monter à bord ? 👋</h3>
+            <p class="p-text-center !text-lg">Entre tes infos pour créer ton compte Tripmemories</p>
+            <div class="p-d-flex p-jc-center p-mb-3">
+                <button
+                    pButton
+                    class="p-button-rounded p-button-secondary p-button-outlined"
+                    icon="pi pi-google"
+                    label="Continuer avec Google"
+                ></button>
             </div>
-            <div>
-                <input
-                    pInputText
-                    id="username"
-                    placeholder="Nom d'utilisateur"
-                    name="username"
-                    [class]="error ? 'ng-invalid ng-dirty' : ''"
-                    [(ngModel)]="user.username"
-                />
-            </div>
+            <hr />
+            <form>
+                <div class="p-field p-mb-3">
+                    <input
+                        pInputText
+                        placeholder="Prénom"
+                        id="firstname"
+                        name="firstname"
+                        [class]="error ? 'ng-invalid ng-dirty' : ''"
+                        [(ngModel)]="user.firstname"
+                    />
+                </div>
+                <div class="p-field p-mb-3">
+                    <input
+                        pInputText
+                        placeholder="Nom de famille"
+                        id="lastname"
+                        name="lastname"
+                        [class]="error ? 'ng-invalid ng-dirty' : ''"
+                        [(ngModel)]="user.lastname"
+                    />
+                </div>
+                <div class="p-field p-mb-3">
+                    <input
+                        pInputText
+                        type="email"
+                        id="email"
+                        placeholder="email"
+                        name="email"
+                        [class]="error ? 'ng-invalid ng-dirty' : ''"
+                        [(ngModel)]="user.email"
+                    />
+                </div>
+                <div class="p-field p-mb-3">
+                    <input
+                        pInputText
+                        id="username"
+                        placeholder="Nom d'utilisateur"
+                        name="username"
+                        [class]="error ? 'ng-invalid ng-dirty' : ''"
+                        [(ngModel)]="user.username"
+                    />
+                </div>
+                <div class="flex flex-row justify-between mb-8">
+                    <p-iconField iconPosition="right">
+                        <p-inputIcon
+                            class="cursor-pointer"
+                            (click)="hide1 = !hide1"
+                            [styleClass]="hide1 ? 'pi pi-eye' : 'pi pi-eye-slash'"
+                        />
+                        <input
+                            pInputText
+                            placeholder="Mot de passe"
+                            id="password"
+                            name="password"
+                            [class]="error ? 'ng-invalid ng-dirty' : ''"
+                            [type]="hide1 ? 'password' : 'text'"
+                            [(ngModel)]="user.password"
+                        />
+                    </p-iconField>
+                    <p-iconField iconPosition="right">
+                        <p-inputIcon
+                            class="cursor-pointer"
+                            (click)="hide2 = !hide2"
+                            [styleClass]="hide2 ? 'pi pi-eye' : 'pi pi-eye-slash'"
+                        />
+                        <input
+                            pInputText
+                            placeholder="Confirmer le mot de passe"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            [class]="error ? 'ng-invalid ng-dirty' : ''"
+                            [type]="hide2 ? 'password' : 'text'"
+                            [(ngModel)]="user.password_confirmation"
+                        />
+                    </p-iconField>
+                </div>
+                <div class="p-field p-mb-3">
+                    <button
+                        pButton
+                        [disabled]="isLoading"
+                        (click)="register()"
+                        label="Se connecter"
+                        class="p-button-primary p-button-block"
+                    ></button>
+                </div>
+                <div class="p-field p-text-center">
+                    <p>
+                        Tu as déjà un compte ?
+                        <a [routerLink]="['/login']">Se connecter</a>
+                    </p>
+                </div>
+            </form>
+            <p-progressBar
+                mode="indeterminate"
+                *ngIf="isLoading"
+                [style]="{ height: '6px', width: '100%' }"
+            ></p-progressBar>
+            <p-message
+                *ngIf="error"
+                class="self-center mt-6"
+                severity="error"
+                text="Le nom d'utilisateur ou le mot de passe est incorrect. Veuillez réessayer."
+            ></p-message>
         </div>
-        <div class="flex flex-row justify-evenly flex-wrap">
-            <p-iconField iconPosition="right">
-                <p-inputIcon
-                    class="cursor-pointer"
-                    (click)="hide1 = !hide1"
-                    [styleClass]="hide1 ? 'pi pi-eye' : 'pi pi-eye-slash'"
-                />
-                <input
-                    pInputText
-                    placeholder="Mot de passe"
-                    id="password"
-                    name="password"
-                    [class]="error ? 'ng-invalid ng-dirty' : ''"
-                    [type]="hide1 ? 'password' : 'text'"
-                    [(ngModel)]="user.password"
-                />
-            </p-iconField>
-            <p-iconField iconPosition="right">
-                <p-inputIcon
-                    class="cursor-pointer"
-                    (click)="hide2 = !hide2"
-                    [styleClass]="hide2 ? 'pi pi-eye' : 'pi pi-eye-slash'"
-                />
-                <input
-                    pInputText
-                    placeholder="Confirmer le mot de passe"
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    [class]="error ? 'ng-invalid ng-dirty' : ''"
-                    [type]="hide2 ? 'password' : 'text'"
-                    [(ngModel)]="user.password_confirmation"
-                />
-            </p-iconField>
-        </div>
-        <button
-            [disabled]="isLoading"
-            pButton
-            class="w-1/4 self-center justify-center"
-            (click)="register()"
-            type="submit"
-        >
-            S'inscrire
-        </button>
-        <p-progressBar
-            mode="indeterminate"
-            *ngIf="isLoading"
-            [style]="{ height: '6px', width: '100%' }"
-        ></p-progressBar>
-        <p-message
-            *ngIf="error"
-            class="self-center mt-6"
-            severity="error"
-            [text]="error"
-        ></p-message>
-        <p-message *ngIf="ok" class="self-center mt-6" severity="success" [text]="ok"></p-message>
-    </form>
-</p-card>
+    </div>
+</div>
