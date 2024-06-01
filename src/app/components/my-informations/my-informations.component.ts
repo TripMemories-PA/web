@@ -10,11 +10,20 @@ import { AuthService } from '../../services/auth/auth.service';
 import { NgIf } from '@angular/common';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { UpdateMeModel } from '../../models/updateme.model';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
     selector: 'app-my-informations',
     standalone: true,
-    imports: [CardModule, ButtonModule, InputTextModule, FormsModule, NgIf, ProgressBarModule],
+    imports: [
+        CardModule,
+        ButtonModule,
+        InputTextModule,
+        FormsModule,
+        NgIf,
+        ProgressBarModule,
+        DialogModule,
+    ],
     templateUrl: './my-informations.component.html',
     styleUrl: './my-informations.component.css',
 })
@@ -23,6 +32,8 @@ export class MyInformationsComponent implements OnInit {
     error: string | null = null;
 
     isLoading: boolean = false;
+
+    visible: boolean = false;
 
     @Input() user: User = {
         firstname: undefined,
@@ -76,5 +87,17 @@ export class MyInformationsComponent implements OnInit {
         userLocalStorage.username = user.username;
         this.authService.user!.access_token = userLocalStorage.access_token;
         localStorage.setItem('user', JSON.stringify(userLocalStorage));
+    }
+
+    deleteMe() {
+        this.profilServices.deleteMe().subscribe({
+            next: () => {
+                this.authService.logout();
+                this.router.navigate(['/login']);
+            },
+            error: (err: any) => {
+                this.error = err.message;
+            },
+        });
     }
 }

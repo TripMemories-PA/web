@@ -24,4 +24,8 @@ export class ProfilService {
     getMe() {
         return this.http.get(`${URL}`);
     }
+
+    deleteMe() {
+        return this.http.delete(`${URL}`);
+    }
 }
