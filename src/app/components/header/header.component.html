@@ -7,10 +7,9 @@
             width="40"
         />
     </ng-template>
-    <ng-template pTemplate="end" [ngIf]="!isConnect">
-        <button (click)="login()" pButton type="button">S'inscrire</button>
-    </ng-template>
-    <ng-template pTemplate="end" [ngIf]="isConnect">
-        <button (click)="disconnect()" pButton type="button">Me déconnecter</button>
+    <ng-template pTemplate="end">
+        <button (click)="auth.user?.access_token ? disconnect() : login()" pButton type="button">
+            {{ auth.user?.access_token ? 'Se déconnecter' : "S'inscrire" }}
+        </button>
     </ng-template>
 </p-menubar>
