@@ -2,6 +2,15 @@
   background: transparent;
   border: none
 }
+::ng-deep .p-menubar p-menubarsub {
+  margin: auto;
+}
+
+::ng-deep p-menubar ul {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
 
 ::ng-deep .p-menuitem {
   font-family: "Urbanist", sans-serif;
@@ -11,4 +20,7 @@
 
 ::ng-deep .p-menu-list {
   margin: 150px
+}
+::ng-deep .p-menubar-end {
+  margin: 0
 }

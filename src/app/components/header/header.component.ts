@@ -6,11 +6,21 @@ import { ButtonModule } from 'primeng/button';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { InputIconModule } from 'primeng/inputicon';
+import { InputTextModule } from 'primeng/inputtext';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-header',
     standalone: true,
-    imports: [MenubarModule, NgOptimizedImage, ButtonModule, NgIf, InputIconModule],
+    imports: [
+        MenubarModule,
+        NgOptimizedImage,
+        ButtonModule,
+        NgIf,
+        InputIconModule,
+        InputTextModule,
+        ReactiveFormsModule,
+    ],
     templateUrl: './header.component.html',
     styleUrl: './header.component.css',
 })
@@ -21,6 +31,7 @@ export class HeaderComponent implements OnInit {
     ) {}
 
     items: MenuItem[] | undefined;
+    showSearchInput: boolean = false;
 
     ngOnInit() {
         this.items = [
@@ -41,6 +52,10 @@ export class HeaderComponent implements OnInit {
                 routerLink: ['/profil'],
             },
         ];
+    }
+
+    toggleSearchInput() {
+        this.showSearchInput = !this.showSearchInput;
     }
 
     login() {
