@@ -14,6 +14,7 @@ import { NgIf, NgOptimizedImage } from '@angular/common';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { CheckboxModule } from 'primeng/checkbox';
 import { PasswordModule } from 'primeng/password';
+import { LoginResponse } from '../../models/response/login.response';
 
 @Component({
     selector: 'app-login-form',
@@ -64,7 +65,7 @@ export class LoginFormComponent {
         this.isLoading = true;
 
         this.authService.login(this.user).subscribe({
-            next: (res: any) => {
+            next: (res: LoginResponse) => {
                 this.isLoading = false;
                 let user: User = {
                     firstname: '',
@@ -77,7 +78,7 @@ export class LoginFormComponent {
                 user.access_token = res.token;
                 this.authService.user = user;
                 localStorage.setItem('user', JSON.stringify(user));
-                localStorage.setItem('token', res.token);
+                localStorage.setItem('token', <string>res.token);
                 this.router.navigate(['/profil']);
             },
             error: (err: Error) => {

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { NO_AUTH } from '../request.interceptor';
 import { environment } from '../../../environments/environment';
 import { ResetPasswordModel } from '../../models/reset-password.model';
+import { LoginResponse } from '../../models/response/login.response';
 
 const URL = environment.apiUrl + '/auth/';
 const httpOptions = {
@@ -27,7 +28,7 @@ export class AuthService {
     }
 
     login(user: User) {
-        return this.http.post(
+        return this.http.post<LoginResponse>(
             URL + 'login',
             {
                 login: user.username ?? user.email,

@@ -51,6 +51,10 @@ export class HeaderComponent implements OnInit {
                 label: 'Profil',
                 routerLink: ['/profil'],
             },
+            {
+                label: 'Mes amis',
+                routerLink: ['/friends'],
+            },
         ];
     }
 
