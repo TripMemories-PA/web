@@ -4,7 +4,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { User } from '../../models/user';
 import { AuthService } from '../../services/auth/auth.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { NgIf, NgOptimizedImage } from '@angular/common';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -41,7 +41,11 @@ export class NewPasswordComponent {
     error: string | null = null;
     ok: string | null = null;
     isLoading: boolean = false;
-    constructor(private authServices: AuthService) {}
+
+    constructor(
+        private authServices: AuthService,
+        private router: Router,
+    ) {}
 
     private resetOkError() {
         setTimeout(() => {
@@ -69,5 +73,9 @@ export class NewPasswordComponent {
                 this.error = err.message;
             },
         });
+    }
+
+    goTo(path: string) {
+        this.router.navigate([path]);
     }
 }
