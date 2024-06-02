@@ -58,8 +58,8 @@ export class HeaderComponent implements OnInit {
         this.showSearchInput = !this.showSearchInput;
     }
 
-    login() {
-        this.router.navigate(['/login']);
+    goTo(path: string) {
+        this.router.navigate([path]);
     }
 
     disconnect() {
