@@ -76,4 +76,8 @@ export class RegisterFormComponent {
             },
         });
     }
+
+    goTo(path: string) {
+        this.router.navigate([path]);
+    }
 }

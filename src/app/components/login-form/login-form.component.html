@@ -2,6 +2,8 @@
     <div class="p-card p-shadow-5 h-full w-3/5 m-auto">
         <div class="p-card-header p-text-center">
             <img
+                (click)="goTo('/')"
+                class="cursor-pointer"
                 ngSrc="assets/logo/Logo_tripmemories.png"
                 alt="tripmemories logo"
                 width="250"
@@ -32,10 +34,6 @@
                         [(ngModel)]="user.username"
                     />
                 </div>
-                <!--                <div class="p-field p-mb-3">
-                    <label for="password">Mot de passe</label>
-                    <input pPassword id="password" toggleMask="true" placeholder="Mot de passe" />
-                </div>-->
                 <p-iconField iconPosition="right" class="mb-6 h-fit">
                     <p-inputIcon
                         class="cursor-pointer text-4xl"

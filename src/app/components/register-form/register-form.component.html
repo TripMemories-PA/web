@@ -2,6 +2,8 @@
     <div class="p-card p-shadow-5 h-full w-3/5 m-auto">
         <div class="p-card-header p-text-center">
             <img
+                (click)="goTo('/')"
+                class="cursor-pointer"
                 ngSrc="assets/logo/Logo_tripmemories.png"
                 alt="tripmemories logo"
                 width="250"
@@ -62,7 +64,7 @@
                         [(ngModel)]="user.username"
                     />
                 </div>
-                <div class="flex flex-row justify-between mb-8">
+                <div class="flex flex-row flex-wrap gap-3.5 justify-between mb-8">
                     <p-iconField iconPosition="right">
                         <p-inputIcon
                             class="cursor-pointer"
@@ -101,7 +103,7 @@
                         pButton
                         [disabled]="isLoading"
                         (click)="register()"
-                        label="Se connecter"
+                        label="S'inscrire"
                         class="p-button-primary p-button-block"
                     ></button>
                 </div>
@@ -118,10 +120,16 @@
                 [style]="{ height: '6px', width: '100%' }"
             ></p-progressBar>
             <p-message
+                *ngIf="ok"
+                class="self-center mt-6"
+                severity="error"
+                text="L'inscription est réussie. Vous pouvez maintenant vous connecter."
+            ></p-message>
+            <p-message
                 *ngIf="error"
                 class="self-center mt-6"
                 severity="error"
-                text="Le nom d'utilisateur ou le mot de passe est incorrect. Veuillez réessayer."
+                text="Une erreur lors de l'inscription est survenue, veuillez vérifier les informations saisies."
             ></p-message>
         </div>
     </div>
