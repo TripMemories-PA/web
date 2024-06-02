@@ -2,6 +2,8 @@
     <div class="p-card p-shadow-5 h-full w-3/5 m-auto">
         <div class="p-card-header p-text-center">
             <img
+                (click)="goTo('/')"
+                class="cursor-pointer"
                 ngSrc="assets/logo/Logo_tripmemories.png"
                 alt="tripmemories logo"
                 width="250"
@@ -62,7 +64,7 @@
                         [(ngModel)]="user.username"
                     />
                 </div>
-                <div class="flex flex-row justify-between mb-8">
+                <div class="flex flex-row flex-wrap gap-3.5 justify-between mb-8">
                     <p-iconField iconPosition="right">
                         <p-inputIcon
                             class="cursor-pointer"

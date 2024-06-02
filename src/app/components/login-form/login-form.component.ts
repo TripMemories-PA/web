@@ -86,4 +86,8 @@ export class LoginFormComponent {
             },
         });
     }
+
+    goTo(path: string) {
+        this.router.navigate([path]);
+    }
 }
