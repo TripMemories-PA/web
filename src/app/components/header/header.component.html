@@ -18,14 +18,14 @@
             <button
                 *ngIf="!auth.user?.access_token"
                 class="bg-inherit text-black border-none font-['Urbanist'] font-semibold"
-                (click)="login()"
+                (click)="goTo('/register')"
                 pButton
                 type="button"
             >
                 Créer un compte
             </button>
             <button
-                (click)="auth.user?.access_token ? disconnect() : login()"
+                (click)="auth.user?.access_token ? disconnect() : goTo('/login')"
                 pButton
                 class="rounded-full font-['Urbanist'] font-semibold"
                 type="button"

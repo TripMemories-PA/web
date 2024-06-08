@@ -51,6 +51,10 @@ export class HeaderComponent implements OnInit {
                 label: 'Profil',
                 routerLink: ['/profil'],
             },
+            {
+                label: 'Mes amis',
+                routerLink: ['/friends'],
+            },
         ];
     }
 
@@ -58,12 +62,11 @@ export class HeaderComponent implements OnInit {
         this.showSearchInput = !this.showSearchInput;
     }
 
-    login() {
-        this.router.navigate(['/login']);
+    goTo(path: string) {
+        this.router.navigate([path]);
     }
 
     disconnect() {
         this.auth.logout();
-        this.router.navigate(['/']);
     }
 }

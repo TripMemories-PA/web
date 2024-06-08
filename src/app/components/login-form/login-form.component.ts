@@ -10,8 +10,11 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
-import { NgIf } from '@angular/common';
+import { NgIf, NgOptimizedImage } from '@angular/common';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { CheckboxModule } from 'primeng/checkbox';
+import { PasswordModule } from 'primeng/password';
+import { LoginResponse } from '../../models/response/login.response';
 
 @Component({
     selector: 'app-login-form',
@@ -28,6 +31,9 @@ import { ProgressBarModule } from 'primeng/progressbar';
         NgIf,
         RouterLink,
         ProgressBarModule,
+        CheckboxModule,
+        PasswordModule,
+        NgOptimizedImage,
     ],
     templateUrl: './login-form.component.html',
     styleUrl: './login-form.component.css',
@@ -51,10 +57,15 @@ export class LoginFormComponent {
     login(): void {
         this.error = null;
         if (this.isLoading) return;
+        if (!this.user.username || !this.user.password) {
+            this.error =
+                "Un nom d'utilisateur et un mot de passe sont nécessaire avant de se connecter";
+            return;
+        }
         this.isLoading = true;
 
         this.authService.login(this.user).subscribe({
-            next: (res: any) => {
+            next: (res: LoginResponse) => {
                 this.isLoading = false;
                 let user: User = {
                     firstname: '',
@@ -67,7 +78,7 @@ export class LoginFormComponent {
                 user.access_token = res.token;
                 this.authService.user = user;
                 localStorage.setItem('user', JSON.stringify(user));
-                localStorage.setItem('token', res.token);
+                localStorage.setItem('token', <string>res.token);
                 this.router.navigate(['/profil']);
             },
             error: (err: Error) => {
@@ -75,5 +86,9 @@ export class LoginFormComponent {
                 this.error = err.message;
             },
         });
+    }
+
+    goTo(path: string) {
+        this.router.navigate([path]);
     }
 }
