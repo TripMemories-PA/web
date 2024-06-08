@@ -35,14 +35,9 @@ export class MyInformationsComponent implements OnInit {
 
     visible: boolean = false;
 
-    @Input() user: User = {
-        firstname: undefined,
-        lastname: undefined,
-        email: undefined,
-        username: undefined,
-    };
+    @Input() user?: User;
 
-    userPlaceholder: User = {
+    userValues: User = {
         firstname: '',
         lastname: '',
         email: '',
@@ -56,14 +51,16 @@ export class MyInformationsComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.userPlaceholder = this.user;
+        if (this.user) {
+            this.userValues = this.user;
+        }
     }
 
     submit(): void {
         if (this.isLoading) return;
         this.error = null;
         this.isLoading = true;
-        this.profilServices.updateMe(this.user).subscribe({
+        this.profilServices.updateMe(this.userValues).subscribe({
             next: (res: UpdateMeModel) => {
                 this.isLoading = false;
                 this.ok = 'Changement effectué avec succès';

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RegisterPageComponent } from './register-page.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterModule } from '@angular/router';
 
 describe('RegisterPageComponent', () => {
     let component: RegisterPageComponent;
@@ -8,7 +10,7 @@ describe('RegisterPageComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [RegisterPageComponent],
+            imports: [RegisterPageComponent, HttpClientTestingModule, RouterModule.forRoot([])],
         }).compileComponents();
 
         fixture = TestBed.createComponent(RegisterPageComponent);

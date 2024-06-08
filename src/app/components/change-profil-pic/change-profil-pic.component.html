@@ -2,13 +2,7 @@
     <div class="profile-pic">
         <app-picture-server
             class="pic-server"
-            [pictureServerUrl]="
-                pictureURL
-                    ? pictureURL
-                    : profilPicOnServer
-                      ? profilPicOnServer
-                      : 'https://oasys.ch/wp-content/uploads/2019/03/photo-avatar-profil.png'
-            "
+            [pictureServerUrl]="pictureURL ? pictureURL : profilPicOnServer"
         ></app-picture-server>
         <label class="-label" for="file">
             <p-inputIcon class="cursor-pointer text-4xl" [styleClass]="'pi pi-camera'" />

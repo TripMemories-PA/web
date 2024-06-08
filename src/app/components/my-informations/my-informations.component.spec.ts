@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MyInformationsComponent } from './my-informations.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterModule } from '@angular/router';
 
 describe('MyInformationsComponent', () => {
     let component: MyInformationsComponent;
@@ -8,7 +10,7 @@ describe('MyInformationsComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [MyInformationsComponent],
+            imports: [MyInformationsComponent, HttpClientTestingModule, RouterModule.forRoot([])],
         }).compileComponents();
 
         fixture = TestBed.createComponent(MyInformationsComponent);

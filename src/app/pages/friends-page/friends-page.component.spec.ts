@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FriendsPageComponent } from './friends-page.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterModule } from '@angular/router';
 
 describe('FriendsPageComponent', () => {
     let component: FriendsPageComponent;
@@ -8,7 +10,7 @@ describe('FriendsPageComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [FriendsPageComponent],
+            imports: [FriendsPageComponent, HttpClientTestingModule, RouterModule.forRoot([])],
         }).compileComponents();
 
         fixture = TestBed.createComponent(FriendsPageComponent);
