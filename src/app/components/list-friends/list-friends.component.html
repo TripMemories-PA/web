@@ -1,0 +1,20 @@
+<div class="w-3/4 h-96 border-gray-400 border-solid border-2 rounded shadow p-4">
+    <ng-container class="overflow-auto" *ngIf="friends && friends.length > 0; else noFriends">
+        <div *ngFor="let friend of friends" class="mb-4">
+            <app-friend-card (reload)="getFriends()" [user]="friend"></app-friend-card>
+        </div>
+    </ng-container>
+    <ng-template #noFriends>
+        <p class="text-center text-red-500">
+            Vous n'avez pas d'amis 😥, Ajoutez en un en utilisant la fonction dédiée
+        </p>
+    </ng-template>
+    <p-paginator
+        *ngIf="totalPages > 1"
+        (onPageChange)="onPageChange($event)"
+        [first]="firstPage"
+        [rows]="meta.perPage"
+        [totalRecords]="totalPages"
+        [rowsPerPageOptions]="[10, 20, 30]"
+    />
+</div>

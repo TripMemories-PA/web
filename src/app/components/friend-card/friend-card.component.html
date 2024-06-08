@@ -1,0 +1,72 @@
+<p-card class="max-w-24">
+    <ng-template pTemplate="content">
+        <div class="flex flex-row justify-between items-center">
+            <p-avatar
+                shape="circle"
+                size="large"
+                [image]="
+                    user?.avatar?.url ??
+                    'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png'
+                "
+            ></p-avatar>
+            <div class="flex flex-col">
+                <span class="text-xl font-bold">{{ user?.firstname }} {{ user?.lastname }}</span>
+                <span class="text-xl font-bold">&#64;{{ user?.username }}</span>
+            </div>
+            <div>
+                <p-button
+                    [rounded]="true"
+                    size="small"
+                    label="Voir le profil"
+                    severity="info"
+                    class="mr-4"
+                ></p-button>
+                <p-button
+                    [rounded]="true"
+                    (click)="visible = true"
+                    size="small"
+                    label="Supprimer"
+                    severity="danger"
+                ></p-button>
+            </div>
+        </div>
+        <p-progressBar
+            mode="indeterminate"
+            *ngIf="isLoading"
+            [style]="{ height: '6px', width: '100%' }"
+        ></p-progressBar>
+        <p-message
+            *ngIf="message"
+            class="self-center mt-6"
+            severity="success"
+            [text]="message"
+        ></p-message>
+        <p-message
+            *ngIf="error"
+            class="self-center mt-6"
+            severity="error"
+            text="Une erreur est survenue lors de l'ajout de l'ami."
+        ></p-message>
+    </ng-template>
+</p-card>
+<div class="card flex justify-content-center">
+    <p-dialog
+        header="Êtes-vous sûr de vouloir supprimer {{ user?.username }} en tant qu'ami ?"
+        [modal]="true"
+        [(visible)]="visible"
+        [style]="{ width: '25rem' }"
+    >
+        <span class="p-text-secondary block mb-5"
+            >L'action que vous compter faire est irréversible et ne peut être annulé</span
+        >
+        <div class="flex justify-content-end gap-2">
+            <p-button label="Non" severity="secondary" (click)="visible = false" />
+            <p-button label="Oui" (click)="deleteFriend(user?.id)" />
+        </div>
+        <p-progressBar
+            mode="indeterminate"
+            *ngIf="isLoading"
+            [style]="{ height: '6px', width: '100%' }"
+        ></p-progressBar>
+    </p-dialog>
+</div>

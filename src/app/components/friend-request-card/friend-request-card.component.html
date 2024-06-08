@@ -1,0 +1,55 @@
+<p-card class="max-w-24">
+    <ng-template pTemplate="content">
+        <div class="flex flex-row justify-between items-center mb-4">
+            <p-avatar
+                shape="circle"
+                size="large"
+                [image]="
+                    friendRequest?.sender?.avatar?.url ??
+                    'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png'
+                "
+            ></p-avatar>
+            <div class="flex flex-col">
+                <span class="text-xl font-bold"
+                    >{{ friendRequest?.sender?.firstname }}
+                    {{ friendRequest?.sender?.lastname }}</span
+                >
+                <span class="text-xl font-bold">&#64;{{ friendRequest?.sender?.username }}</span>
+            </div>
+            <div class="flex flex-col gap-2 items-center">
+                <p-button
+                    [rounded]="true"
+                    size="small"
+                    label="Ajouter"
+                    severity="success"
+                    (click)="acceptFriendRequest(friendRequest?.id)"
+                ></p-button>
+                <p-button
+                    [rounded]="true"
+                    size="small"
+                    label="Supprimer"
+                    severity="danger"
+                    (click)="declineFriendRequest(friendRequest?.id)"
+                ></p-button>
+            </div>
+        </div>
+        <span>Demande reçu le {{ receivedDate }}</span>
+        <p-progressBar
+            mode="indeterminate"
+            *ngIf="isLoading"
+            [style]="{ height: '6px', width: '100%' }"
+        ></p-progressBar>
+        <p-message
+            *ngIf="message"
+            class="self-center mt-6"
+            severity="success"
+            [text]="message"
+        ></p-message>
+        <p-message
+            *ngIf="error"
+            class="self-center mt-6"
+            severity="error"
+            text="Une erreur est survenue lors de l'ajout de l'ami."
+        ></p-message>
+    </ng-template>
+</p-card>

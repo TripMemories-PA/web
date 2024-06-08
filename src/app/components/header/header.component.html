@@ -1,0 +1,37 @@
+<p-menubar [model]="items">
+    <ng-template pTemplate="start">
+        <img ngSrc="assets/logo/logo_tripMemories_header.png" alt="Logo" height="50" width="260" />
+    </ng-template>
+    <ng-template pTemplate="end">
+        <div class="flex justify-center items-center gap-6">
+            <i
+                *ngIf="!showSearchInput"
+                class="pi pi-search cursor-pointer text-lg"
+                (click)="toggleSearchInput()"
+            ></i>
+            <div *ngIf="showSearchInput" class="p-toolbar-group-center">
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search cursor-pointer"></i>
+                    <input type="text" pInputText placeholder="Rechercher..." />
+                </span>
+            </div>
+            <button
+                *ngIf="!auth.user?.access_token"
+                class="bg-inherit text-black border-none font-['Urbanist'] font-semibold"
+                (click)="goTo('/register')"
+                pButton
+                type="button"
+            >
+                Créer un compte
+            </button>
+            <button
+                (click)="auth.user?.access_token ? disconnect() : goTo('/login')"
+                pButton
+                class="rounded-full font-['Urbanist'] font-semibold"
+                type="button"
+            >
+                {{ auth.user?.access_token ? 'Se déconnecter' : 'Se connecter' }}
+            </button>
+        </div>
+    </ng-template>
+</p-menubar>
