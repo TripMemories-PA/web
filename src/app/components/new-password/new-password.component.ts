@@ -39,6 +39,7 @@ export class NewPasswordComponent {
     };
 
     error: string | null = null;
+    errorApi: string | null = null;
     ok: string | null = null;
     isLoading: boolean = false;
 
@@ -57,6 +58,8 @@ export class NewPasswordComponent {
     }
 
     resetPasswordAsks(): void {
+        this.errorApi = null;
+        this.error = null;
         if (!this.resetPassword.email) {
             this.error = 'Votre email est requis avant de tenter une réinitialisation 😉';
             return;
@@ -66,11 +69,13 @@ export class NewPasswordComponent {
         this.resetOkError();
         this.authServices.resetPassword(this.resetPassword).subscribe({
             next: (_: any) => {
+                this.isLoading = false;
                 this.ok =
                     'Si votre email est valide, vous allez recevoir un email avec un lien pour réinitialiser votre mot de passe.';
             },
             error: (err: Error) => {
-                this.error = err.message;
+                this.isLoading = false;
+                this.errorApi = err.message;
             },
         });
     }
