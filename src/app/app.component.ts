@@ -20,7 +20,11 @@ export class AppComponent implements OnInit {
         this.router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {
                 const url = event.urlAfterRedirects;
-                this.showHeader = !(url === '/login' || url === '/register');
+                this.showHeader = !(
+                    url === '/login' ||
+                    url === '/register' ||
+                    url === '/forgotPassword'
+                );
             }
         });
     }
