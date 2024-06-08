@@ -1,6 +1,7 @@
 <button pButton (click)="openDialog()">Ajouter un ami</button>
 <p-dialog
     header="Ajouter un ami"
+    class="flex flex-col"
     [modal]="true"
     [draggable]="false"
     [(visible)]="showDialog"
@@ -15,6 +16,7 @@
             </span>
         </div>
         <div
+            *ngIf="users && users.length > 0"
             class="w-3/4 border-solid border-2 border-gray-300 rounded m-auto mt-5 max-h-52 p-4 overflow-auto flex gap-4 flex-col"
         >
             <app-user-card-add-friend
@@ -22,5 +24,16 @@
                 [user]="user"
             ></app-user-card-add-friend>
         </div>
+        <p-message
+            *ngIf="isEmptySearch"
+            class="self-center mt-6"
+            severity="error"
+            text="Il n'y a pas d'utilisateur existant correspondant à votre recherche."
+        ></p-message>
+        <p-progressBar
+            mode="indeterminate"
+            [style]="{ height: '6px' }"
+            *ngIf="isLoading"
+        ></p-progressBar>
     </ng-template>
 </p-dialog>
