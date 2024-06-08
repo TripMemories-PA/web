@@ -13,7 +13,7 @@ import { NgIf } from '@angular/common';
     styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
-    title = 'front';
+    title = 'TripMemories';
     showHeader: boolean = true;
     constructor(private router: Router) {}
     ngOnInit(): void {

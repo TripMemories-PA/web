@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NewPasswordPageComponent } from './new-password-page.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterModule } from '@angular/router';
 
 describe('NewPasswordPageComponent', () => {
     let component: NewPasswordPageComponent;
@@ -8,7 +10,7 @@ describe('NewPasswordPageComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [NewPasswordPageComponent],
+            imports: [NewPasswordPageComponent, HttpClientTestingModule, RouterModule.forRoot([])],
         }).compileComponents();
 
         fixture = TestBed.createComponent(NewPasswordPageComponent);
