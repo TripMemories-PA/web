@@ -15,8 +15,8 @@ export class User {
     banner?: IFileImage;
     friends?: any[];
     isFriend?: boolean;
-    isReceivedFriendRequest?: boolean;
-    isSentFriendRequest?: boolean;
+    hasReceivedFriendRequest?: boolean;
+    hasSentFriendRequest?: boolean;
 }
 
 export class UserRegister {

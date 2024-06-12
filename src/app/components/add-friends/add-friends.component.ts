@@ -54,7 +54,7 @@ export class AddFriendsComponent {
             next: (searchUsersResponse: SearchUsersResponse) => {
                 this.isLoading = false;
                 this.users = searchUsersResponse.data.filter((user) => {
-                    return user.isFriend === false && user.isReceivedFriendRequest === false;
+                    return user.isFriend === false && user.hasReceivedFriendRequest === false;
                 });
                 if (this.users.length === 0) {
                     this.isEmptySearch = true;

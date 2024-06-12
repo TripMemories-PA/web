@@ -18,7 +18,7 @@
                     icon="pi pi-user-plus"
                     [rounded]="true"
                     size="small"
-                    [disabled]="user?.isSentFriendRequest || user?.isFriend"
+                    [disabled]="user?.hasSentFriendRequest || user?.isFriend"
                     severity="info"
                     class="mr-4"
                     (click)="addFriend()"
