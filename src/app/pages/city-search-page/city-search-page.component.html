@@ -10,7 +10,8 @@
                     type="text"
                     class="w-full"
                     pInputText
-                    placeholder="Cherche des monuments"
+                    placeholder="Cherche la ville de ton prochain voyage..."
+                    (keyup.enter)="sortSearch()"
                 />
                 <i (click)="sortSearch()" class="pi pi-search cursor-pointer mr-4"></i>
             </span>
