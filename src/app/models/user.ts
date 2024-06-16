@@ -1,7 +1,4 @@
-interface IFileImage {
-    url?: string;
-    filename?: string;
-}
+import { IFileImage } from './interface/FileImage';
 
 export class User {
     id?: string;

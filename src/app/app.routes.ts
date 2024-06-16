@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { AuthComponent } from './pages/auth/auth.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { NewPasswordPageComponent } from './pages/new-password-page/new-password-page.component';
 import { ProfilPageComponent } from './pages/profil-page/profil-page.component';
 import { FriendsPageComponent } from './pages/friends-page/friends-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import { CitySearchPageComponent } from './pages/city-search-page/city-search-page.component';
 
 export const routes: Routes = [
     {
@@ -23,6 +23,14 @@ export const routes: Routes = [
     {
         path: 'resetPassword',
         component: NewPasswordPageComponent,
+    },
+    {
+        path: 'search-city',
+        component: CitySearchPageComponent,
+    },
+    {
+        path: 'search-city/:searchTerm',
+        component: CitySearchPageComponent,
     },
     {
         path: 'profil',

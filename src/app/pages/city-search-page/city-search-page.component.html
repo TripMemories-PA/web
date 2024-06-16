@@ -1,0 +1,26 @@
+<div>
+    <div class="w-full h-96 z-0 relative">
+        <img ngSrc="assets/search-city/background-search-city.png" alt="City Search" fill />
+    </div>
+    <div>
+        <p-progressBar
+            mode="indeterminate"
+            *ngIf="loading"
+            [style]="{ marginTop: '25px', height: '6px', width: '100%' }"
+        ></p-progressBar>
+        <div class="p-9 justify-center flex flex-row flex-wrap gap-10">
+            <app-city-card
+                *ngFor="let city of paginatedCities"
+                [monument]="groupedByCity[city][0]"
+                [city]="city"
+            ></app-city-card>
+        </div>
+        <p-paginator
+            [rows]="itemsPerPage"
+            [totalRecords]="citesNames.length"
+            (onPageChange)="onPageChange($event)"
+            [rowsPerPageOptions]="[12, 24, 36]"
+        >
+        </p-paginator>
+    </div>
+</div>
