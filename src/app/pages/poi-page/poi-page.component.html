@@ -1,0 +1,27 @@
+<div>
+    <div class="relative flex justify-center items-center h-[540px]">
+        <p
+            class="font-['Urbanist'] text-[200px] stroke-[3px] not-italic shadow font-extrabold z-10"
+        >
+            {{ poi.name }}
+        </p>
+        <img
+            class="absolute z-0"
+            [ngSrc]="
+                poi.cover?.url ??
+                'https://decizia.com/blog/wp-content/uploads/2017/06/default-placeholder.png'
+            "
+            alt="{{ poi.name }}"
+            fill
+        />
+    </div>
+    <div class="p-9">
+        <div class="flex flex-col justify-center items-center gap-6">
+            <h2 class="text-6xl text-[var(--primary)] font-bold font-['Urbanist']">
+                {{ poi.name }}
+            </h2>
+            <h4 class="font-['Urbanist'] text-xl">{{ poi.city }}</h4>
+            <p>{{ poi.description }}</p>
+        </div>
+    </div>
+</div>

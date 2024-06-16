@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment';
 import { HttpClient, HttpContext } from '@angular/common/http';
 import { PoisSearchResponse } from '../../models/response/poisSearch.response';
 import { NO_AUTH } from '../request.interceptor';
+import { PoiModel } from '../../models/Poi.model';
 const URL = environment.apiUrl + '/pois';
 const httpOptions = {
     context: new HttpContext().set(NO_AUTH, true),
@@ -30,5 +31,9 @@ export class PoisService {
             params.append('neLng', neLng.toString());
         }
         return this.http.get<PoisSearchResponse>(`${URL}?${params.toString()}`, httpOptions);
+    }
+
+    getPOI(id: string) {
+        return this.http.get<PoiModel>(`${URL}/${id}`, httpOptions);
     }
 }
