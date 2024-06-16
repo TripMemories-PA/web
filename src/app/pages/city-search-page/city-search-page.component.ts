@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { PoisService } from '../../services/pois/pois.service';
 import { PoisSearchResponse } from '../../models/response/poisSearch.response';
 import { PoiModel } from '../../models/Poi.model';
@@ -7,6 +6,7 @@ import { CityCardComponent } from '../../components/city-card/city-card.componen
 import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { PaginatorModule } from 'primeng/paginator';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
     selector: 'app-city-search-page',
@@ -18,15 +18,17 @@ import { ProgressBarModule } from 'primeng/progressbar';
         PaginatorModule,
         NgIf,
         ProgressBarModule,
+        InputTextModule,
     ],
     templateUrl: './city-search-page.component.html',
     styleUrl: './city-search-page.component.css',
 })
 export class CitySearchPageComponent implements OnInit {
-    constructor(
-        private router: Router,
-        private poisService: PoisService,
-    ) {}
+    constructor(private poisService: PoisService) {}
+
+    searchCity = {
+        city: '',
+    };
 
     error: string = '';
     loading: boolean = false;
@@ -34,6 +36,7 @@ export class CitySearchPageComponent implements OnInit {
     pois: PoiModel[] = [];
     groupedByCity: { [city: string]: PoiModel[] } = {};
     citesNames: string[] = [];
+    originalCitesNames: string[] = [];
 
     itemsPerPage: number = 12;
     currentPage: number = 0;
@@ -68,11 +71,9 @@ export class CitySearchPageComponent implements OnInit {
                         this.groupedByCity[item.city as string].push(item);
                     }
                 });
-                Object.keys(this.groupedByCity).forEach((city) => {
-                    if (!this.citesNames.includes(city)) {
-                        this.citesNames.push(city);
-                    }
-                });
+                this.citesNames = Object.keys(this.groupedByCity);
+                this.originalCitesNames = [...this.citesNames]; // Stocker la liste complète des villes
+                this.updatePaginatedCities();
                 this.loading = false;
             },
             error: (error) => {
@@ -91,5 +92,27 @@ export class CitySearchPageComponent implements OnInit {
     onPageChange(event: any) {
         this.currentPage = event.page;
         this.itemsPerPage = event.rows;
+    }
+
+    sortSearch() {
+        if (this.searchCity.city === '') {
+            this.citesNames = [...this.originalCitesNames];
+            this.updatePaginatedCities();
+            return;
+        }
+        this.loading = true;
+        const searchTerm = this.searchCity.city.toLowerCase();
+        this.citesNames = this.originalCitesNames.filter((city) =>
+            city.toLowerCase().includes(searchTerm),
+        );
+        this.currentPage = 0;
+        //this.updatePaginatedCities();
+        this.loading = false;
+    }
+
+    private updatePaginatedCities() {
+        const start = this.currentPage * this.itemsPerPage;
+        const end = start + this.itemsPerPage;
+        //this.paginatedCities = this.citesNames.slice(start, end);
     }
 }

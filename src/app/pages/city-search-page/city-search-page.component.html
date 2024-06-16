@@ -3,6 +3,18 @@
         <img ngSrc="assets/search-city/background-search-city.png" alt="City Search" fill />
     </div>
     <div>
+        <div class="p-toolbar-group-center text-center mt-10">
+            <span class="p-input-icon-right">
+                <input
+                    [(ngModel)]="searchCity.city"
+                    type="text"
+                    class="w-full"
+                    pInputText
+                    placeholder="Cherche des monuments"
+                />
+                <i (click)="sortSearch()" class="pi pi-search cursor-pointer mr-4"></i>
+            </span>
+        </div>
         <p-progressBar
             mode="indeterminate"
             *ngIf="loading"
