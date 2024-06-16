@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
         this.items = [
             {
                 label: 'Carte',
-                routerLink: ['/'],
+                routerLink: ['/maps'],
             },
             {
                 label: 'Feed',
