@@ -6,7 +6,7 @@
         <div class="p-toolbar-group-center text-center mt-10">
             <span class="p-input-icon-right">
                 <input
-                    [(ngModel)]="searchCity.city"
+                    [(ngModel)]="searchMonument.monument"
                     type="text"
                     class="w-full"
                     pInputText
@@ -21,15 +21,15 @@
             [style]="{ marginTop: '25px', height: '6px', width: '100%' }"
         ></p-progressBar>
         <div class="p-9 justify-center flex flex-row flex-wrap gap-10">
-            <app-city-card
-                *ngFor="let city of paginatedCities"
-                [monument]="groupedByCity[city][0]"
-                [city]="city"
-            ></app-city-card>
+            <app-monument-card
+                *ngFor="let monument of paginatedPois"
+                [monument]="monument"
+                [city]="cityName"
+            ></app-monument-card>
         </div>
         <p-paginator
             [rows]="itemsPerPage"
-            [totalRecords]="pois.length"
+            [totalRecords]="citesNames.length"
             (onPageChange)="onPageChange($event)"
             [rowsPerPageOptions]="[12, 24, 36]"
         >
