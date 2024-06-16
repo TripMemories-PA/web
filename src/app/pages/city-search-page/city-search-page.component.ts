@@ -62,18 +62,14 @@ export class CitySearchPageComponent implements OnInit {
     private getPois(total: string) {
         this.poisService.getPOIs(total).subscribe({
             next: (response: PoisSearchResponse) => {
-                let number = 0;
                 response.data.forEach((item) => {
-                    if (number < 10) {
-                        if (!this.groupedByCity[item.city as string]) {
-                            this.groupedByCity[item.city as string] = [];
-                        }
-                        this.groupedByCity[item.city as string].push(item);
+                    if (!this.groupedByCity[item.city as string]) {
+                        this.groupedByCity[item.city as string] = [];
                     }
+                    this.groupedByCity[item.city as string].push(item);
                 });
                 this.citesNames = Object.keys(this.groupedByCity);
                 this.originalCitesNames = [...this.citesNames]; // Stocker la liste complète des villes
-                this.updatePaginatedCities();
                 this.loading = false;
             },
             error: (error) => {
@@ -97,7 +93,6 @@ export class CitySearchPageComponent implements OnInit {
     sortSearch() {
         if (this.searchCity.city === '') {
             this.citesNames = [...this.originalCitesNames];
-            this.updatePaginatedCities();
             return;
         }
         this.loading = true;
@@ -106,13 +101,6 @@ export class CitySearchPageComponent implements OnInit {
             city.toLowerCase().includes(searchTerm),
         );
         this.currentPage = 0;
-        //this.updatePaginatedCities();
         this.loading = false;
-    }
-
-    private updatePaginatedCities() {
-        const start = this.currentPage * this.itemsPerPage;
-        const end = start + this.itemsPerPage;
-        //this.paginatedCities = this.citesNames.slice(start, end);
     }
 }
