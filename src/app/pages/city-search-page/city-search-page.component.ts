@@ -7,6 +7,7 @@ import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { PaginatorModule } from 'primeng/paginator';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { InputTextModule } from 'primeng/inputtext';
+import { MessageModule } from 'primeng/message';
 
 @Component({
     selector: 'app-city-search-page',
@@ -19,6 +20,7 @@ import { InputTextModule } from 'primeng/inputtext';
         NgIf,
         ProgressBarModule,
         InputTextModule,
+        MessageModule,
     ],
     templateUrl: './city-search-page.component.html',
     styleUrl: './city-search-page.component.css',

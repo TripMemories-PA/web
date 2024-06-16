@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 import { map, switchMap } from 'rxjs';
 import { PoiModel } from '../../models/Poi.model';
 import { MonumentCardComponent } from '../../components/monument-card/monument-card.component';
+import { MessageModule } from 'primeng/message';
 
 @Component({
     selector: 'app-monument-search-page',
@@ -25,6 +26,7 @@ import { MonumentCardComponent } from '../../components/monument-card/monument-c
         PaginatorModule,
         ProgressBarModule,
         MonumentCardComponent,
+        MessageModule,
     ],
     templateUrl: './monument-search-page.component.html',
     styleUrl: './monument-search-page.component.css',
