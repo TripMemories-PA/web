@@ -6,11 +6,11 @@
         <div class="p-toolbar-group-center text-center mt-10">
             <span class="p-input-icon-right">
                 <input
-                    [(ngModel)]="searchCity.city"
+                    [(ngModel)]="searchMonument.monument"
                     type="text"
                     class="w-full"
                     pInputText
-                    placeholder="Cherche la ville de ton prochain voyage..."
+                    placeholder="Cherche des monuments"
                     (keyup.enter)="sortSearch()"
                 />
                 <i (click)="sortSearch()" class="pi pi-search cursor-pointer mr-4"></i>
@@ -21,27 +21,27 @@
             *ngIf="loading"
             [style]="{ marginTop: '25px', height: '6px', width: '100%' }"
         ></p-progressBar>
-        <div *ngIf="paginatedCities && paginatedCities.length > 0">
+        <div *ngIf="paginatedPois && paginatedPois.length > 0">
             <div class="p-9 justify-center flex flex-row flex-wrap gap-10">
-                <app-city-card
-                    *ngFor="let city of paginatedCities"
-                    [monument]="groupedByCity[city][0]"
-                    [city]="city"
-                ></app-city-card>
+                <app-monument-card
+                    *ngFor="let monument of paginatedPois"
+                    [monument]="monument"
+                    [city]="cityName"
+                ></app-monument-card>
             </div>
             <p-paginator
                 [rows]="itemsPerPage"
-                [totalRecords]="pois.length"
+                [totalRecords]="citesNames.length"
                 (onPageChange)="onPageChange($event)"
                 [rowsPerPageOptions]="[12, 24, 36]"
             >
             </p-paginator>
         </div>
         <p-message
-            *ngIf="(!paginatedCities || paginatedCities.length === 0) && !loading"
+            *ngIf="(!paginatedPois || paginatedPois.length === 0) && !loading"
             class="flex justify-center mt-10"
             severity="error"
-            text="Aucun résultat trouvé pour {{ searchCity.city }}. Veuillez réessayer."
+            text="Aucun résultat trouvé pour {{ searchMonument.monument }}. Veuillez réessayer."
         ></p-message>
     </div>
 </div>

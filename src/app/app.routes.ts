@@ -6,6 +6,7 @@ import { FriendsPageComponent } from './pages/friends-page/friends-page.componen
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { CitySearchPageComponent } from './pages/city-search-page/city-search-page.component';
+import { MonumentSearchPageComponent } from './pages/monument-search-page/monument-search-page.component';
 
 export const routes: Routes = [
     {
@@ -30,7 +31,7 @@ export const routes: Routes = [
     },
     {
         path: 'search-city/:searchTerm',
-        component: CitySearchPageComponent,
+        component: MonumentSearchPageComponent,
     },
     {
         path: 'profil',
