@@ -1,0 +1,55 @@
+<div>
+    <div class="relative flex justify-center items-center h-[540px]">
+        <p class="title-poi z-10">
+            {{ poi.name }}
+        </p>
+        <img
+            class="absolute z-0"
+            [ngSrc]="
+                poi.cover?.url ??
+                'https://decizia.com/blog/wp-content/uploads/2017/06/default-placeholder.png'
+            "
+            alt="{{ poi.name }}"
+            fill
+        />
+    </div>
+    <div class="p-9">
+        <div class="flex flex-col justify-center items-center gap-6">
+            <h2 class="text-6xl text-[var(--primary)] font-bold font-['Urbanist']">
+                {{ poi.name }}
+            </h2>
+            <h4 class="font-['Urbanist'] text-[#5B5B5B] text-xl">{{ poi.city }}</h4>
+            <p class="font-['Urbanist'] font-semibold leading-10">{{ poi.description }}</p>
+        </div>
+        <div class="mt-10">
+            <div class="flex flex-row justify-between mb-10">
+                <h3 class="text-4xl font-bold font-['Urbanist']">
+                    Derniers posts du point d'intérêt "{{ poi.name }}"
+                </h3>
+                <a
+                    class="flex items-center p-2 rounded-full border-[1px] border-[var(--primary)] border-solid text-[var(--primary)] font-['Urbanist']"
+                    [routerLink]="['/posts']"
+                >
+                    Voir tous les posts
+                </a>
+            </div>
+            <div
+                *ngIf="poiPosts.length > 0"
+                class="flex flex-row flex-nowrap gap-10 overflow-hidden"
+            >
+                <app-post-card
+                    *ngFor="let poiPost of poiPosts"
+                    [post]="poiPost"
+                    [city]="poi.city"
+                ></app-post-card>
+            </div>
+            <span *ngIf="poiPosts.length === 0" class="text-2xl text-red-500 font-['Urbanist']">
+                Aucun post pour le moment</span
+            >
+        </div>
+        <div class="mt-16">
+            <h3 class="text-4xl font-bold font-['Urbanist']">En ce moment à {{ poi.city }}</h3>
+            <div class="flex flex-row flex-nowrap gap-10 overflow-hidden"></div>
+        </div>
+    </div>
+</div>

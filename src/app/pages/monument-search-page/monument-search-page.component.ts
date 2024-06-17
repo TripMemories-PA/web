@@ -5,13 +5,12 @@ import { InputTextModule } from 'primeng/inputtext';
 import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { PaginatorModule } from 'primeng/paginator';
 import { ProgressBarModule } from 'primeng/progressbar';
-import { PoisSearchResponse } from '../../models/response/poisSearch.response';
 import { PoisService } from '../../services/pois/pois.service';
 import { ActivatedRoute } from '@angular/router';
-import { map, switchMap } from 'rxjs';
 import { PoiModel } from '../../models/Poi.model';
 import { MonumentCardComponent } from '../../components/monument-card/monument-card.component';
 import { MessageModule } from 'primeng/message';
+import { PoisSearchResponse } from '../../models/response/pois.response';
 
 @Component({
     selector: 'app-monument-search-page',
