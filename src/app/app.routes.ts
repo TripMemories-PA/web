@@ -34,6 +34,10 @@ export const routes: Routes = [
         component: MonumentSearchPageComponent,
     },
     {
+        path: 'post/:id',
+        component: MonumentSearchPageComponent,
+    },
+    {
         path: 'profil',
         component: ProfilPageComponent,
     },
