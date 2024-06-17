@@ -1,8 +1,6 @@
 <div>
     <div class="relative flex justify-center items-center h-[540px]">
-        <p
-            class="font-['Urbanist'] text-[200px] stroke-[3px] not-italic shadow font-extrabold z-10"
-        >
+        <p class="title-poi z-10">
             {{ poi.name }}
         </p>
         <img
@@ -35,13 +33,19 @@
                     Voir tous les posts
                 </a>
             </div>
-            <div class="flex flex-row flex-nowrap gap-10 overflow-hidden">
+            <div
+                *ngIf="poiPosts.length > 0"
+                class="flex flex-row flex-nowrap gap-10 overflow-hidden"
+            >
                 <app-post-card
                     *ngFor="let poiPost of poiPosts"
                     [post]="poiPost"
                     [city]="poi.city"
                 ></app-post-card>
             </div>
+            <span *ngIf="poiPosts.length === 0" class="text-2xl text-red-500 font-['Urbanist']">
+                Aucun post pour le moment</span
+            >
         </div>
         <div class="mt-16">
             <h3 class="text-4xl font-bold font-['Urbanist']">En ce moment à {{ poi.city }}</h3>

@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PoisService } from '../../services/pois/pois.service';
 import { PoiModel } from '../../models/Poi.model';
-import { NgForOf, NgOptimizedImage } from '@angular/common';
+import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { PostModel } from '../../models/post.model';
 import { PostCardComponent } from '../../components/post-card/post-card.component';
 
 @Component({
     selector: 'app-poi-page',
     standalone: true,
-    imports: [NgOptimizedImage, PostCardComponent, RouterLink, NgForOf],
+    imports: [NgOptimizedImage, PostCardComponent, RouterLink, NgForOf, NgIf],
     templateUrl: './poi-page.component.html',
     styleUrl: './poi-page.component.css',
 })
