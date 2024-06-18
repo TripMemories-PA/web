@@ -8,6 +8,7 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 import { CitySearchPageComponent } from './pages/city-search-page/city-search-page.component';
 import { MonumentSearchPageComponent } from './pages/monument-search-page/monument-search-page.component';
 import { PoiPageComponent } from './pages/poi-page/poi-page.component';
+import { PostPageComponent } from './pages/post-page/post-page.component';
 
 export const routes: Routes = [
     {
@@ -40,7 +41,7 @@ export const routes: Routes = [
     },
     {
         path: 'post/:id',
-        component: MonumentSearchPageComponent,
+        component: PostPageComponent,
     },
     {
         path: 'profil',

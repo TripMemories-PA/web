@@ -3,8 +3,9 @@ import { environment } from '../../../environments/environment';
 import { HttpClient, HttpContext } from '@angular/common/http';
 import { NO_AUTH } from '../request.interceptor';
 import { PostsResponse } from '../../models/response/posts.response';
+import { PostModel } from '../../models/post.model';
 
-const URL = environment.apiUrl + '/pois';
+const URL = environment.apiUrl + '/posts';
 const httpOptions = {
     context: new HttpContext().set(NO_AUTH, true),
 };
@@ -23,6 +24,6 @@ export class PostsService {
     }
 
     getPost(id: string) {
-        return this.http.get<PostsResponse>(`${URL}/${id}`, httpOptions);
+        return this.http.get<PostModel>(`${URL}/${id}`, httpOptions);
     }
 }
