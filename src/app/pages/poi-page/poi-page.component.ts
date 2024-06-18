@@ -5,6 +5,7 @@ import { PoiModel } from '../../models/Poi.model';
 import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { PostModel } from '../../models/post.model';
 import { PostCardComponent } from '../../components/post-card/post-card.component';
+import { ImageServiceService } from '../../services/image-service.service';
 
 @Component({
     selector: 'app-poi-page',
@@ -17,9 +18,13 @@ export class PoiPageComponent implements OnInit {
     poi: PoiModel = new PoiModel();
     poiPosts: PostModel[] = [];
 
+    widthImage: number = 1;
+    heightImage: number = 1;
+
     constructor(
         private _activatedRoute: ActivatedRoute,
         private poisService: PoisService,
+        private imageService: ImageServiceService,
     ) {}
     ngOnInit(): void {
         this._activatedRoute.paramMap.subscribe((params) => {
@@ -36,6 +41,15 @@ export class PoiPageComponent implements OnInit {
         this.poisService.getPOI(id).subscribe({
             next: (response) => {
                 this.poi = response;
+                this.imageService
+                    .getImageDimensions(response.cover?.url)
+                    .then((dimensions) => {
+                        this.widthImage = dimensions.width;
+                        this.heightImage = dimensions.height;
+                    })
+                    .catch((error) => {
+                        console.error('Error loading image:', error);
+                    });
             },
             error: (error) => {
                 console.error(error);
