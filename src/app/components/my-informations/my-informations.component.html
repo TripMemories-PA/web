@@ -19,16 +19,16 @@
                 </div>
             </div>
         </ng-container>
-        <p class="text-xl mt-3 text-['Urbanist']">{{ user?.username }}</p>
+        <p class="text-xl mt-3 text-['Urbanist']">&#64;{{ user?.username }}</p>
         <p class="text-md font-bold text-['Urbanist']">France</p>
     </div>
     <div class="relative ml-16 mr-16 flex flex-col justify-center">
-        <p class="text-center text-3xl font-bold text-['Urbanist']">{{ nbrFriends ?? 0 }}</p>
-        <p class="text-center text-xl text-['Urbanist']">Amis ajoutés</p>
+        <p class="text-center mb-2 text-3xl font-bold text-['Urbanist']">{{ nbrFriends ?? 0 }}</p>
+        <p class="text-center text-md text-['Urbanist']">Amis ajoutés</p>
     </div>
     <div class="relative flex mr-16 flex-col justify-center">
-        <p class="text-center text-3xl font-bold text-['Urbanist']">{{ nbrMonuments ?? 0 }}</p>
-        <p class="text-center text-xl text-['Urbanist']">Monuments visités</p>
+        <p class="text-center mb-2 text-3xl font-bold text-['Urbanist']">{{ nbrMonuments ?? 0 }}</p>
+        <p class="text-center text-md text-['Urbanist']">Monuments visités</p>
     </div>
     <ng-container *ngIf="modifyAccount">
         <p-dialog header="Modifier vos informations" [(visible)]="modifyAccount" [modal]="true">
