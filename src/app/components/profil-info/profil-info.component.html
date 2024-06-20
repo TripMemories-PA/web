@@ -1,11 +1,7 @@
-<p-card class="relative block">
-    <ng-template pTemplate="title">
-        <app-change-profil-pic
-            class="flex justify-center"
-            [profilPicOnServer]="profilPic"
-        ></app-change-profil-pic>
-    </ng-template>
-    <ng-template pTemplate="content">
-        <app-my-informations [user]="user"></app-my-informations>
-    </ng-template>
-</p-card>
+<div class="relative flex flex-row items-center">
+    <app-change-profil-pic
+        class="flex justify-center"
+        [profilPicOnServer]="profilPic"
+    ></app-change-profil-pic>
+    <app-my-informations [user]="user"></app-my-informations>
+</div>
