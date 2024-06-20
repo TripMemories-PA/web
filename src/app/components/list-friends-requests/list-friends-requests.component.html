@@ -1,4 +1,12 @@
-<button pButton (click)="openDialog()">Gérer les demandes</button>
+<button
+    pButton
+    [outlined]="true"
+    icon="pi pi-plus"
+    [style]="{ border: '2px solid grey', width: '280px', gap: '10px', borderRadius: '9999px' }"
+    (click)="openDialog()"
+>
+    Gérer les demandes
+</button>
 <p-dialog
     header="Gérer les demandes"
     class="flex flex-col"
