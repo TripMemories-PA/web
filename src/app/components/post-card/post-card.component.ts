@@ -23,7 +23,7 @@ export class PostCardComponent implements OnInit {
     dateParsed: string[] = ['', ''];
 
     goToPost() {
-        //this.router.navigate([this.post.id]);
+        this.router.navigate([`/post/${this.post.id}`]);
     }
 
     parseDate(date: Date | string): string[] {

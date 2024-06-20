@@ -71,7 +71,7 @@ export class CitySearchPageComponent implements OnInit {
                     this.groupedByCity[item.city as string].push(item);
                 });
                 this.citesNames = Object.keys(this.groupedByCity);
-                this.originalCitesNames = [...this.citesNames]; // Stocker la liste complète des villes
+                this.originalCitesNames = [...this.citesNames];
                 this.loading = false;
             },
             error: (error) => {
