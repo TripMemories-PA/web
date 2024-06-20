@@ -1,25 +1,39 @@
-<div class="w-full border-gray-400 border-solid border-2 rounded shadow p-4">
-    <h2 class="text-center text-xl mb-6">Nouvelles demandes d'amis</h2>
-    <ng-container
-        *ngIf="friends && friends.length > 0; else noFriendsRequests"
-        class="h-3/4 overflow-auto"
+<button pButton (click)="openDialog()">Gérer les demandes</button>
+<p-dialog
+    header="Gérer les demandes"
+    class="flex flex-col"
+    [modal]="true"
+    [draggable]="false"
+    [(visible)]="showDialog"
+    [style]="{ width: '50rem' }"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+>
+    <ng-template
+        pTemplate="content"
+        class="w-full border-gray-400 border-solid border-2 rounded shadow p-4"
     >
-        <div *ngFor="let friend of friends" class="mb-4">
-            <app-friend-request-card
-                (reload)="getFriendsRequests()"
-                [friendRequest]="friend"
-            ></app-friend-request-card>
-        </div>
-    </ng-container>
-    <ng-template #noFriendsRequests>
-        <p class="text-center text-red-500">Vous n'avez pas de nouvelles demandes d'amis 😥</p>
+        <h2 class="text-xl mb-6">{{ friends.length }} résultats</h2>
+        <ng-container
+            *ngIf="friends && friends.length > 0; else noFriendsRequests"
+            class="h-3/4 overflow-auto"
+        >
+            <div *ngFor="let friend of friends" class="mb-4">
+                <app-friend-request-card
+                    (reload)="getFriendsRequests()"
+                    [friendRequest]="friend"
+                ></app-friend-request-card>
+            </div>
+        </ng-container>
+        <ng-template #noFriendsRequests>
+            <p class="text-center text-red-500">Vous n'avez pas de nouvelles demandes d'amis 😥</p>
+        </ng-template>
+        <p-paginator
+            *ngIf="totalPages > 1"
+            (onPageChange)="onPageChange($event)"
+            [first]="firstPage"
+            [rows]="meta.perPage"
+            [totalRecords]="totalPages"
+            [rowsPerPageOptions]="[10, 20, 30]"
+        />
     </ng-template>
-    <p-paginator
-        *ngIf="totalPages > 1"
-        (onPageChange)="onPageChange($event)"
-        [first]="firstPage"
-        [rows]="meta.perPage"
-        [totalRecords]="totalPages"
-        [rowsPerPageOptions]="[10, 20, 30]"
-    />
-</div>
+</p-dialog>

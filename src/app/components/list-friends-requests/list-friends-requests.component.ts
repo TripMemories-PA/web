@@ -6,11 +6,20 @@ import { FriendRequestInfoModel } from '../../models/friendRequestInfo.model';
 import { FriendRequestCardComponent } from '../friend-request-card/friend-request-card.component';
 import { MetaModel } from '../../models/meta.model';
 import { PaginatorModule } from 'primeng/paginator';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
     selector: 'app-list-friends-requests',
     standalone: true,
-    imports: [FriendRequestCardComponent, NgForOf, PaginatorModule, NgIf],
+    imports: [
+        FriendRequestCardComponent,
+        NgForOf,
+        PaginatorModule,
+        NgIf,
+        ButtonModule,
+        DialogModule,
+    ],
     templateUrl: './list-friends-requests.component.html',
     styleUrl: './list-friends-requests.component.css',
 })
@@ -28,10 +37,18 @@ export class ListFriendsRequestsComponent implements OnInit {
     nextPageUrl: string | null = '';
     previousPageUrl: string | null = '';
 
+    isEmptySearch: boolean = false;
+    showDialog: boolean = false;
+    isLoading: boolean = false;
+
     constructor(private friendsRequestService: FriendsRequestsService) {}
 
     ngOnInit(): void {
         this.getFriendsRequests();
+    }
+
+    openDialog() {
+        this.showDialog = true;
     }
 
     getFriendsRequests() {
