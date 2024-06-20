@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PoisService } from '../../services/pois/pois.service';
-import { PoisSearchResponse } from '../../models/response/poisSearch.response';
 import { PoiModel } from '../../models/Poi.model';
 import { CityCardComponent } from '../../components/city-card/city-card.component';
 import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
@@ -8,6 +7,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageModule } from 'primeng/message';
+import { PoisSearchResponse } from '../../models/response/pois.response';
 
 @Component({
     selector: 'app-city-search-page',

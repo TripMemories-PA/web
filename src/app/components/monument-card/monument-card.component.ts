@@ -5,6 +5,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { RatingModule } from 'primeng/rating';
 import { SharedModule } from 'primeng/api';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-monument-card',
@@ -14,8 +15,13 @@ import { FormsModule } from '@angular/forms';
     styleUrl: './monument-card.component.css',
 })
 export class MonumentCardComponent {
+    constructor(private router: Router) {}
     @Input() city: string = '';
     @Input() monument: PoiModel = new PoiModel();
 
     @Input() value: number = 3;
+
+    goToPoi() {
+        this.router.navigate([`/poi/${this.monument.id}`]);
+    }
 }
