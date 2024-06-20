@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { PostCardComponent } from '../../../app/components/post-card/post-card.component';
-import { ProfilService } from '../../../app/services/profil/profil.service';
-import { PostModel } from '../../../app/models/post.model';
+import { PostCardComponent } from '../../../components/post-card/post-card.component';
+import { ProfilService } from '../../../services/profil/profil.service';
+import { PostModel } from '../../../models/post.model';
 import { NgForOf, NgIf } from '@angular/common';
 import { PaginatorModule } from 'primeng/paginator';
-import { MetaModel } from '../../../app/models/meta.model';
+import { MetaModel } from '../../../models/meta.model';
 
 @Component({
     selector: 'app-my-posts',
