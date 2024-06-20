@@ -1,5 +1,6 @@
 import { User } from './user';
 import { IFileImage } from './interface/FileImage';
+import { PoiModel } from './Poi.model';
 
 export class PostModel {
     id?: number;
@@ -15,4 +16,5 @@ export class PostModel {
     isLiked?: boolean;
     image?: IFileImage;
     createdBy?: User;
+    poi?: PoiModel;
 }
