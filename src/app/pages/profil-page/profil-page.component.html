@@ -4,5 +4,25 @@
         <div class="flex flex-row">
             <app-profil-info class="w-full" [profilPic]="profilPic"></app-profil-info>
         </div>
+        <div class="mt-16 mb-14">
+            <nav class="menu">
+                <ul>
+                    <li [class.active]="activeTab === 'posts'" (click)="setActiveTab('posts')">
+                        Mes posts
+                    </li>
+                    <li [class.active]="activeTab === 'friends'" (click)="setActiveTab('friends')">
+                        Mes amis
+                    </li>
+                    <li [class.active]="activeTab === 'profile'" (click)="setActiveTab('profile')">
+                        Mon profil
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div [ngSwitch]="activeTab">
+            <ng-container *ngSwitchCase="'posts'"></ng-container>
+            <ng-container *ngSwitchCase="'friends'"></ng-container>
+            <ng-container *ngSwitchCase="'profile'"></ng-container>
+        </div>
     </div>
 </div>

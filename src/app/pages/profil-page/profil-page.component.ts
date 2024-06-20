@@ -2,16 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { ProfilService } from '../../services/profil/profil.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { ProfilInfoComponent } from '../../components/profil-info/profil-info.component';
+import { NgSwitch, NgSwitchCase } from '@angular/common';
 
 @Component({
     selector: 'app-profil-page',
     standalone: true,
-    imports: [ProfilInfoComponent],
+    imports: [ProfilInfoComponent, NgSwitch, NgSwitchCase],
     templateUrl: './profil-page.component.html',
     styleUrl: './profil-page.component.css',
 })
 export class ProfilPageComponent implements OnInit {
     profilPic: string | undefined = undefined;
+
+    activeTab: string = 'posts';
+
+    setActiveTab(tab: string) {
+        this.activeTab = tab;
+    }
 
     constructor(
         private profilService: ProfilService,
