@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../models/user';
 import { environment } from '../../../environments/environment';
+import { PostsResponse } from '../../models/response/posts.response';
 
 const URL = environment.apiUrl + '/me';
 
@@ -23,6 +24,13 @@ export class ProfilService {
 
     getMe() {
         return this.http.get(`${URL}`);
+    }
+
+    getPosts(page: number = 1, perPage: number = 10) {
+        const params = new URLSearchParams();
+        params.append('page', page.toString());
+        params.append('perPage', perPage.toString());
+        return this.http.get<PostsResponse>(`${URL}/posts?${params.toString()}`);
     }
 
     deleteMe() {

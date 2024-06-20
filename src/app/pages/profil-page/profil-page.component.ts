@@ -4,11 +4,12 @@ import { AuthService } from '../../services/auth/auth.service';
 import { ProfilInfoComponent } from '../../components/profil-info/profil-info.component';
 import { NgSwitch, NgSwitchCase } from '@angular/common';
 import { FriendsService } from '../../services/friends/friends.service';
+import { MyPostsComponent } from '../../../container/profil/my-posts/my-posts.component';
 
 @Component({
     selector: 'app-profil-page',
     standalone: true,
-    imports: [ProfilInfoComponent, NgSwitch, NgSwitchCase],
+    imports: [ProfilInfoComponent, NgSwitch, NgSwitchCase, MyPostsComponent],
     templateUrl: './profil-page.component.html',
     styleUrl: './profil-page.component.css',
 })

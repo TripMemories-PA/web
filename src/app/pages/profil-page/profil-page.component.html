@@ -24,7 +24,9 @@
             </nav>
         </div>
         <div [ngSwitch]="activeTab">
-            <ng-container *ngSwitchCase="'posts'"></ng-container>
+            <ng-container *ngSwitchCase="'posts'">
+                <app-my-posts></app-my-posts>
+            </ng-container>
             <ng-container *ngSwitchCase="'friends'"></ng-container>
             <ng-container *ngSwitchCase="'profile'"></ng-container>
         </div>
