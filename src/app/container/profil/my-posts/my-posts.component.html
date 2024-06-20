@@ -2,7 +2,7 @@
     <app-post-card *ngFor="let post of posts" [post]="post" [city]="post.poi?.city"></app-post-card>
 </div>
 <p-paginator
-    *ngIf="totalPages > 1"
+    *ngIf="lastPage > 1"
     (onPageChange)="onPageChange($event)"
     [first]="firstPage"
     [rows]="meta.perPage"

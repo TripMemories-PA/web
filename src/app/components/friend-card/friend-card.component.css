@@ -1,0 +1,8 @@
+.button-element{
+  width: 40px;
+  height: 40px;
+}
+
+.button-element .pi-eye:before {
+  font-size: 10px;
+}

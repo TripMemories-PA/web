@@ -34,6 +34,7 @@ export class MyPostsComponent implements OnInit {
         this.profilService.getPosts().subscribe({
             next: (response) => {
                 this.posts = response.data;
+                this.lastPage = response.meta.lastPage;
                 this.meta = response.meta;
             },
             error: (error) => {
