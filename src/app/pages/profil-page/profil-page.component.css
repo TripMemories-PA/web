@@ -1,0 +1,25 @@
+.menu {
+  display: flex;
+  justify-content: start;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.menu li {
+  margin-right: 20px;
+  font-size: 25px;
+  font-family: Urbanist, sans-serif;
+  font-weight: 500;
+  padding: 10px;
+  cursor: pointer;
+  color: grey;
+}
+
+.menu li.active {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+}
