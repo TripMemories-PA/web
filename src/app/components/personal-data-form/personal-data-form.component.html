@@ -1,74 +1,69 @@
 <div>
     <form>
-        <div class="p-fluid flex flex-col gap-6">
-            <div class="flex flex-row gap-10">
-                <p-iconField iconPosition="left" class="mb-6 h-fit">
-                    <p-inputIcon class="cursor-pointer text-4xl" [styleClass]="'pi pi-user'" />
-                    <input
-                        pInputText
-                        id="username"
-                        placeholder="Nopm d'utilisateur"
-                        name="username"
-                        class="w-full"
-                        [class]="error ? 'ng-invalid ng-dirty' : ''"
-                        [(ngModel)]="user.password"
-                    />
-                </p-iconField>
+        <div class="flex flex-row gap-10">
+            <p-iconField iconPosition="left" class="mb-6 h-fit">
+                <p-inputIcon class="cursor-pointer text-4xl" [styleClass]="'pi pi-user'" />
+                <input
+                    pInputText
+                    id="username"
+                    placeholder="Nom d'utilisateur"
+                    name="username"
+                    class="w-full"
+                    [class]="error ? 'ng-invalid ng-dirty' : ''"
+                    [(ngModel)]="user.username"
+                />
+            </p-iconField>
 
-                <p-iconField iconPosition="left" class="mb-6 h-fit">
-                    <p-inputIcon class="cursor-pointer text-4xl" [styleClass]="'pi pi-at'" />
-                    <input
-                        pInputText
-                        id="email"
-                        placeholder="Confirmer le mot de passe"
-                        name="email"
-                        class="w-full"
-                        [class]="error ? 'ng-invalid ng-dirty' : ''"
-                        [(ngModel)]="user.password"
-                    />
-                </p-iconField>
-            </div>
-            <div class="flex flex-row gap-10">
-                <p-iconField iconPosition="left" class="mb-6 h-fit">
-                    <p-inputIcon class="cursor-pointer text-4xl" [styleClass]="'pi pi-user'" />
-                    <input
-                        pInputText
-                        id="password"
-                        placeholder="Mot de passe"
-                        name="password"
-                        class="w-full"
-                        [class]="error ? 'ng-invalid ng-dirty' : ''"
-                        type="text"
-                        [(ngModel)]="user.password"
-                    />
-                </p-iconField>
+            <p-iconField iconPosition="left" class="mb-6 h-fit">
+                <p-inputIcon class="cursor-pointer text-4xl" [styleClass]="'pi pi-at'" />
+                <input
+                    pInputText
+                    id="email"
+                    placeholder="Email"
+                    name="email"
+                    class="w-full"
+                    [class]="error ? 'ng-invalid ng-dirty' : ''"
+                    [(ngModel)]="user.email"
+                />
+            </p-iconField>
+        </div>
+        <div class="flex flex-row gap-10">
+            <p-iconField iconPosition="left" class="mb-6 h-fit">
+                <p-inputIcon class="cursor-pointer text-4xl" [styleClass]="'pi pi-user'" />
+                <input
+                    pInputText
+                    id="firstname"
+                    placeholder="Prénom"
+                    name="firstname"
+                    class="w-full"
+                    [class]="error ? 'ng-invalid ng-dirty' : ''"
+                    type="text"
+                    [(ngModel)]="user.firstname"
+                />
+            </p-iconField>
 
-                <p-iconField iconPosition="left" class="mb-6 h-fit">
-                    <p-inputIcon class="cursor-pointer text-4xl" [styleClass]="'pi pi-user'" />
-                    <input
-                        pInputText
-                        id="name"
-                        placeholder="Nom"
-                        name="name"
-                        class="w-full"
-                        [class]="error ? 'ng-invalid ng-dirty' : ''"
-                        [type]="'text'"
-                        [(ngModel)]="user.password"
-                    />
-                </p-iconField>
-            </div>
-            <div class="p-field p-grid">
-                <div class="p-col-12 p-md-2"></div>
-                <div class="p-col-12 p-md-10">
-                    <button
-                        pButton
-                        (click)="submit()"
-                        type="button"
-                        label="Modifier les informations"
-                        class="p-button-primary"
-                    ></button>
-                </div>
-            </div>
+            <p-iconField iconPosition="left" class="mb-6 h-fit">
+                <p-inputIcon class="cursor-pointer text-4xl" [styleClass]="'pi pi-user'" />
+                <input
+                    pInputText
+                    id="name"
+                    placeholder="Nom"
+                    name="name"
+                    class="w-full"
+                    [class]="error ? 'ng-invalid ng-dirty' : ''"
+                    [type]="'text'"
+                    [(ngModel)]="user.lastname"
+                />
+            </p-iconField>
+        </div>
+        <div class="p-col-12 p-md-10">
+            <button
+                pButton
+                (click)="submit()"
+                type="button"
+                label="Modifier les informations"
+                class="p-button-primary"
+            ></button>
         </div>
     </form>
 </div>

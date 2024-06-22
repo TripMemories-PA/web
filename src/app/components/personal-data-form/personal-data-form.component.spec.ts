@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PersonalDataFormComponent } from './personal-data-form.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('PersonalDataFormComponent', () => {
     let component: PersonalDataFormComponent;
@@ -8,7 +9,7 @@ describe('PersonalDataFormComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [PersonalDataFormComponent],
+            imports: [PersonalDataFormComponent, HttpClientTestingModule],
         }).compileComponents();
 
         fixture = TestBed.createComponent(PersonalDataFormComponent);
