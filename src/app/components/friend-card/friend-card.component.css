@@ -1,6 +1,22 @@
+::ng-deep .p-card-content {
+  padding: 0;
+}
+
 .button-element{
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+
+.button-element .pi-eye:before {
+  font-size: 10px;
+}
+
+.button-element-2 {
+  width: 35px;
+  height: 35px;
 }
 
 .button-element .pi-eye:before {

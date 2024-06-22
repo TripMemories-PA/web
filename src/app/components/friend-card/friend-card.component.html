@@ -2,19 +2,20 @@
     [style]="{
         boxShadow: '0 4px 6px 0 rgba(0, 0, 0, 0.1)',
         borderRadius: '15px',
+        border: '2px solid var(--border-grey)',
         width: 'fit-content'
     }"
 >
     <ng-template pTemplate="content">
         <div class="flex flex-col justify-between items-center">
-            <div class="relative w-36 h-20 mb-6">
+            <div class="relative w-full h-36 mb-6">
                 <img
                     ngSrc="{{
                         user?.avatar?.url ??
                             'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png'
                     }}"
                     alt="avatar"
-                    class="object-cover rounded"
+                    class="object-cover rounded-xl"
                     fill
                 />
                 <button pButton class="button-element" icon="pi pi-eye" [rounded]="true"></button>
@@ -32,13 +33,13 @@
                         size="small"
                         [rounded]="true"
                         icon="pi pi-comment"
-                        class="mr-2 button-element"
+                        class="mr-2 button-element-2"
                     ></button>
                     <button
                         pButton
-                        class="button-element"
                         [rounded]="true"
                         icon="pi pi-trash"
+                        class="button-element-2"
                         (click)="visible = true"
                     ></button>
                 </div>
