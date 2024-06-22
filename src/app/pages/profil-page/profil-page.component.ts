@@ -6,11 +6,19 @@ import { NgSwitch, NgSwitchCase } from '@angular/common';
 import { FriendsService } from '../../services/friends/friends.service';
 import { MyPostsComponent } from '../../container/profil/my-posts/my-posts.component';
 import { MyFriendsComponent } from '../../container/profil/my-friends/my-friends.component';
+import { MyProfilComponent } from '../../container/profil/my-profil/my-profil.component';
 
 @Component({
     selector: 'app-profil-page',
     standalone: true,
-    imports: [ProfilInfoComponent, NgSwitch, NgSwitchCase, MyPostsComponent, MyFriendsComponent],
+    imports: [
+        ProfilInfoComponent,
+        NgSwitch,
+        NgSwitchCase,
+        MyPostsComponent,
+        MyFriendsComponent,
+        MyProfilComponent,
+    ],
     templateUrl: './profil-page.component.html',
     styleUrl: './profil-page.component.css',
 })
