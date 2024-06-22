@@ -34,7 +34,10 @@ export class PostCardComponent implements OnInit {
         if (isNaN(dateObj.getTime())) {
             return ['', ''];
         }
-        return [dateObj.toLocaleDateString('fr-FR'), dateObj.toLocaleTimeString('fr-FR')];
+        return [
+            dateObj.toLocaleDateString('fr-FR'),
+            dateObj.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }),
+        ];
     }
 
     ngOnInit(): void {

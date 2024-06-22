@@ -23,7 +23,15 @@ export class PostsService {
         return this.http.get<PostsResponse>(`${URL}?${params.toString()}`, httpOptions);
     }
 
-    getPost(id: string) {
-        return this.http.get<PostModel>(`${URL}/${id}`, httpOptions);
+    getPost(id: string, isConnected: boolean = false) {
+        return this.http.get<PostModel>(`${URL}/${id}`, isConnected ? undefined : httpOptions);
+    }
+
+    likePost(id: number) {
+        return this.http.post(`${URL}/${id}/like`, {});
+    }
+
+    deleteLikePost(id: number) {
+        return this.http.delete(`${URL}/${id}/like`, {});
     }
 }
