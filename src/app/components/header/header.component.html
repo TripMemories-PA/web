@@ -11,12 +11,13 @@
             ></i>
             <div *ngIf="showSearchInput" class="p-toolbar-group-center">
                 <span class="p-input-icon-left">
-                    <i
-                        (click)="searchCity()"
-                        (keydown.enter)="searchCity()"
-                        class="pi pi-search cursor-pointer"
-                    ></i>
-                    <input type="text" pInputText placeholder="Rechercher..." />
+                    <i (click)="searchCity()" class="pi pi-search cursor-pointer"></i>
+                    <input
+                        (keyup.enter)="searchCity()"
+                        type="text"
+                        pInputText
+                        placeholder="Rechercher..."
+                    />
                 </span>
             </div>
             <button
@@ -28,6 +29,20 @@
             >
                 Créer un compte
             </button>
+            <div
+                *ngIf="auth.user?.access_token"
+                class="relative w-10 h-10 rounded-full border-4 border-white"
+            >
+                <img
+                    ngSrc="{{
+                        auth?.user?.avatar?.url ??
+                            'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png'
+                    }}"
+                    alt="avatar"
+                    class="object-cover rounded-full"
+                    fill
+                />
+            </div>
             <button
                 (click)="auth.user?.access_token ? disconnect() : goTo('/login')"
                 pButton
