@@ -8,24 +8,33 @@
     Ajouter un ami
 </button>
 <p-dialog
-    header="Ajouter un ami"
+    header="Ajouter des amis"
     class="flex flex-col"
     [modal]="true"
     [draggable]="false"
     [(visible)]="showDialog"
-    [style]="{ width: '50rem' }"
+    [style]="{ width: '50rem', borderRadius: '9999px' }"
     [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
 >
     <ng-template pTemplate="content">
         <div class="p-toolbar-group-center">
-            <span class="p-input-icon-left">
-                <i (click)="searchUsers()" class="pi pi-search cursor-pointer"></i>
-                <input [(ngModel)]="searchUser.search" pInputText placeholder="Search" />
+            <span class="p-input-icon-right w-full">
+                <i (click)="searchUsers()" class="pi pi-search cursor-pointer mr-2"></i>
+                <input
+                    class="w-full rounded-full"
+                    [(ngModel)]="searchUser.search"
+                    (keyup.enter)="searchUsers()"
+                    pInputText
+                    placeholder="Rechercher un ami"
+                />
             </span>
         </div>
+        <p *ngIf="users.length" class="font-['Urbanist'] text-base text-gray-400 mt-3">
+            {{ users.length }} résultat{{ users.length > 1 ? 's' : '' }}
+        </p>
         <div
             *ngIf="users && users.length > 0"
-            class="w-3/4 border-solid border-2 border-gray-300 rounded m-auto mt-5 max-h-52 p-4 overflow-auto flex gap-4 flex-col"
+            class="w-full rounded m-auto max-h-80 p-4 overflow-auto flex gap-4 flex-row flex-wrap justify-around"
         >
             <app-user-card-add-friend
                 *ngFor="let user of users"
