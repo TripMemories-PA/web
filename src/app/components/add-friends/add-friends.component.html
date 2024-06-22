@@ -1,4 +1,12 @@
-<button pButton (click)="openDialog()">Ajouter un ami</button>
+<button
+    pButton
+    [outlined]="true"
+    icon="pi pi-plus"
+    [style]="{ border: '2px solid grey', width: '280px', gap: '10px', borderRadius: '9999px' }"
+    (click)="openDialog()"
+>
+    Ajouter un ami
+</button>
 <p-dialog
     header="Ajouter un ami"
     class="flex flex-col"

@@ -1,33 +1,48 @@
-<p-card class="max-w-24">
-    <ng-template pTemplate="content">
-        <div class="flex flex-row justify-between items-center">
-            <p-avatar
-                shape="circle"
-                size="large"
-                [image]="
-                    user?.avatar?.url ??
-                    'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png'
-                "
-            ></p-avatar>
-            <div class="flex flex-col">
-                <span class="text-xl font-bold">{{ user?.firstname }} {{ user?.lastname }}</span>
-                <span class="text-xl font-bold">&#64;{{ user?.username }}</span>
+<p-card
+    [style]="{
+        boxShadow: '0 4px 6px 0 rgba(0, 0, 0, 0.1)',
+        borderRadius: '15px',
+        border: '2px solid var(--border-grey)',
+        width: 'fit-content'
+    }"
+>
+    <ng-template class="!p-0" pTemplate="content">
+        <div class="flex flex-col justify-between items-center">
+            <div class="relative w-full h-36 mb-6">
+                <img
+                    ngSrc="{{
+                        user?.avatar?.url ??
+                            'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png'
+                    }}"
+                    alt="avatar"
+                    class="object-cover rounded-xl"
+                    fill
+                />
+                <button pButton class="button-element" icon="pi pi-eye" [rounded]="true"></button>
             </div>
-            <div>
-                <p-button
-                    [rounded]="true"
-                    size="small"
-                    label="Voir le profil"
-                    severity="info"
-                    class="mr-4"
-                ></p-button>
-                <p-button
-                    [rounded]="true"
-                    (click)="visible = true"
-                    size="small"
-                    label="Supprimer"
-                    severity="danger"
-                ></p-button>
+            <div class="flex flex-row justify-around">
+                <div class="flex flex-col mr-4">
+                    <span class="text-xl text-['Urbanist'] font-bold"
+                        >{{ user?.firstname }} {{ user?.lastname }}</span
+                    >
+                    <span class="text-md text-['Urbanist']">&#64;{{ user?.username }}</span>
+                </div>
+                <div>
+                    <button
+                        pButton
+                        size="small"
+                        [rounded]="true"
+                        icon="pi pi-comment"
+                        class="mr-2 button-element-2"
+                    ></button>
+                    <button
+                        pButton
+                        [rounded]="true"
+                        icon="pi pi-trash"
+                        class="button-element-2"
+                        (click)="visible = true"
+                    ></button>
+                </div>
             </div>
         </div>
         <p-progressBar

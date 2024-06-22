@@ -30,6 +30,10 @@ export class HeaderComponent implements OnInit {
         private router: Router,
     ) {}
 
+    search = {
+        input: '',
+    };
+
     items: MenuItem[] | undefined;
     showSearchInput: boolean = false;
 
@@ -51,10 +55,6 @@ export class HeaderComponent implements OnInit {
                 label: 'Profil',
                 routerLink: ['/profil'],
             },
-            {
-                label: 'Mes amis',
-                routerLink: ['/friends'],
-            },
         ];
     }
 
@@ -64,6 +64,13 @@ export class HeaderComponent implements OnInit {
 
     goTo(path: string) {
         this.router.navigate([path]);
+    }
+
+    searchCity() {
+        if (!this.search.input) {
+            this.router.navigate(['/search-city']);
+        }
+        this.router.navigate(['/search-city', this.search.input]);
     }
 
     disconnect() {

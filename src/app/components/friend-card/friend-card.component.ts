@@ -3,12 +3,13 @@ import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { MessageModule } from 'primeng/message';
-import { NgIf } from '@angular/common';
+import { NgIf, NgOptimizedImage } from '@angular/common';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { SharedModule } from 'primeng/api';
 import { User } from '../../models/user';
 import { FriendsService } from '../../services/friends/friends.service';
 import { DialogModule } from 'primeng/dialog';
+import { StyleClassModule } from 'primeng/styleclass';
 
 @Component({
     selector: 'app-friend-card',
@@ -22,6 +23,8 @@ import { DialogModule } from 'primeng/dialog';
         ProgressBarModule,
         SharedModule,
         DialogModule,
+        NgOptimizedImage,
+        StyleClassModule,
     ],
     templateUrl: './friend-card.component.html',
     styleUrl: './friend-card.component.css',
