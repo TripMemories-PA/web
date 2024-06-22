@@ -34,10 +34,10 @@
                     <p>{{ dateParsed[1] }}</p>
                 </div>
             </div>
-            <h2 class="p-mt-2 text-xl font-bold">{{ post.id }}</h2>
+            <h2 class="p-mt-2 text-xl font-bold">{{ post.title }}</h2>
             <h3 class="text-sm">{{ post.content }}</h3>
             <span
-                class="flex flex-row text-[var(--primary)] font-['Urbanist'] cursor-pointer"
+                class="flex flex-row text-[var(--primary)] font-['Urbanist'] gap-2 cursor-pointer"
                 (click)="goToPost()"
             >
                 Voir le post

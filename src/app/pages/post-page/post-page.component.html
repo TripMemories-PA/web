@@ -1,6 +1,8 @@
 <div
-    class="mt-32 mb-32 post-card p-card shadow-lg rounded-lg overflow-hidden bg-white mx-auto my-6 max-w-2xl"
+    class="mt-32 mb-32 relative post-card p-card shadow-lg rounded-lg overflow-hidden bg-white mx-auto my-6 max-w-2xl"
 >
+    <button pButton (click)="getBack()" class="absolute right-0">Revenir en arrière</button>
+    <p-toast />
     <div class="post-header flex items-center p-4 border-b cursor-pointer">
         <img
             ngSrc="{{
@@ -23,6 +25,7 @@
         </div>
     </div>
     <div class="post-body p-4">
+        <h2 class="text-2xl font-semibold mb-3">{{ post?.title }}</h2>
         <p class="text-gray-800">
             {{ post?.content }}
         </p>
@@ -39,8 +42,9 @@
         <div class="flex items-center space-x-4">
             <button
                 pButton
+                (click)="alreadyLiked ? removeLikePost() : likePost()"
                 type="button"
-                icon="pi pi-thumbs-up"
+                icon="pi {{ alreadyLiked ? 'pi-thumbs-up-fill' : 'pi-thumbs-up' }}"
                 label="Like"
                 class="p-button-text"
             ></button>
@@ -51,13 +55,27 @@
                 label="Commenter"
                 class="p-button-text"
             ></button>
-            <button
-                pButton
-                type="button"
-                icon="pi pi-share-alt"
-                label="Partager"
-                class="p-button-text"
-            ></button>
+            <div>
+                <p-confirmPopup #confirmPopupRef>
+                    <ng-template pTemplate="headless" let-message let-test>
+                        <div class="border-round p-3">
+                            <span>{{ message.message }}</span>
+                            <div class="flex align-items-center gap-2 mt-3">
+                                <p-button [outlined]="true" icon="pi pi-twitter" />
+                                <p-button [outlined]="true" icon="pi pi-instagram" />
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-confirmPopup>
+                <button
+                    pButton
+                    type="button"
+                    (click)="confirm($event)"
+                    icon="pi pi-share-alt"
+                    label="Partager"
+                    class="p-button-text"
+                ></button>
+            </div>
         </div>
         <p class="text-gray-600 text-sm">{{ post?.likesCount }} like</p>
     </div>

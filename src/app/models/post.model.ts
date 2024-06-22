@@ -7,6 +7,7 @@ export class PostModel {
     createdById?: number;
     poiId?: number;
     content?: string;
+    title?: string;
     note?: string;
     imageId?: number;
     createdAt?: Date;
