@@ -5,12 +5,13 @@ import { InputTextModule } from 'primeng/inputtext';
 import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { PaginatorModule } from 'primeng/paginator';
 import { ProgressBarModule } from 'primeng/progressbar';
-import { PoisService } from '../../services/pois/pois.service';
 import { ActivatedRoute } from '@angular/router';
 import { PoiModel } from '../../models/Poi.model';
 import { MonumentCardComponent } from '../../components/monument-card/monument-card.component';
 import { MessageModule } from 'primeng/message';
 import { PoisSearchResponse } from '../../models/response/pois.response';
+import { CityService } from '../../services/city/city.service';
+import { MetaModel } from '../../models/meta.model';
 
 @Component({
     selector: 'app-monument-search-page',
@@ -32,7 +33,7 @@ import { PoisSearchResponse } from '../../models/response/pois.response';
 })
 export class MonumentSearchPageComponent implements OnInit {
     constructor(
-        private poisService: PoisService,
+        private poisService: CityService,
         private _activatedRoute: ActivatedRoute,
     ) {}
 
@@ -51,7 +52,18 @@ export class MonumentSearchPageComponent implements OnInit {
     originalPois: PoiModel[] = [];
 
     itemsPerPage: number = 12;
-    currentPage: number = 0;
+
+    meta: MetaModel = new MetaModel();
+
+    currentPage: number = 1;
+
+    firstPage: number = 1;
+    totalPages: number = 1;
+    lastPage: number = 1;
+    firstPageUrl: string = '';
+    lastPageUrl: string = '';
+    nextPageUrl: string | null = '';
+    previousPageUrl: string | null = '';
 
     ngOnInit(): void {
         this._activatedRoute.paramMap.subscribe((params) => {
@@ -66,40 +78,19 @@ export class MonumentSearchPageComponent implements OnInit {
             return;
         }
         this.loading = true;
-        this.poisService.getPOIs().subscribe({
+        this.poisService.getCitiesPoi(param, 1, '12').subscribe({
             next: (response: PoisSearchResponse) => {
+                this.loading = false;
                 this.pois = response.data;
-                this.getPois(response.meta.total.toString(), param);
-            },
-            error: (error) => {
-                this.loading = false;
-                this.error = error;
-            },
-        });
-    }
-
-    private getPois(total: string, param: string) {
-        this.poisService.getPOIs(total).subscribe({
-            next: (response: PoisSearchResponse) => {
-                response.data.forEach((item) => {
-                    if (!this.groupedByCity[item.city as string]) {
-                        this.groupedByCity[item.city as string] = [];
-                    }
-                    this.groupedByCity[item.city as string].push(item);
-                });
-                this.citesNames = Object.keys(this.groupedByCity);
-                const monuments = this.groupedByCity[param];
-                /*                monuments.forEach((monument) => {
-                    if (monument.name) this.monumentNames.push(monument.name);
-                    this.monumentNames = monuments.map((monument) => {
-                        return monument.name as string;
-                    });
-                });*/
-                this.citesNames = Object.keys(this.groupedByCity);
-                this.pois = this.groupedByCity[param] || [];
-                this.originalPois = [...this.pois];
-                this.updatePaginatedPois();
-                this.loading = false;
+                this.meta = response.meta;
+                this.currentPage = response.meta.currentPage;
+                this.firstPage = response.meta.firstPage;
+                this.totalPages = response.meta.total;
+                this.lastPage = response.meta.lastPage;
+                this.firstPageUrl = response.meta.firstPageUrl;
+                this.lastPageUrl = response.meta.lastPageUrl;
+                this.nextPageUrl = response.meta.nextPageUrl;
+                this.previousPageUrl = response.meta.previousPageUrl;
             },
             error: (error) => {
                 this.loading = false;
@@ -109,27 +100,36 @@ export class MonumentSearchPageComponent implements OnInit {
     }
 
     onPageChange(event: any) {
-        this.currentPage = event.page;
-        this.itemsPerPage = event.rows;
-        this.updatePaginatedPois();
+        if (event.page < 0 || event.page > this.totalPages) {
+            return;
+        }
+        if (event.page + 1 === this.currentPage) {
+            return;
+        }
+        this.poisService
+            .getCitiesPoi(this.cityName, event.page + 1, this.itemsPerPage.toString())
+            .subscribe({
+                next: (response) => {
+                    this.pois = response.data;
+                    this.meta = response.meta;
+                    this.currentPage = response.meta.currentPage;
+                    this.firstPage = response.meta.firstPage;
+                    this.totalPages = response.meta.total;
+                    this.lastPage = response.meta.lastPage;
+                    this.firstPageUrl = response.meta.firstPageUrl;
+                    this.lastPageUrl = response.meta.lastPageUrl;
+                    this.nextPageUrl = response.meta.nextPageUrl;
+                    this.previousPageUrl = response.meta.previousPageUrl;
+                },
+                error: (error) => {
+                    console.error(error);
+                },
+            });
     }
 
     sortSearch() {
         if (this.searchMonument.monument === '') {
-            this.pois = [...this.originalPois];
         } else {
-            const searchTerm = this.searchMonument.monument.toLowerCase();
-            this.pois = this.originalPois.filter((poi) => {
-                return poi.name && poi.name.toLowerCase().includes(searchTerm);
-            });
         }
-        this.currentPage = 0;
-        this.updatePaginatedPois();
-    }
-
-    updatePaginatedPois() {
-        const start = this.currentPage * this.itemsPerPage;
-        const end = start + this.itemsPerPage;
-        this.paginatedPois = this.pois.slice(start, end);
     }
 }

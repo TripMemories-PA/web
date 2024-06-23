@@ -1,5 +1,6 @@
 import { IFileImage } from './interface/FileImage';
 import { TypeMonument } from './interface/TypeMonument';
+import { CityModel } from './city.model';
 
 export class PoiModel {
     id?: number;
@@ -7,7 +8,7 @@ export class PoiModel {
     description?: string;
     coverId?: number;
     typeId?: number;
-    city?: string;
+    city?: CityModel;
     zipCode?: string;
     address?: string;
     latitude?: string;

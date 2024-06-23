@@ -21,27 +21,29 @@
             *ngIf="loading"
             [style]="{ marginTop: '25px', height: '6px', width: '100%' }"
         ></p-progressBar>
-        <div *ngIf="paginatedPois && paginatedPois.length > 0">
+        <div *ngIf="pois.length > 0">
             <div class="p-9 justify-center flex flex-row flex-wrap gap-10">
                 <app-monument-card
-                    *ngFor="let monument of paginatedPois"
+                    *ngFor="let monument of pois"
                     [monument]="monument"
                     [city]="cityName"
                 ></app-monument-card>
             </div>
             <p-paginator
-                [rows]="itemsPerPage"
-                [totalRecords]="citesNames.length"
+                *ngIf="lastPage > 1"
                 (onPageChange)="onPageChange($event)"
+                [first]="firstPage"
+                [rows]="meta.perPage"
+                [totalRecords]="lastPage"
                 [rowsPerPageOptions]="[12, 24, 36]"
             >
             </p-paginator>
         </div>
         <p-message
-            *ngIf="(!paginatedPois || paginatedPois.length === 0) && !loading"
+            *ngIf="pois.length === 0 && !loading && searchMonument.monument !== ''"
             class="flex justify-center mt-10"
             severity="error"
-            text="Aucun résultat trouvé pour {{ searchMonument.monument }}. Veuillez réessayer."
+            text="Aucun résultat trouvé pour la recherche. Veuillez réessayer."
         ></p-message>
     </div>
 </div>
