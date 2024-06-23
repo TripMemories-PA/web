@@ -8,6 +8,7 @@ import { CitySearchPageComponent } from './pages/city-search-page/city-search-pa
 import { MonumentSearchPageComponent } from './pages/monument-search-page/monument-search-page.component';
 import { PoiPageComponent } from './pages/poi-page/poi-page.component';
 import { PostPageComponent } from './pages/post-page/post-page.component';
+import { FeedPageComponent } from './pages/feed-page/feed-page.component';
 
 export const routes: Routes = [
     {
@@ -47,8 +48,12 @@ export const routes: Routes = [
         component: ProfilPageComponent,
     },
     {
+        path: 'feed',
+        component: FeedPageComponent,
+    },
+    {
         path: '',
-        redirectTo: 'login',
+        redirectTo: 'feed',
         pathMatch: 'full',
     },
     {
