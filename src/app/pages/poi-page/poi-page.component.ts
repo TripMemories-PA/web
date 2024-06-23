@@ -64,7 +64,6 @@ export class PoiPageComponent implements OnInit {
         this.poisService.getPoiPosts(id, '5').subscribe({
             next: (response) => {
                 this.poiPosts = response.data;
-                console.log(this.poiPosts[0]);
             },
             error: (error) => {
                 console.error(error);
