@@ -21,10 +21,10 @@
             *ngIf="loading"
             [style]="{ marginTop: '25px', height: '6px', width: '100%' }"
         ></p-progressBar>
-        <div *ngIf="pois.length > 0">
+        <div *ngIf="sortedPois.length > 0">
             <div class="p-9 justify-center flex flex-row flex-wrap gap-10">
                 <app-monument-card
-                    *ngFor="let monument of pois"
+                    *ngFor="let monument of sortedPois"
                     [monument]="monument"
                     [city]="cityName"
                 ></app-monument-card>
@@ -40,7 +40,7 @@
             </p-paginator>
         </div>
         <p-message
-            *ngIf="pois.length === 0 && !loading && searchMonument.monument !== ''"
+            *ngIf="sortedPois.length === 0 && !loading && searchMonument.monument !== ''"
             class="flex justify-center mt-10"
             severity="error"
             text="Aucun résultat trouvé pour la recherche. Veuillez réessayer."

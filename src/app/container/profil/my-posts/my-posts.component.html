@@ -1,5 +1,9 @@
 <div class="flex flex-row flex-wrap gap-28">
-    <app-post-card *ngFor="let post of posts" [post]="post" [city]="post.poi?.city"></app-post-card>
+    <app-post-card
+        *ngFor="let post of posts"
+        [post]="post"
+        [city]="post.poi?.city?.name"
+    ></app-post-card>
 </div>
 <p-paginator
     *ngIf="lastPage > 1"

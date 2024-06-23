@@ -45,6 +45,7 @@ export class MonumentSearchPageComponent implements OnInit {
     loading: boolean = false;
 
     pois: PoiModel[] = [];
+    sortedPois: PoiModel[] = [];
     paginatedPois: PoiModel[] = [];
     groupedByCity: { [city: string]: PoiModel[] } = {};
     citesNames: string[] = [];
@@ -82,6 +83,7 @@ export class MonumentSearchPageComponent implements OnInit {
             next: (response: PoisSearchResponse) => {
                 this.loading = false;
                 this.pois = response.data;
+                this.sortedPois = [...this.pois];
                 this.meta = response.meta;
                 this.currentPage = response.meta.currentPage;
                 this.firstPage = response.meta.firstPage;
@@ -111,6 +113,7 @@ export class MonumentSearchPageComponent implements OnInit {
             .subscribe({
                 next: (response) => {
                     this.pois = response.data;
+                    this.sortedPois = [...this.pois];
                     this.meta = response.meta;
                     this.currentPage = response.meta.currentPage;
                     this.firstPage = response.meta.firstPage;
@@ -129,7 +132,11 @@ export class MonumentSearchPageComponent implements OnInit {
 
     sortSearch() {
         if (this.searchMonument.monument === '') {
+            this.sortedPois = [...this.pois];
         } else {
+            this.sortedPois = this.pois.filter((poi) =>
+                poi.name?.toLowerCase().includes(this.searchMonument.monument.toLowerCase()),
+            );
         }
     }
 }
