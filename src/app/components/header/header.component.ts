@@ -41,18 +41,30 @@ export class HeaderComponent implements OnInit {
         this.items = [
             {
                 label: 'Carte',
+                style: {
+                    color: 'white',
+                },
                 routerLink: ['/'],
             },
             {
                 label: 'Feed',
+                style: {
+                    color: 'white',
+                },
                 routerLink: ['/'],
             },
             {
                 label: 'Magasin',
+                style: {
+                    color: 'white',
+                },
                 routerLink: ['/'],
             },
             {
                 label: 'Profil',
+                style: {
+                    color: 'white',
+                },
                 routerLink: ['/profil'],
             },
         ];

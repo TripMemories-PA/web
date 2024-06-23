@@ -1,5 +1,5 @@
 ::ng-deep .p-menubar {
-  background: transparent;
+  background: var(--primary);
   border: none
 }
 ::ng-deep .p-menubar p-menubarsub {
