@@ -1,0 +1,72 @@
+<div class="card flex justify-content-center">
+    <p-card
+        styleClass="ui-card-shadow"
+        class="bg-white"
+        [style]="{ width: '360px', boxShadow: 'inherit', borderRadius: 'inherit' }"
+    >
+        <ng-template pTemplate="header">
+            <img
+                ngSrc="{{
+                    post.image?.url ??
+                        'https://decizia.com/blog/wp-content/uploads/2017/06/default-placeholder.png'
+                }}"
+                alt="{{ post.id }}"
+                class="rounded-2xl"
+                height="100"
+                width="100"
+                priority
+            />
+        </ng-template>
+        <div class="flex flex-col gap-2">
+            <div class="flex flex-row justify-between text-sm">
+                <p>{{ city }}, France</p>
+                <div class="flex flex-row items-center gap-2">
+                    <p>{{ dateParsed[0] }}</p>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="11"
+                        height="11"
+                        viewBox="0 0 11 11"
+                        fill="none"
+                    >
+                        <circle cx="5.5" cy="5.5" r="5.5" fill="#767676" />
+                    </svg>
+                    <p>{{ dateParsed[1] }}</p>
+                </div>
+            </div>
+            <div class="flex flex-row justify-between">
+                <h2 class="p-mt-2 text-xl font-bold">{{ post.title }}</h2>
+                <p-rating
+                    [(ngModel)]="post.note"
+                    readonly="true"
+                    stars="5"
+                    cancel="false"
+                ></p-rating>
+            </div>
+            <h3 class="text-sm">{{ post.content }}</h3>
+            <div class="flex flex-row gap-6">
+                <div
+                    (click)="goToPost()"
+                    class="text-[var(--primary)] flex flex-row gap-1 items-center cursor-pointer"
+                >
+                    <i class="pi pi-thumbs-up"></i>
+                    <span>{{ post.likesCount }}</span>
+                </div>
+                <div
+                    (click)="goToPost()"
+                    class="text-[var(--primary)] flex flex-row gap-1 items-center cursor-pointer"
+                >
+                    <i class="pi pi-comment"></i>
+                    <span>{{ post.commentsCount }}</span>
+                </div>
+                <div
+                    (click)="goToPost()"
+                    class="text-[var(--primary)] flex flex-row gap-1 items-center cursor-pointer"
+                >
+                    <i class="pi pi-thumbs-up"></i>
+                    <span>Partager</span>
+                </div>
+            </div>
+        </div>
+    </p-card>
+</div>

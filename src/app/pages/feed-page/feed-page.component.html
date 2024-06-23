@@ -1,0 +1,28 @@
+<div class="p-8">
+    <div class="p-toolbar-group-center text-center mt-20 mb-9">
+        <span class="p-input-icon-right w-full">
+            <input
+                type="text"
+                class="w-full rounded-full"
+                pInputText
+                placeholder="Cherche un lieu"
+            />
+            <i class="pi pi-search cursor-pointer mr-4"></i>
+        </span>
+    </div>
+    <div class="flex flex-col justify-center items-center">
+        <div class="mb-8">
+            <h1 class="text-5xl font-['Urbanist'] font-bold">Proche de vous</h1>
+        </div>
+        <div *ngFor="let post of posts" class="flex flex-row mb-10">
+            <div class="w-[2px] rounded-full mr-4 bg-[var(--primary)]"></div>
+            <div class="flex flex-row gap-8">
+                <app-post-card-feed [post]="post" [city]="post.poi?.city"></app-post-card-feed>
+                <app-monument-card-feed
+                    [monument]="post.poi"
+                    [city]="post.poi?.city"
+                ></app-monument-card-feed>
+            </div>
+        </div>
+    </div>
+</div>
