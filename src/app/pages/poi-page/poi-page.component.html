@@ -19,7 +19,7 @@
             <h2 class="text-6xl text-[var(--primary)] font-bold font-['Urbanist']">
                 {{ poi.name }}
             </h2>
-            <h4 class="font-['Urbanist'] text-[#5B5B5B] text-xl">{{ poi.city }}</h4>
+            <h4 class="font-['Urbanist'] text-[#5B5B5B] text-xl">{{ poi.city?.name }}</h4>
             <p class="font-['Urbanist'] font-semibold leading-10">{{ poi.description }}</p>
         </div>
         <div class="mt-10">
@@ -29,7 +29,7 @@
                 </h3>
                 <a
                     class="flex items-center p-2 rounded-full border-[1px] border-[var(--primary)] border-solid text-[var(--primary)] font-['Urbanist']"
-                    [routerLink]="['/posts']"
+                    [routerLink]="['/feed']"
                 >
                     Voir tous les posts
                 </a>
@@ -41,7 +41,7 @@
                 <app-post-card
                     *ngFor="let poiPost of poiPosts"
                     [post]="poiPost"
-                    [city]="poi.city"
+                    [city]="poi.city?.name"
                 ></app-post-card>
             </div>
             <span *ngIf="poiPosts.length === 0" class="text-2xl text-red-500 font-['Urbanist']">
@@ -49,7 +49,9 @@
             >
         </div>
         <div class="mt-16">
-            <h3 class="text-4xl font-bold font-['Urbanist']">En ce moment à {{ poi.city }}</h3>
+            <h3 class="text-4xl font-bold font-['Urbanist']">
+                En ce moment à {{ poi.city?.name }}
+            </h3>
             <div class="flex flex-row flex-nowrap gap-10 overflow-hidden"></div>
         </div>
     </div>
