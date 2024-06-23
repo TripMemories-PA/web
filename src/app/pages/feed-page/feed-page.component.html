@@ -20,13 +20,13 @@
                 <app-post-card-feed
                     class="z-10"
                     [post]="post"
-                    [city]="post.poi?.city"
+                    [city]="post.poi?.city?.name"
                 ></app-post-card-feed>
                 <div class="w-52 absolute left-72 top-24 z-0 h-[2px] bg-[var(--primary)]"></div>
                 <app-monument-card-feed
                     class="z-10"
                     [monument]="post.poi"
-                    [city]="post.poi?.city"
+                    [city]="post.poi?.city?.name"
                 ></app-monument-card-feed>
             </div>
         </div>

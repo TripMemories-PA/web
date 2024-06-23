@@ -21,24 +21,21 @@
             *ngIf="loading"
             [style]="{ marginTop: '25px', height: '6px', width: '100%' }"
         ></p-progressBar>
-        <div *ngIf="paginatedCities && paginatedCities.length > 0">
+        <div *ngIf="cities.length > 0">
             <div class="p-9 justify-center flex flex-row flex-wrap gap-10">
-                <app-city-card
-                    *ngFor="let city of paginatedCities"
-                    [monument]="groupedByCity[city][0]"
-                    [city]="city"
-                ></app-city-card>
+                <app-city-card *ngFor="let city of cities" [cityModel]="city"></app-city-card>
             </div>
             <p-paginator
-                [rows]="itemsPerPage"
-                [totalRecords]="pois.length"
                 (onPageChange)="onPageChange($event)"
+                [first]="firstPage"
+                [rows]="meta.perPage"
+                [totalRecords]="lastPage"
                 [rowsPerPageOptions]="[12, 24, 36]"
             >
             </p-paginator>
         </div>
         <p-message
-            *ngIf="(!paginatedCities || paginatedCities.length === 0) && !loading"
+            *ngIf="cities.length === 0 && !loading && searchCity.city !== ''"
             class="flex justify-center mt-10"
             severity="error"
             text="Aucun résultat trouvé pour {{ searchCity.city }}. Veuillez réessayer."
