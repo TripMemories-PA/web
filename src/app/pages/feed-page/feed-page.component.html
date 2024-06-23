@@ -16,9 +16,15 @@
         </div>
         <div *ngFor="let post of posts" class="flex flex-row mb-10">
             <div class="w-[2px] rounded-full mr-4 bg-[var(--primary)]"></div>
-            <div class="flex flex-row gap-8">
-                <app-post-card-feed [post]="post" [city]="post.poi?.city"></app-post-card-feed>
+            <div class="relative flex flex-row gap-8">
+                <app-post-card-feed
+                    class="z-10"
+                    [post]="post"
+                    [city]="post.poi?.city"
+                ></app-post-card-feed>
+                <div class="w-52 absolute left-72 top-24 z-0 h-[2px] bg-[var(--primary)]"></div>
                 <app-monument-card-feed
+                    class="z-10"
                     [monument]="post.poi"
                     [city]="post.poi?.city"
                 ></app-monument-card-feed>
