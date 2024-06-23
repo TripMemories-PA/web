@@ -14,21 +14,18 @@ const httpOptions = {
 export class PoisService {
     constructor(private http: HttpClient) {}
 
-    getPOIs(perPage?: string, swLat?: number, swLng?: number, neLat?: number, neLng?: number) {
+    getPOIs(perPage?: string, swLat?: string, swLng?: string, radius?: string) {
         const params = new URLSearchParams();
         params.append('page', '1');
         params.append('perPage', perPage ?? '10');
         if (swLat) {
-            params.append('swLat', swLat.toString());
+            params.append('lng', swLat.toString());
         }
         if (swLng) {
-            params.append('swLng', swLng.toString());
+            params.append('lat', swLng.toString());
         }
-        if (neLat) {
-            params.append('neLat', neLat.toString());
-        }
-        if (neLng) {
-            params.append('neLng', neLng.toString());
+        if (radius) {
+            params.append('radius', radius.toString());
         }
         return this.http.get<PoisSearchResponse>(`${URL}?${params.toString()}`, httpOptions);
     }

@@ -49,10 +49,21 @@
             >
         </div>
         <div class="mt-16">
-            <h3 class="text-4xl font-bold font-['Urbanist']">
+            <h3 class="text-4xl font-bold font-['Urbanist'] mb-10">
                 En ce moment à {{ poi.city?.name }}
             </h3>
-            <div class="flex flex-row flex-nowrap gap-10 overflow-hidden"></div>
+            <div class="flex flex-row flex-nowrap gap-10 overflow-hidden">
+                <app-currently-at-card
+                    *ngFor="let currentlyAt of poiNear"
+                    [image]="currentlyAt.cover?.url"
+                    [title]="currentlyAt.city?.name"
+                    [description]="currentlyAt.description"
+                    [infoPlus]="currentlyAt.type?.name"
+                ></app-currently-at-card>
+            </div>
+            <span *ngIf="poiNear.length === 0" class="text-2xl text-red-500 font-['Urbanist']">
+                Aucun lieu proche dans ce coin</span
+            >
         </div>
     </div>
 </div>
