@@ -31,6 +31,7 @@ export class ProfilPageComponent implements OnInit {
     nbrMonuments?: number = 0;
     banner: string | undefined = undefined;
     activeTab: string = 'posts';
+    isHoveredBanner: boolean = false;
     user: User = JSON.parse(localStorage.getItem('user') as string);
 
     setActiveTab(tab: string) {

@@ -19,10 +19,10 @@ export class PoisService {
         params.append('page', '1');
         params.append('perPage', perPage ?? '10');
         if (swLat) {
-            params.append('lng', swLat.toString());
+            params.append('lat', swLat.toString());
         }
         if (swLng) {
-            params.append('lat', swLng.toString());
+            params.append('lng', swLng.toString());
         }
         if (radius) {
             params.append('radius', radius.toString());

@@ -4,7 +4,7 @@ import { MenuItem } from 'primeng/api';
 import { NgIf, NgOptimizedImage } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { AuthService } from '../../services/auth/auth.service';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -29,6 +29,8 @@ export class HeaderComponent implements OnInit {
         public auth: AuthService,
         private router: Router,
     ) {}
+
+    showBackgroundColor: boolean = true;
 
     search = {
         input: '',
@@ -68,6 +70,16 @@ export class HeaderComponent implements OnInit {
                 routerLink: ['/profil'],
             },
         ];
+        this.router.events.subscribe((event) => {
+            if (event instanceof NavigationEnd) {
+                const url = event.urlAfterRedirects;
+                this.showBackgroundColor = !(
+                    url.includes('/search-city') ||
+                    url.includes('/profil') ||
+                    url.includes('/poi')
+                );
+            }
+        });
     }
 
     toggleSearchInput() {
