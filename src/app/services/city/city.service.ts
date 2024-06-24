@@ -28,7 +28,7 @@ export class CityService {
 
     getCitiesPoi(id: string, page: number = 1, perPage?: string) {
         const params = new URLSearchParams();
-        params.append('page', '1');
+        params.append('page', page.toString());
         params.append('perPage', perPage ?? '10');
         return this.http.get<PoisSearchResponse>(
             `${URL}/${id}/pois?${params.toString()}`,

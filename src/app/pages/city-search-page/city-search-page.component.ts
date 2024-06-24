@@ -60,7 +60,6 @@ export class CitySearchPageComponent implements OnInit {
     ngOnInit(): void {
         this._activatedRoute.queryParamMap.subscribe((params) => {
             const param = params.get('search');
-            console.log(param);
             if (param) {
                 this.searchCity.city = param;
                 this.sortSearch();
@@ -97,10 +96,10 @@ export class CitySearchPageComponent implements OnInit {
         if (event.page < 0 || event.page > this.totalPages) {
             return;
         }
-        if (event.page + 1 === this.currentPage) {
+        if (event.rows === this.itemsPerPage && event.page + 1 === this.currentPage) {
             return;
         }
-        this.cityService.getCities(event.page + 1, this.itemsPerPage.toString()).subscribe({
+        this.cityService.getCities(event.page + 1, event.rows, this.searchCity.city).subscribe({
             next: (response) => {
                 this.cities = response.data;
                 this.meta = response.meta;
@@ -112,6 +111,7 @@ export class CitySearchPageComponent implements OnInit {
                 this.lastPageUrl = response.meta.lastPageUrl;
                 this.nextPageUrl = response.meta.nextPageUrl;
                 this.previousPageUrl = response.meta.previousPageUrl;
+                this.itemsPerPage = response.meta.perPage;
             },
             error: (error) => {
                 console.error(error);
