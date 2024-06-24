@@ -23,7 +23,7 @@ export class ProfilService {
     }
 
     getMe() {
-        return this.http.get(`${URL}`);
+        return this.http.get<User>(`${URL}`);
     }
 
     getPosts(page: number = 1, perPage: number = 10) {

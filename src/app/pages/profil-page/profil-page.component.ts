@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProfilService } from '../../services/profil/profil.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { ProfilInfoComponent } from '../../components/profil-info/profil-info.component';
-import { NgSwitch, NgSwitchCase } from '@angular/common';
+import { NgIf, NgOptimizedImage, NgSwitch, NgSwitchCase } from '@angular/common';
 import { FriendsService } from '../../services/friends/friends.service';
 import { MyPostsComponent } from '../../container/profil/my-posts/my-posts.component';
 import { MyFriendsComponent } from '../../container/profil/my-friends/my-friends.component';
@@ -18,6 +18,8 @@ import { MyProfilComponent } from '../../container/profil/my-profil/my-profil.co
         MyPostsComponent,
         MyFriendsComponent,
         MyProfilComponent,
+        NgOptimizedImage,
+        NgIf,
     ],
     templateUrl: './profil-page.component.html',
     styleUrl: './profil-page.component.css',
@@ -25,7 +27,8 @@ import { MyProfilComponent } from '../../container/profil/my-profil/my-profil.co
 export class ProfilPageComponent implements OnInit {
     profilPic: string | undefined = undefined;
     nbrFriends: number = 0;
-
+    nbrMonuments?: number = 0;
+    banner: string | undefined = undefined;
     activeTab: string = 'posts';
 
     setActiveTab(tab: string) {
@@ -49,12 +52,14 @@ export class ProfilPageComponent implements OnInit {
 
     ngOnInit(): void {
         this.profilService.getMe().subscribe({
-            next: (user: any) => {
+            next: (user) => {
                 user.access_token = this.authServices.user?.access_token;
                 this.authServices.user = user;
+                this.nbrMonuments = user.poisCount;
+                this.banner = user.banner?.url;
                 localStorage.setItem('user', JSON.stringify(user));
                 if (this.authServices.user?.avatar) {
-                    this.profilPic = user.avatar.url;
+                    this.profilPic = user.avatar?.url;
                 }
             },
         });
