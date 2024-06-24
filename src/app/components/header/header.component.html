@@ -14,6 +14,7 @@
                     <i (click)="searchCity()" class="pi pi-search cursor-pointer"></i>
                     <input
                         (keyup.enter)="searchCity()"
+                        [(ngModel)]="search.input"
                         type="text"
                         pInputText
                         placeholder="Rechercher..."
@@ -34,10 +35,10 @@
                 class="relative w-10 h-10 rounded-full border-4 border-white"
             >
                 <img
-                    ngSrc="{{
+                    [ngSrc]="
                         auth.user?.avatar?.url ??
-                            'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png'
-                    }}"
+                        'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png'
+                    "
                     alt="avatar"
                     class="object-cover rounded-full"
                     fill

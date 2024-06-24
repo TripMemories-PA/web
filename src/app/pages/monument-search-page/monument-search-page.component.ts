@@ -46,11 +46,7 @@ export class MonumentSearchPageComponent implements OnInit {
 
     pois: PoiModel[] = [];
     sortedPois: PoiModel[] = [];
-    paginatedPois: PoiModel[] = [];
-    groupedByCity: { [city: string]: PoiModel[] } = {};
-    citesNames: string[] = [];
     cityName: string = '';
-    originalPois: PoiModel[] = [];
 
     itemsPerPage: number = 12;
 

@@ -40,7 +40,6 @@ export class PoiPageComponent implements OnInit {
             const param = params.get('id');
             this.getPoiDetails(param);
             this.getPoiPosts(param);
-            //this.getPoiNear();
         });
     }
 

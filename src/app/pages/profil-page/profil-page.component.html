@@ -5,31 +5,10 @@
         (mouseleave)="isHoveredBanner = false"
     >
         <div class="bg-[var(--primary)] w-full h-full"></div>
-        <div (click)="triggerFileInput()">
-            <img
-                *ngIf="banner"
-                [ngSrc]="banner"
-                fill
-                class="absolute object-cover cursor-pointer"
-                alt="banner"
-            />
-            <input
-                type="file"
-                id="fileBanner"
-                (change)="submitFile($event)"
-                style="display: none"
-                #fileInput
-            />
-        </div>
-        <img
-            [ngSrc]="'assets/profil/logo_edit.png'"
-            (click)="triggerFileInput()"
-            class="absolute top-1/2 left-1/2 -translate-y-1/4 -translate-x-1/2 cursor-pointer edit-image"
-            alt="edit_banner"
-            [class.visible]="isHoveredBanner"
-            [width]="30"
-            [height]="30"
-        />
+        <app-banner-profil
+            [banner]="banner"
+            [isHoveredBanner]="isHoveredBanner"
+        ></app-banner-profil>
     </div>
     <div class="pl-24 pr-24">
         <div class="flex flex-row">

@@ -10,6 +10,7 @@ import { MessageModule } from 'primeng/message';
 import { CityService } from '../../services/city/city.service';
 import { CityModel } from '../../models/city.model';
 import { MetaModel } from '../../models/meta.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-city-search-page',
@@ -29,7 +30,7 @@ import { MetaModel } from '../../models/meta.model';
 })
 export class CitySearchPageComponent implements OnInit {
     constructor(
-        private poisService: PoisService,
+        private _activatedRoute: ActivatedRoute,
         private cityService: CityService,
     ) {}
 
@@ -42,10 +43,6 @@ export class CitySearchPageComponent implements OnInit {
 
     pois: PoiModel[] = [];
     cities: CityModel[] = [];
-    groupedByCity: { [city: string]: PoiModel[] } = {};
-    citesNames: string[] = [];
-    originalCitesNames: string[] = [];
-
     itemsPerPage: number = 12;
 
     meta: MetaModel = new MetaModel();
@@ -61,7 +58,16 @@ export class CitySearchPageComponent implements OnInit {
     previousPageUrl: string | null = '';
 
     ngOnInit(): void {
-        this.getCities();
+        this._activatedRoute.queryParamMap.subscribe((params) => {
+            const param = params.get('search');
+            console.log(param);
+            if (param) {
+                this.searchCity.city = param;
+                this.sortSearch();
+            } else {
+                this.getCities();
+            }
+        });
     }
 
     private getCities() {
