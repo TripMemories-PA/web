@@ -1,6 +1,7 @@
 ::ng-deep .p-menubar {
   background: var(--primary);
-  border: none
+  border: none;
+  border-radius: 0;
 }
 ::ng-deep .p-menubar p-menubarsub {
   margin: auto;

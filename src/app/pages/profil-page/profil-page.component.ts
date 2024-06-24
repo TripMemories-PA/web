@@ -7,6 +7,7 @@ import { FriendsService } from '../../services/friends/friends.service';
 import { MyPostsComponent } from '../../container/profil/my-posts/my-posts.component';
 import { MyFriendsComponent } from '../../container/profil/my-friends/my-friends.component';
 import { MyProfilComponent } from '../../container/profil/my-profil/my-profil.component';
+import { User } from '../../models/user';
 
 @Component({
     selector: 'app-profil-page',
@@ -30,6 +31,7 @@ export class ProfilPageComponent implements OnInit {
     nbrMonuments?: number = 0;
     banner: string | undefined = undefined;
     activeTab: string = 'posts';
+    user: User = JSON.parse(localStorage.getItem('user') as string);
 
     setActiveTab(tab: string) {
         this.activeTab = tab;
@@ -55,6 +57,7 @@ export class ProfilPageComponent implements OnInit {
             next: (user) => {
                 user.access_token = this.authServices.user?.access_token;
                 this.authServices.user = user;
+                this.user = user;
                 this.nbrMonuments = user.poisCount;
                 this.banner = user.banner?.url;
                 localStorage.setItem('user', JSON.stringify(user));
