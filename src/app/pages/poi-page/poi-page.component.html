@@ -19,7 +19,10 @@
             <h2 class="text-6xl text-[var(--primary)] font-bold font-['Urbanist']">
                 {{ poi.name }}
             </h2>
-            <h4 class="font-['Urbanist'] text-[#5B5B5B] text-xl">{{ poi.city?.name }}</h4>
+            <h4 class="font-['Urbanist'] text-[#5B5B5B] text-xl">
+                {{ poi.city?.name
+                }}<span class="text-xs">&nbsp;&nbsp;{{ poi.address }} {{ poi.city?.zipCode }}</span>
+            </h4>
             <p class="font-['Urbanist'] font-semibold leading-10">{{ poi.description }}</p>
         </div>
         <div class="mt-10">
