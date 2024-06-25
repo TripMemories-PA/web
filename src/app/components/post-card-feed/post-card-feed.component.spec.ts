@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PostCardFeedComponent } from './post-card-feed.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('PostCardFeedComponent', () => {
     let component: PostCardFeedComponent;
@@ -8,7 +9,7 @@ describe('PostCardFeedComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [PostCardFeedComponent],
+            imports: [PostCardFeedComponent, HttpClientModule],
         }).compileComponents();
 
         fixture = TestBed.createComponent(PostCardFeedComponent);
