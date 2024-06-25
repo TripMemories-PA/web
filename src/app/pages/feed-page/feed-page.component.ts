@@ -6,6 +6,7 @@ import { MonumentCardFeedComponent } from '../../components/monument-card-feed/m
 import { PostsService } from '../../services/posts/posts.service';
 import { PostModel } from '../../models/post.model';
 import { NgForOf } from '@angular/common';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
     selector: 'app-feed-page',
@@ -21,7 +22,10 @@ import { NgForOf } from '@angular/common';
     styleUrl: './feed-page.component.css',
 })
 export class FeedPageComponent implements OnInit {
-    constructor(private postsService: PostsService) {}
+    constructor(
+        private postsService: PostsService,
+        private authServices: AuthService,
+    ) {}
 
     posts: PostModel[] = [];
 
@@ -30,13 +34,15 @@ export class FeedPageComponent implements OnInit {
     }
 
     getPosts() {
-        return this.postsService.getPosts().subscribe({
-            next: (posts) => {
-                this.posts = posts.data;
-            },
-            error: (error) => {
-                console.error(error);
-            },
-        });
+        return this.postsService
+            .getPosts('10', this.authServices.user?.access_token !== undefined)
+            .subscribe({
+                next: (posts) => {
+                    this.posts = posts.data;
+                },
+                error: (error) => {
+                    console.error(error);
+                },
+            });
     }
 }

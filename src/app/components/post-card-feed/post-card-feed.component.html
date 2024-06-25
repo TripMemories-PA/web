@@ -49,7 +49,7 @@
                     (click)="goToPost()"
                     class="text-[var(--primary)] flex flex-row gap-1 items-center cursor-pointer"
                 >
-                    <i class="pi pi-thumbs-up"></i>
+                    <i class="pi {{ post.isLiked ? 'pi-thumbs-up-fill' : 'pi-thumbs-up' }}"></i>
                     <span>{{ post.likesCount }}</span>
                 </div>
                 <div
@@ -63,7 +63,7 @@
                     (click)="goToPost()"
                     class="text-[var(--primary)] flex flex-row gap-1 items-center cursor-pointer"
                 >
-                    <i class="pi pi-thumbs-up"></i>
+                    <i class="pi pi-share-alt"></i>
                     <span>Partager</span>
                 </div>
             </div>

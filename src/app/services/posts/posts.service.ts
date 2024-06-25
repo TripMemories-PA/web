@@ -16,11 +16,14 @@ const httpOptions = {
 export class PostsService {
     constructor(private http: HttpClient) {}
 
-    getPosts(perPage?: string) {
+    getPosts(perPage?: string, isConnected: boolean = false) {
         const params = new URLSearchParams();
         params.append('page', '1');
         params.append('perPage', perPage ?? '10');
-        return this.http.get<PostsResponse>(`${URL}?${params.toString()}`, httpOptions);
+        return this.http.get<PostsResponse>(
+            `${URL}?${params.toString()}`,
+            isConnected ? undefined : httpOptions,
+        );
     }
 
     getPost(id: string, isConnected: boolean = false) {
