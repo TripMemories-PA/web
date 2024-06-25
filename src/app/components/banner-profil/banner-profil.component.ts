@@ -5,11 +5,12 @@ import { ProfilService } from '../../services/profil/profil.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgIf, NgOptimizedImage } from '@angular/common';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
     selector: 'app-banner-profil',
     standalone: true,
-    imports: [NgOptimizedImage, NgIf],
+    imports: [NgOptimizedImage, NgIf, ToastModule],
     providers: [MessageService],
     templateUrl: './banner-profil.component.html',
     styleUrl: './banner-profil.component.css',
