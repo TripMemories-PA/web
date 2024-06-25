@@ -19,6 +19,7 @@ export class MyPostsComponent implements OnInit {
     meta: MetaModel = new MetaModel();
 
     currentPage: number = 1;
+    itemsPerPage: number = 10;
 
     firstPage: number = 1;
     totalPages: number = 1;
@@ -34,8 +35,16 @@ export class MyPostsComponent implements OnInit {
         this.profilService.getPosts().subscribe({
             next: (response) => {
                 this.posts = response.data;
-                this.lastPage = response.meta.lastPage;
                 this.meta = response.meta;
+                this.currentPage = response.meta.currentPage;
+                this.firstPage = response.meta.firstPage;
+                this.totalPages = response.meta.total;
+                this.lastPage = response.meta.lastPage;
+                this.firstPageUrl = response.meta.firstPageUrl;
+                this.lastPageUrl = response.meta.lastPageUrl;
+                this.nextPageUrl = response.meta.nextPageUrl;
+                this.previousPageUrl = response.meta.previousPageUrl;
+                this.itemsPerPage = response.meta.perPage;
             },
             error: (error) => {
                 console.error(error);
@@ -47,7 +56,7 @@ export class MyPostsComponent implements OnInit {
         if (event.page < 0 || event.page > this.totalPages) {
             return;
         }
-        if (event.page + 1 === this.currentPage) {
+        if (event.page + 1 === this.currentPage && event.rows === this.itemsPerPage) {
             return;
         }
         this.profilService.getPosts(event.page + 1, event.rows).subscribe({
@@ -62,6 +71,7 @@ export class MyPostsComponent implements OnInit {
                 this.lastPageUrl = response.meta.lastPageUrl;
                 this.nextPageUrl = response.meta.nextPageUrl;
                 this.previousPageUrl = response.meta.previousPageUrl;
+                this.itemsPerPage = event.rows;
             },
             error: (error) => {
                 console.error(error);

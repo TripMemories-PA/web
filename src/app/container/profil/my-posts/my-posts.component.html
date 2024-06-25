@@ -6,7 +6,7 @@
     ></app-post-card>
 </div>
 <p-paginator
-    *ngIf="lastPage > 1"
+    *ngIf="lastPage > 1 || itemsPerPage > 10"
     (onPageChange)="onPageChange($event)"
     [first]="firstPage"
     [rows]="meta.perPage"

@@ -4,6 +4,10 @@
   overflow: hidden;
 }
 
+::ng-deep .p-card .p-card-body {
+  padding: 0;
+}
+
 .ui-card-shadow img {
   border-radius: 10px 10px 0 0;
 }

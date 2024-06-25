@@ -30,3 +30,11 @@
 ::ng-deep .p-menubar-end {
   margin: 0
 }
+
+::ng-deep .p-menuitem-content {
+  text-shadow: black 0 0 5px;
+}
+
+::ng-deep .p-menuitem-text {
+  color: white !important;
+}

@@ -75,7 +75,7 @@ export class MonumentSearchPageComponent implements OnInit {
             return;
         }
         this.loading = true;
-        this.poisService.getCitiesPoi(param, 1, '12').subscribe({
+        this.poisService.getCitiesPoi(param, 1, '12', true).subscribe({
             next: (response: PoisSearchResponse) => {
                 this.loading = false;
                 this.pois = response.data;
@@ -98,32 +98,33 @@ export class MonumentSearchPageComponent implements OnInit {
     }
 
     onPageChange(event: any) {
-        console.log(event);
         if (event.page < 0 || event.page > this.totalPages) {
             return;
         }
         if (event.rows === this.itemsPerPage && event.page + 1 === this.currentPage) {
             return;
         }
-        this.poisService.getCitiesPoi(this.cityName, event.page + 1, event.rows).subscribe({
-            next: (response) => {
-                this.pois = response.data;
-                this.sortedPois = [...this.pois];
-                this.meta = response.meta;
-                this.currentPage = response.meta.currentPage;
-                this.firstPage = response.meta.firstPage;
-                this.totalPages = response.meta.total;
-                this.lastPage = response.meta.lastPage;
-                this.firstPageUrl = response.meta.firstPageUrl;
-                this.lastPageUrl = response.meta.lastPageUrl;
-                this.nextPageUrl = response.meta.nextPageUrl;
-                this.previousPageUrl = response.meta.previousPageUrl;
-                this.itemsPerPage = response.meta.perPage;
-            },
-            error: (error) => {
-                console.error(error);
-            },
-        });
+        this.poisService
+            .getCitiesPoi(this.cityName, event.page + 1, event.rows, true, 'asc')
+            .subscribe({
+                next: (response) => {
+                    this.pois = response.data;
+                    this.sortedPois = [...this.pois];
+                    this.meta = response.meta;
+                    this.currentPage = response.meta.currentPage;
+                    this.firstPage = response.meta.firstPage;
+                    this.totalPages = response.meta.total;
+                    this.lastPage = response.meta.lastPage;
+                    this.firstPageUrl = response.meta.firstPageUrl;
+                    this.lastPageUrl = response.meta.lastPageUrl;
+                    this.nextPageUrl = response.meta.nextPageUrl;
+                    this.previousPageUrl = response.meta.previousPageUrl;
+                    this.itemsPerPage = response.meta.perPage;
+                },
+                error: (error) => {
+                    console.error(error);
+                },
+            });
     }
 
     sortSearch() {

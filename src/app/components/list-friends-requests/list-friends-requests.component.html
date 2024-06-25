@@ -38,7 +38,7 @@
             <p class="text-center text-red-500">Vous n'avez pas de nouvelles demandes d'amis 😥</p>
         </ng-template>
         <p-paginator
-            *ngIf="totalPages > 1"
+            *ngIf="lastPage > 1 || itemsPerPage > 10"
             (onPageChange)="onPageChange($event)"
             [first]="firstPage"
             [rows]="meta.perPage"

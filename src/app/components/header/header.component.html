@@ -1,9 +1,9 @@
 <p-menubar class="{{ showBackgroundColor ? 'test' : '' }}" [model]="items">
     <ng-template pTemplate="start">
         <img
-            ngSrc="assets/logo/logo_tripMemories_header.png"
+            ngSrc="assets/logo/logo_tripmemories_header.png"
             [routerLink]="['/']"
-            class="cursor-pointer"
+            class="cursor-pointer ml-3"
             alt="Logo"
             height="50"
             width="260"
@@ -30,7 +30,7 @@
             </div>
             <button
                 *ngIf="!auth.user?.access_token"
-                class="bg-inherit text-black border-none font-['Urbanist'] font-semibold"
+                class="bg-inherit text-white text-shadow-sm shadow-black border-none font-['Urbanist'] font-semibold"
                 (click)="goTo('/register')"
                 pButton
                 type="button"
@@ -39,7 +39,8 @@
             </button>
             <div
                 *ngIf="auth.user?.access_token"
-                class="relative w-10 h-10 rounded-full border-4 border-white"
+                [routerLink]="['/profil']"
+                class="relative w-10 h-10 rounded-full border-4 border-white cursor-pointer"
             >
                 <img
                     [ngSrc]="

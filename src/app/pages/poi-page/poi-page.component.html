@@ -1,10 +1,10 @@
 <div class="flex {{ widthImage > heightImage ? 'flex-col' : 'flex-row' }}">
     <div class="relative flex justify-center items-center">
-        <p class="title-poi z-10 absolute">
+        <p class="title-poi text-center z-10 absolute">
             {{ poi.name }}
         </p>
         <img
-            class="z-0"
+            class="z-0 {{ widthImage > heightImage ? '' : 'max-w-none max-h-full' }}"
             [src]="
                 poi.cover?.url ??
                 'https://decizia.com/blog/wp-content/uploads/2017/06/default-placeholder.png'
