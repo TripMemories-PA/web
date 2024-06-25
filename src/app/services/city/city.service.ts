@@ -26,10 +26,20 @@ export class CityService {
         return this.http.get<CitiesSearchResponse>(`${URL}?${params.toString()}`, httpOptions);
     }
 
-    getCitiesPoi(id: string, page: number = 1, perPage?: string) {
+    getCitiesPoi(
+        id: string,
+        page: number = 1,
+        perPage?: string,
+        sort: boolean = false,
+        order: 'asc' | 'desc' = 'asc',
+    ) {
         const params = new URLSearchParams();
         params.append('page', page.toString());
         params.append('perPage', perPage ?? '10');
+        if (sort) {
+            params.append('sortBy', 'name');
+            params.append('order', order);
+        }
         return this.http.get<PoisSearchResponse>(
             `${URL}/${id}/pois?${params.toString()}`,
             httpOptions,
