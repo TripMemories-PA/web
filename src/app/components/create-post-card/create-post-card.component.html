@@ -49,6 +49,17 @@
         label="Valider"
         class="p-button-rounded p-button-raised p-button-primary"
     ></button>
+    <p-progressBar
+        mode="indeterminate"
+        *ngIf="loading"
+        [style]="{ height: '6px', width: '100%', marginTop: '25px' }"
+    ></p-progressBar>
+    <p-message
+        *ngIf="success"
+        class="self-center mt-6"
+        severity="success"
+        text="{{ success }}"
+    ></p-message>
     <p-message
         *ngIf="error"
         class="self-center mt-6"

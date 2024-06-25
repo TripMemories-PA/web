@@ -35,6 +35,8 @@ export class CreatePostCardComponent {
 
     file: File | null = null;
     error: string | null = null;
+    success: string | null = null;
+    loading: boolean = false;
 
     @Input() inputPoiId?: number;
 
@@ -51,9 +53,11 @@ export class CreatePostCardComponent {
     }
 
     submitPost() {
+        this.loading = true;
         if (!this.file) {
             console.log('no file');
             this.error = 'Veuillez ajouter une image';
+            this.loading = false;
             return;
         }
         if (
@@ -64,6 +68,7 @@ export class CreatePostCardComponent {
         ) {
             console.log('missing fields');
             this.error = 'Tout les champs sont obligatoires';
+            this.loading = false;
             return;
         }
         const formData: FormData = new FormData();
@@ -72,15 +77,23 @@ export class CreatePostCardComponent {
             next: (response) => {
                 this.post.imageId = response.id;
                 this.postService.createPost(this.post).subscribe({
-                    next: (response) => {
-                        console.log(response);
+                    next: (_) => {
+                        this.success = 'Post créé avec succès, la page va se recharger';
+                        this.loading = false;
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 5000);
                     },
                     error: (error) => {
+                        this.loading = false;
+                        this.error = 'Une erreur est survenue lors de la création du post';
                         console.error(error);
                     },
                 });
             },
             error: (error) => {
+                this.loading = false;
+                this.error = "Une erreur est survenue lors de l'envoi de l'image";
                 console.error(error);
             },
         });
