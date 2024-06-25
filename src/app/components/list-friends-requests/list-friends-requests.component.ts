@@ -37,7 +37,7 @@ export class ListFriendsRequestsComponent implements OnInit {
     nextPageUrl: string | null = '';
     previousPageUrl: string | null = '';
 
-    isEmptySearch: boolean = false;
+    itemsPerPage: number = 10;
     showDialog: boolean = false;
     isLoading: boolean = false;
 
@@ -65,6 +65,7 @@ export class ListFriendsRequestsComponent implements OnInit {
                 this.lastPageUrl = friends.meta.lastPageUrl;
                 this.nextPageUrl = friends.meta.nextPageUrl;
                 this.previousPageUrl = friends.meta.previousPageUrl;
+                this.itemsPerPage = friends.meta.perPage;
             },
             error: (error) => {
                 console.error(error);
@@ -73,10 +74,10 @@ export class ListFriendsRequestsComponent implements OnInit {
     }
 
     onPageChange(event: any) {
-        if (event.page < 0 || event.page > this.totalPages) {
+        if (event.page < 0 || event.page > this.lastPage) {
             return;
         }
-        if (event.page + 1 === this.currentPage) {
+        if (event.page + 1 === this.currentPage && this.itemsPerPage === event.rows) {
             return;
         }
         this.friendsRequestService.getFriendsRequests(event.page + 1, event.rows).subscribe({
@@ -91,6 +92,7 @@ export class ListFriendsRequestsComponent implements OnInit {
                 this.lastPageUrl = friends.meta.lastPageUrl;
                 this.nextPageUrl = friends.meta.nextPageUrl;
                 this.previousPageUrl = friends.meta.previousPageUrl;
+                this.itemsPerPage = friends.meta.perPage;
             },
             error: (error) => {
                 console.error(error);

@@ -22,20 +22,8 @@
             <span
                 (click)="goToPoi()"
                 class="text-[var(--primary)] text-sm cursor-pointer flex flex-row gap-1"
-                >Voir le monument
-
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="28"
-                    height="29"
-                    viewBox="0 0 28 29"
-                    fill="none"
-                >
-                    <path
-                        d="M7.46634 21.5002L5.83301 19.8668L17.033 8.66683H6.99967V6.3335H20.9997V20.3335H18.6663V10.3002L7.46634 21.5002Z"
-                        fill="#4169E1"
-                    />
-                </svg>
+                >Voir le {{ monument?.type?.name }}
+                <img ngSrc="assets/utils/arrow.png" width="22" height="22" />
             </span>
         </div>
     </p-card>
