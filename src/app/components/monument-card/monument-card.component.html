@@ -20,8 +20,15 @@
             <h2 class="p-mt-2 text-base">{{ monument.city?.name }}</h2>
             <h3 class="text-xl font-bold">{{ monument.name }}</h3>
             <div>
-                <p-rating [(ngModel)]="value" readonly="true" stars="5" cancel="false"></p-rating>
-                <span class="p-ml-4 text-sm text-[var(--primary)]">(1245 avis)</span>
+                <p-rating
+                    [(ngModel)]="monument.averageNote"
+                    readonly="true"
+                    stars="5"
+                    cancel="false"
+                ></p-rating>
+                <span class="ml-2 text-xs font-bold text-[var(--primary)]"
+                    >( {{ monument.postsCount ?? '0' }} avis )</span
+                >
             </div>
         </div>
     </p-card>

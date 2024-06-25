@@ -1,11 +1,23 @@
 <div class="w-full">
-    <div class="h-44 bg-[var(--primary)] w-full"></div>
+    <div
+        class="relative h-44 w-full"
+        (mouseenter)="isHoveredBanner = true"
+        (mouseleave)="isHoveredBanner = false"
+    >
+        <div class="bg-[var(--primary)] w-full h-full"></div>
+        <app-banner-profil
+            [banner]="banner"
+            [isHoveredBanner]="isHoveredBanner"
+        ></app-banner-profil>
+    </div>
     <div class="pl-24 pr-24">
         <div class="flex flex-row">
             <app-profil-info
                 class="w-full"
                 [profilPic]="profilPic"
                 [nbrFriends]="nbrFriends"
+                [nbrMonuments]="nbrMonuments"
+                [user]="user"
             ></app-profil-info>
         </div>
         <div class="mt-16 mb-14">

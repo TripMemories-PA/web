@@ -1,6 +1,11 @@
 <div>
     <div class="w-full h-96 z-0 relative">
-        <img ngSrc="assets/search-city/background-search-city.png" alt="City Search" fill />
+        <img
+            ngSrc="assets/search-city/background-search-city.png"
+            alt="City Search"
+            class="absolute object-cover opacity-90"
+            fill
+        />
     </div>
     <div class="relative">
         <div class="p-toolbar-group-center text-center mt-10">
@@ -26,10 +31,11 @@
                 <app-city-card *ngFor="let city of cities" [cityModel]="city"></app-city-card>
             </div>
             <p-paginator
+                *ngIf="lastPage > 1 || itemsPerPage > 12"
                 (onPageChange)="onPageChange($event)"
                 [first]="firstPage"
                 [rows]="meta.perPage"
-                [totalRecords]="lastPage"
+                [totalRecords]="totalPages"
                 [rowsPerPageOptions]="[12, 24, 36]"
             >
             </p-paginator>

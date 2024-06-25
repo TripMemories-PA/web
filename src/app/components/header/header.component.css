@@ -1,7 +1,13 @@
 ::ng-deep .p-menubar {
-  background: transparent;
-  border: none
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
 }
+
+::ng-deep .test .p-menubar {
+  background-color: var(--primary);
+}
+
 ::ng-deep .p-menubar p-menubarsub {
   margin: auto;
 }

@@ -17,4 +17,6 @@ export class PoiModel {
     type?: TypeMonument;
     createdAt?: Date;
     updatedAt?: Date;
+    postsCount?: number;
+    averageNote?: number;
 }

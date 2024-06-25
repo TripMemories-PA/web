@@ -14,6 +14,7 @@ export class User {
     isFriend?: boolean;
     hasReceivedFriendRequest?: boolean;
     hasSentFriendRequest?: boolean;
+    poisCount?: number = 0;
 }
 
 export class UserRegister {

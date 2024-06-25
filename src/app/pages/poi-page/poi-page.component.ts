@@ -6,17 +6,26 @@ import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { PostModel } from '../../models/post.model';
 import { PostCardComponent } from '../../components/post-card/post-card.component';
 import { ImageServiceService } from '../../services/image-service.service';
+import { CurrentlyAtCardComponent } from '../../components/currently-at-card/currently-at-card.component';
 
 @Component({
     selector: 'app-poi-page',
     standalone: true,
-    imports: [NgOptimizedImage, PostCardComponent, RouterLink, NgForOf, NgIf],
+    imports: [
+        NgOptimizedImage,
+        PostCardComponent,
+        RouterLink,
+        NgForOf,
+        NgIf,
+        CurrentlyAtCardComponent,
+    ],
     templateUrl: './poi-page.component.html',
     styleUrl: './poi-page.component.css',
 })
 export class PoiPageComponent implements OnInit {
     poi: PoiModel = new PoiModel();
     poiPosts: PostModel[] = [];
+    poiNear: PoiModel[] = [];
 
     widthImage: number = 1;
     heightImage: number = 1;
@@ -41,6 +50,7 @@ export class PoiPageComponent implements OnInit {
         this.poisService.getPOI(id).subscribe({
             next: (response) => {
                 this.poi = response;
+                this.getPoiNear();
                 this.imageService
                     .getImageDimensions(response.cover?.url)
                     .then((dimensions) => {
@@ -64,6 +74,17 @@ export class PoiPageComponent implements OnInit {
         this.poisService.getPoiPosts(id, '5').subscribe({
             next: (response) => {
                 this.poiPosts = response.data;
+            },
+            error: (error) => {
+                console.error(error);
+            },
+        });
+    }
+
+    getPoiNear() {
+        this.poisService.getPOIs('10', this.poi.latitude, this.poi.longitude, '10').subscribe({
+            next: (response) => {
+                this.poiNear = response.data;
             },
             error: (error) => {
                 console.error(error);

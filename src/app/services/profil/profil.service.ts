@@ -18,12 +18,18 @@ export class ProfilService {
         return this.http.post(URL + '/avatar', formData);
     }
 
+    uploadBanner(file: File) {
+        const formData: FormData = new FormData();
+        formData.append('file', file, file.name);
+        return this.http.post(URL + '/banner', formData);
+    }
+
     updateMe(user: User) {
         return this.http.put(`${URL}`, user);
     }
 
     getMe() {
-        return this.http.get(`${URL}`);
+        return this.http.get<User>(`${URL}`);
     }
 
     getPosts(page: number = 1, perPage: number = 10) {

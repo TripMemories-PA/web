@@ -10,6 +10,7 @@ import { MessageModule } from 'primeng/message';
 import { CityService } from '../../services/city/city.service';
 import { CityModel } from '../../models/city.model';
 import { MetaModel } from '../../models/meta.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-city-search-page',
@@ -29,7 +30,7 @@ import { MetaModel } from '../../models/meta.model';
 })
 export class CitySearchPageComponent implements OnInit {
     constructor(
-        private poisService: PoisService,
+        private _activatedRoute: ActivatedRoute,
         private cityService: CityService,
     ) {}
 
@@ -42,10 +43,6 @@ export class CitySearchPageComponent implements OnInit {
 
     pois: PoiModel[] = [];
     cities: CityModel[] = [];
-    groupedByCity: { [city: string]: PoiModel[] } = {};
-    citesNames: string[] = [];
-    originalCitesNames: string[] = [];
-
     itemsPerPage: number = 12;
 
     meta: MetaModel = new MetaModel();
@@ -61,7 +58,15 @@ export class CitySearchPageComponent implements OnInit {
     previousPageUrl: string | null = '';
 
     ngOnInit(): void {
-        this.getCities();
+        this._activatedRoute.queryParamMap.subscribe((params) => {
+            const param = params.get('search');
+            if (param) {
+                this.searchCity.city = param;
+                this.sortSearch();
+            } else {
+                this.getCities();
+            }
+        });
     }
 
     private getCities() {
@@ -91,10 +96,10 @@ export class CitySearchPageComponent implements OnInit {
         if (event.page < 0 || event.page > this.totalPages) {
             return;
         }
-        if (event.page + 1 === this.currentPage) {
+        if (event.rows === this.itemsPerPage && event.page + 1 === this.currentPage) {
             return;
         }
-        this.cityService.getCities(event.page + 1, this.itemsPerPage.toString()).subscribe({
+        this.cityService.getCities(event.page + 1, event.rows, this.searchCity.city).subscribe({
             next: (response) => {
                 this.cities = response.data;
                 this.meta = response.meta;
@@ -106,6 +111,7 @@ export class CitySearchPageComponent implements OnInit {
                 this.lastPageUrl = response.meta.lastPageUrl;
                 this.nextPageUrl = response.meta.nextPageUrl;
                 this.previousPageUrl = response.meta.previousPageUrl;
+                this.itemsPerPage = response.meta.perPage;
             },
             error: (error) => {
                 console.error(error);
