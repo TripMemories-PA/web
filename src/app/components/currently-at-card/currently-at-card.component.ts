@@ -1,10 +1,11 @@
-import { Component, input, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-currently-at-card',
     standalone: true,
-    imports: [NgOptimizedImage],
+    imports: [NgOptimizedImage, RouterLink],
     templateUrl: './currently-at-card.component.html',
     styleUrl: './currently-at-card.component.css',
 })
@@ -13,4 +14,5 @@ export class CurrentlyAtCardComponent {
     @Input() image?: string;
     @Input() description?: string = '';
     @Input() infoPlus?: string = '';
+    @Input() link?: string = '';
 }

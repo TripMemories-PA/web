@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CurrentlyAtCardComponent } from './currently-at-card.component';
+import { RouterModule } from '@angular/router';
 
 describe('CurrentlyAtCardComponent', () => {
     let component: CurrentlyAtCardComponent;
@@ -8,7 +9,7 @@ describe('CurrentlyAtCardComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [CurrentlyAtCardComponent],
+            imports: [CurrentlyAtCardComponent, RouterModule.forRoot([])],
         }).compileComponents();
 
         fixture = TestBed.createComponent(CurrentlyAtCardComponent);
