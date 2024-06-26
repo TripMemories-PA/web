@@ -37,24 +37,55 @@
             </div>
             <h2 class="p-mt-2 text-xl font-bold">{{ post.title }}</h2>
             <h3 class="text-sm">{{ post.content }}</h3>
-            <span
-                class="flex flex-row text-[var(--primary)] font-['Urbanist'] gap-2 cursor-pointer"
-                (click)="goToPost()"
-            >
-                Voir le post
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="28"
-                    height="29"
-                    viewBox="0 0 28 29"
-                    fill="none"
+            <div class="flex flex-row justify-between">
+                <span
+                    class="flex flex-row text-[var(--primary)] font-['Urbanist'] gap-2 cursor-pointer"
+                    (click)="goToPost()"
                 >
-                    <path
-                        d="M7.46634 21.5002L5.83301 19.8668L17.033 8.66683H6.99967V6.3335H20.9997V20.3335H18.6663V10.3002L7.46634 21.5002Z"
-                        fill="#4169E1"
-                    />
-                </svg>
-            </span>
+                    Voir le post
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="28"
+                        height="29"
+                        viewBox="0 0 28 29"
+                        fill="none"
+                    >
+                        <path
+                            d="M7.46634 21.5002L5.83301 19.8668L17.033 8.66683H6.99967V6.3335H20.9997V20.3335H18.6663V10.3002L7.46634 21.5002Z"
+                            fill="#4169E1"
+                        />
+                    </svg>
+                </span>
+                <span
+                    *ngIf="myPost"
+                    (click)="visible = true"
+                    class="text-red-600 font-['Urbanist'] cursor-pointer"
+                >
+                    Supprimer mon post
+                </span>
+            </div>
         </div>
     </p-card>
+</div>
+<div class="card flex justify-content-center">
+    <p-dialog
+        header="Êtes-vous sûr de vouloir supprimer votre post ?"
+        [modal]="true"
+        [(visible)]="visible"
+        [style]="{ width: '25rem' }"
+    >
+        <span class="p-text-secondary block mb-5"
+            >La suppression de votre post, supprimera toutes ses données, ainsi que les likes et
+            commentaires associés.
+        </span>
+        <div class="flex justify-content-end gap-2">
+            <p-button label="Non" severity="secondary" (click)="visible = false" />
+            <p-button label="Oui" (click)="deletePost()" />
+        </div>
+        <p-progressBar
+            mode="indeterminate"
+            *ngIf="loading"
+            [style]="{ height: '6px', width: '100%' }"
+        ></p-progressBar>
+    </p-dialog>
 </div>

@@ -32,12 +32,16 @@ export class PostsService {
         return this.http.get<PostModel>(`${URL}/${id}`, isConnected ? undefined : httpOptions);
     }
 
-    sendImagePost(data: FormData) {
-        return this.http.post<IFileImage>(`${URL}/image`, data);
-    }
-
     createPost(post: PostCreationModel) {
         return this.http.post(`${URL}`, post);
+    }
+
+    deletePost(id: number) {
+        return this.http.delete(`${URL}/${id}`);
+    }
+
+    sendImagePost(data: FormData) {
+        return this.http.post<IFileImage>(`${URL}/image`, data);
     }
 
     likePost(id: number) {
