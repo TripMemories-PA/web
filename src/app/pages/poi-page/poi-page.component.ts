@@ -7,6 +7,10 @@ import { PostModel } from '../../models/post.model';
 import { PostCardComponent } from '../../components/post-card/post-card.component';
 import { ImageServiceService } from '../../services/image-service.service';
 import { CurrentlyAtCardComponent } from '../../components/currently-at-card/currently-at-card.component';
+import { CreatePostCardComponent } from '../../components/create-post-card/create-post-card.component';
+import { DialogModule } from 'primeng/dialog';
+import { SharedModule } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
     selector: 'app-poi-page',
@@ -18,6 +22,10 @@ import { CurrentlyAtCardComponent } from '../../components/currently-at-card/cur
         NgForOf,
         NgIf,
         CurrentlyAtCardComponent,
+        CreatePostCardComponent,
+        DialogModule,
+        SharedModule,
+        ButtonModule,
     ],
     templateUrl: './poi-page.component.html',
     styleUrl: './poi-page.component.css',
@@ -29,6 +37,7 @@ export class PoiPageComponent implements OnInit {
 
     widthImage: number = 1;
     heightImage: number = 1;
+    showDialog: boolean = false;
 
     constructor(
         private _activatedRoute: ActivatedRoute,
@@ -79,6 +88,10 @@ export class PoiPageComponent implements OnInit {
                 console.error(error);
             },
         });
+    }
+
+    openDialog() {
+        this.showDialog = true;
     }
 
     getPoiNear() {
