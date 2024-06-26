@@ -30,5 +30,12 @@
                 ></app-monument-card-feed>
             </div>
         </div>
+        <p-message
+            *ngIf="isEnd"
+            class="self-center mt-6 grid"
+            severity="info"
+            text="Vous êtes à la fin du trip ! 🎉"
+        >
+        </p-message>
     </div>
 </div>

@@ -18,9 +18,9 @@ const httpOptions = {
 export class PostsService {
     constructor(private http: HttpClient) {}
 
-    getPosts(perPage?: string, isConnected: boolean = false) {
+    getPosts(perPage?: string, isConnected: boolean = false, page: string = '1') {
         const params = new URLSearchParams();
-        params.append('page', '1');
+        params.append('page', page);
         params.append('perPage', perPage ?? '10');
         return this.http.get<PostsResponse>(
             `${URL}?${params.toString()}`,
