@@ -5,11 +5,22 @@ import { PostModel } from '../../../models/post.model';
 import { NgForOf, NgIf } from '@angular/common';
 import { PaginatorModule } from 'primeng/paginator';
 import { MetaModel } from '../../../models/meta.model';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { CreatePostCardComponent } from '../../../components/create-post-card/create-post-card.component';
 
 @Component({
     selector: 'app-my-posts',
     standalone: true,
-    imports: [PostCardComponent, NgForOf, NgIf, PaginatorModule],
+    imports: [
+        PostCardComponent,
+        NgForOf,
+        NgIf,
+        PaginatorModule,
+        ButtonModule,
+        DialogModule,
+        CreatePostCardComponent,
+    ],
     templateUrl: './my-posts.component.html',
     styleUrl: './my-posts.component.css',
 })
@@ -28,6 +39,7 @@ export class MyPostsComponent implements OnInit {
     lastPageUrl: string = '';
     nextPageUrl: string | null = '';
     previousPageUrl: string | null = '';
+    showDialog: boolean = false;
 
     constructor(private profilService: ProfilService) {}
 
@@ -50,6 +62,10 @@ export class MyPostsComponent implements OnInit {
                 console.error(error);
             },
         });
+    }
+
+    openDialog() {
+        this.showDialog = true;
     }
 
     onPageChange(event: any) {

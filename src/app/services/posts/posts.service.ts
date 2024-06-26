@@ -4,6 +4,8 @@ import { HttpClient, HttpContext } from '@angular/common/http';
 import { NO_AUTH } from '../request.interceptor';
 import { PostsResponse } from '../../models/response/posts.response';
 import { PostModel } from '../../models/post.model';
+import { IFileImage } from '../../models/interface/FileImage';
+import { PostCreationModel } from '../../models/request/post.model';
 
 const URL = environment.apiUrl + '/posts';
 const httpOptions = {
@@ -28,6 +30,18 @@ export class PostsService {
 
     getPost(id: string, isConnected: boolean = false) {
         return this.http.get<PostModel>(`${URL}/${id}`, isConnected ? undefined : httpOptions);
+    }
+
+    createPost(post: PostCreationModel) {
+        return this.http.post(`${URL}`, post);
+    }
+
+    deletePost(id: number) {
+        return this.http.delete(`${URL}/${id}`);
+    }
+
+    sendImagePost(data: FormData) {
+        return this.http.post<IFileImage>(`${URL}/image`, data);
     }
 
     likePost(id: number) {
