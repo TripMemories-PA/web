@@ -97,7 +97,7 @@ export class PoiPageComponent implements OnInit {
     getPoiNear() {
         this.poisService.getPOIs('10', this.poi.latitude, this.poi.longitude, '10').subscribe({
             next: (response) => {
-                this.poiNear = response.data;
+                this.poiNear = response.data.filter((poi) => poi.id !== this.poi.id);
             },
             error: (error) => {
                 console.error(error);
