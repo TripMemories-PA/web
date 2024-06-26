@@ -43,6 +43,7 @@ export class ChangeProfilPicComponent {
         this.pictureURL = this.sanitizer.bypassSecurityTrustResourceUrl(
             URL.createObjectURL(file.item(0)!.slice()),
         );
+        console.log(file);
         return file.item(0)!;
     }
 

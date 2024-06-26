@@ -1,0 +1,36 @@
+<div (click)="goToPoi()" class="card flex justify-content-center cursor-pointer">
+    <p-card
+        styleClass="ui-card-shadow"
+        class="bg-white"
+        [style]="{ width: '360px', boxShadow: 'inherit', borderRadius: 'inherit' }"
+    >
+        <ng-template pTemplate="header">
+            <div class="w-80 h-80 relative">
+                <img
+                    ngSrc="{{
+                        monument.cover?.url ??
+                            'https://decizia.com/blog/wp-content/uploads/2017/06/default-placeholder.png'
+                    }}"
+                    alt="{{ monument.name }}"
+                    class="rounded-md absolute object-cover"
+                    fill
+                />
+            </div>
+        </ng-template>
+        <div class="flex flex-col gap-3">
+            <h2 class="p-mt-2 text-base">{{ monument.city?.name }}</h2>
+            <h3 class="text-xl font-bold">{{ monument.name }}</h3>
+            <div>
+                <p-rating
+                    [(ngModel)]="monument.averageNote"
+                    readonly="true"
+                    stars="5"
+                    cancel="false"
+                ></p-rating>
+                <span class="ml-2 text-xs font-bold text-[var(--primary)]"
+                    >( {{ monument.postsCount ?? '0' }} avis )</span
+                >
+            </div>
+        </div>
+    </p-card>
+</div>

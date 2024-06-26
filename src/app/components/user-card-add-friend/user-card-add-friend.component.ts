@@ -6,13 +6,23 @@ import { User } from '../../models/user';
 import { Router } from '@angular/router';
 import { FriendsRequestsService } from '../../services/friends-requests/friends-requests.service';
 import { MessageModule } from 'primeng/message';
-import { NgIf } from '@angular/common';
+import { NgIf, NgOptimizedImage } from '@angular/common';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
     selector: 'app-user-card-add-friend',
     standalone: true,
-    imports: [CardModule, AvatarModule, ButtonModule, MessageModule, NgIf, ProgressBarModule],
+    imports: [
+        CardModule,
+        AvatarModule,
+        ButtonModule,
+        MessageModule,
+        NgIf,
+        ProgressBarModule,
+        DialogModule,
+        NgOptimizedImage,
+    ],
     templateUrl: './user-card-add-friend.component.html',
     styleUrl: './user-card-add-friend.component.css',
 })

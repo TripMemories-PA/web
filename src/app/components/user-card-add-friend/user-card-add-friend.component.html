@@ -1,52 +1,67 @@
-<p-card class="max-w-24">
+<p-card
+    [style]="{
+        boxShadow: '0 4px 6px 0 rgba(0, 0, 0, 0.1)',
+        borderRadius: '15px',
+        border: '2px solid var(--border-grey)',
+        width: 'fit-content'
+    }"
+>
     <ng-template pTemplate="content">
-        <div class="flex flex-row justify-between items-center">
-            <p-avatar
-                shape="circle"
-                size="large"
-                [image]="
-                    user?.avatar?.url ??
-                    'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png'
-                "
-            ></p-avatar>
-            <div class="flex flex-col">
-                <span class="text-xl font-bold">{{ user?.firstname }} {{ user?.lastname }}</span>
-                <span class="text-xl font-bold">&#64;{{ user?.username }}</span>
-            </div>
-            <div>
-                <p-button
-                    icon="pi pi-user-plus"
-                    [rounded]="true"
-                    size="small"
-                    severity="info"
-                    class="mr-4"
-                    (click)="addFriend()"
-                ></p-button>
-                <p-button
+        <div class="flex flex-col justify-between items-center">
+            <div class="relative w-full h-36 mb-6">
+                <img
+                    ngSrc="{{
+                        user?.avatar?.url ??
+                            'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png'
+                    }}"
+                    alt="avatar"
+                    class="object-cover rounded-xl"
+                    fill
+                />
+                <button
+                    pButton
+                    (click)="viewProfile()"
+                    class="button-element"
                     icon="pi pi-eye"
                     [rounded]="true"
-                    size="small"
-                    severity="info"
-                    (click)="viewProfile()"
-                ></p-button>
+                ></button>
             </div>
+            <div class="flex flex-row justify-around">
+                <div class="flex flex-col mr-4">
+                    <span class="text-xl text-['Urbanist'] font-bold"
+                        >{{ user?.firstname }} {{ user?.lastname }}</span
+                    >
+                    <span class="text-md text-['Urbanist']">&#64;{{ user?.username }}</span>
+                </div>
+                <div>
+                    <button
+                        pButton
+                        icon="pi pi-user-plus"
+                        [rounded]="true"
+                        size="small"
+                        [disabled]="user?.hasSentFriendRequest || user?.isFriend"
+                        class="button-element-2"
+                        (click)="addFriend()"
+                    ></button>
+                </div>
+            </div>
+            <p-progressBar
+                mode="indeterminate"
+                *ngIf="isLoading"
+                [style]="{ height: '6px', width: '100%' }"
+            ></p-progressBar>
+            <p-message
+                *ngIf="message"
+                class="self-center mt-3"
+                severity="success"
+                [text]="message"
+            ></p-message>
+            <p-message
+                *ngIf="error"
+                class="self-center mt-6"
+                severity="error"
+                text="Une erreur est survenue lors de l'ajout de l'ami."
+            ></p-message>
         </div>
-        <p-progressBar
-            mode="indeterminate"
-            *ngIf="isLoading"
-            [style]="{ height: '6px', width: '100%' }"
-        ></p-progressBar>
-        <p-message
-            *ngIf="message"
-            class="self-center mt-6"
-            severity="success"
-            [text]="message"
-        ></p-message>
-        <p-message
-            *ngIf="error"
-            class="self-center mt-6"
-            severity="error"
-            text="Une erreur est survenue lors de l'ajout de l'ami."
-        ></p-message>
     </ng-template>
 </p-card>

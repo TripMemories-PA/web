@@ -1,39 +1,59 @@
-<p-card class="max-w-24">
+<p-card
+    [style]="{
+        boxShadow: '0 4px 6px 0 rgba(0, 0, 0, 0.1)',
+        borderRadius: '15px',
+        border: '2px solid var(--border-grey)',
+        width: '550px'
+    }"
+>
     <ng-template pTemplate="content">
-        <div class="flex flex-row justify-between items-center mb-4">
-            <p-avatar
-                shape="circle"
-                size="large"
-                [image]="
-                    friendRequest?.sender?.avatar?.url ??
-                    'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png'
-                "
-            ></p-avatar>
+        <div class="flex flex-row gap-8 items-center mb-4">
+            <div class="relative w-44 h-20">
+                <img
+                    ngSrc="{{
+                        friendRequest?.sender?.avatar?.url ??
+                            'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png'
+                    }}"
+                    alt="avatar"
+                    class="object-cover rounded-xl"
+                    fill
+                />
+                <button
+                    pButton
+                    class="button-element-friend-request-card"
+                    icon="pi pi-eye"
+                    [rounded]="true"
+                ></button>
+            </div>
             <div class="flex flex-col">
-                <span class="text-xl font-bold"
+                <span class="text-xl font-['Urbanist'] font-bold"
                     >{{ friendRequest?.sender?.firstname }}
                     {{ friendRequest?.sender?.lastname }}</span
                 >
-                <span class="text-xl font-bold">&#64;{{ friendRequest?.sender?.username }}</span>
+                <span class="text-sm text-gray-400 font-['Urbanist'] font-bold"
+                    >&#64;{{ friendRequest?.sender?.username }}</span
+                >
             </div>
-            <div class="flex flex-col gap-2 items-center">
-                <p-button
-                    [rounded]="true"
-                    size="small"
-                    label="Ajouter"
-                    severity="success"
-                    (click)="acceptFriendRequest(friendRequest?.id)"
-                ></p-button>
-                <p-button
-                    [rounded]="true"
-                    size="small"
-                    label="Supprimer"
-                    severity="danger"
-                    (click)="declineFriendRequest(friendRequest?.id)"
-                ></p-button>
-            </div>
+            <button
+                pButton
+                [rounded]="true"
+                [outlined]="true"
+                size="small"
+                icon="pi pi-times"
+                class="button-element-friend-request-card-2"
+                (click)="declineFriendRequest(friendRequest?.id)"
+            ></button>
+            <div class="h-10 rounded-full w-[1px] bg-gray-300"></div>
+            <button
+                pButton
+                [rounded]="true"
+                size="small"
+                icon="pi pi-check"
+                class="button-element-friend-request-card-2"
+                (click)="acceptFriendRequest(friendRequest?.id)"
+            ></button>
         </div>
-        <span>Demande reçu le {{ receivedDate }}</span>
+        <span class="font-['Urbanist'] text-sm">Demande reçu le {{ receivedDate }}</span>
         <p-progressBar
             mode="indeterminate"
             *ngIf="isLoading"
@@ -41,13 +61,13 @@
         ></p-progressBar>
         <p-message
             *ngIf="message"
-            class="self-center mt-6"
+            class="self-center mt-6 font-['Urbanist']"
             severity="success"
             [text]="message"
         ></p-message>
         <p-message
             *ngIf="error"
-            class="self-center mt-6"
+            class="self-center mt-6 font-['Urbanist']"
             severity="error"
             text="Une erreur est survenue lors de l'ajout de l'ami."
         ></p-message>

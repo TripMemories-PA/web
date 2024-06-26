@@ -1,0 +1,26 @@
+::ng-deep .ui-card-shadow {
+  transition: 0.3s;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+::ng-deep .p-card .p-card-body {
+  padding: 0;
+}
+
+.ui-card-shadow img {
+  border-radius: 10px 10px 0 0;
+}
+
+.ui-card-shadow h2, .ui-card-shadow h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.ui-card-shadow .p-mb-3 {
+  padding: 15px;
+}
+
+.ui-card-shadow .p-rating {
+  vertical-align: middle;
+}

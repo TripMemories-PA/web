@@ -1,6 +1,4 @@
-interface IAvatar {
-    url?: string;
-}
+import { IFileImage } from './interface/FileImage';
 
 export class User {
     id?: string;
@@ -10,8 +8,13 @@ export class User {
     email?: string;
     password?: string;
     access_token?: string;
-    avatar?: IAvatar;
+    avatar?: IFileImage;
+    banner?: IFileImage;
     friends?: any[];
+    isFriend?: boolean;
+    hasReceivedFriendRequest?: boolean;
+    hasSentFriendRequest?: boolean;
+    poisCount?: number = 0;
 }
 
 export class UserRegister {

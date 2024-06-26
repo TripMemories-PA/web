@@ -7,7 +7,7 @@ import { User } from '../../models/user';
 import { ProfilService } from '../../services/profil/profil.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
-import { NgIf } from '@angular/common';
+import { NgIf, NgOptimizedImage } from '@angular/common';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { UpdateMeModel } from '../../models/updateme.model';
 import { DialogModule } from 'primeng/dialog';
@@ -23,6 +23,7 @@ import { DialogModule } from 'primeng/dialog';
         NgIf,
         ProgressBarModule,
         DialogModule,
+        NgOptimizedImage,
     ],
     templateUrl: './my-informations.component.html',
     styleUrl: './my-informations.component.css',
@@ -34,8 +35,11 @@ export class MyInformationsComponent implements OnInit {
     isLoading: boolean = false;
 
     visible: boolean = false;
+    modifyAccount: boolean = false;
 
     @Input() user?: User;
+    @Input() nbrFriends?: number;
+    @Input() nbrMonuments?: number;
 
     userValues: User = {
         firstname: '',

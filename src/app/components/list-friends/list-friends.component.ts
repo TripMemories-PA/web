@@ -48,7 +48,6 @@ export class ListFriendsComponent implements OnInit {
                 this.lastPageUrl = friends.meta.lastPageUrl;
                 this.nextPageUrl = friends.meta.nextPageUrl;
                 this.previousPageUrl = friends.meta.previousPageUrl;
-                console.log(friends.data);
             },
             error: (error) => {
                 console.error(error);

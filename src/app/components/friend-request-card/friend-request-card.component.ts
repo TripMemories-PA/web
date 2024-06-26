@@ -3,7 +3,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { MessageModule } from 'primeng/message';
-import { NgIf } from '@angular/common';
+import { NgIf, NgOptimizedImage } from '@angular/common';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { SharedModule } from 'primeng/api';
 import { FriendRequestInfoModel } from '../../models/friendRequestInfo.model';
@@ -20,6 +20,7 @@ import { FriendsRequestsService } from '../../services/friends-requests/friends-
         NgIf,
         ProgressBarModule,
         SharedModule,
+        NgOptimizedImage,
     ],
     templateUrl: './friend-request-card.component.html',
     styleUrl: './friend-request-card.component.css',

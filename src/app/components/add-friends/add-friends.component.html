@@ -1,26 +1,56 @@
-<button pButton (click)="openDialog()">Ajouter un ami</button>
+<button
+    pButton
+    [outlined]="true"
+    icon="pi pi-plus"
+    [style]="{ border: '2px solid grey', width: '280px', gap: '10px', borderRadius: '9999px' }"
+    (click)="openDialog()"
+>
+    Ajouter un ami
+</button>
 <p-dialog
-    header="Ajouter un ami"
+    header="Ajouter des amis"
+    class="flex flex-col"
     [modal]="true"
     [draggable]="false"
     [(visible)]="showDialog"
-    [style]="{ width: '50rem' }"
+    [style]="{ width: '50rem', borderRadius: '9999px' }"
     [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
 >
     <ng-template pTemplate="content">
         <div class="p-toolbar-group-center">
-            <span class="p-input-icon-left">
-                <i (click)="searchUsers()" class="pi pi-search cursor-pointer"></i>
-                <input [(ngModel)]="searchUser.search" pInputText placeholder="Search" />
+            <span class="p-input-icon-right w-full">
+                <i (click)="searchUsers()" class="pi pi-search cursor-pointer mr-2"></i>
+                <input
+                    class="w-full rounded-full"
+                    [(ngModel)]="searchUser.search"
+                    (keyup.enter)="searchUsers()"
+                    pInputText
+                    placeholder="Rechercher un ami"
+                />
             </span>
         </div>
+        <p *ngIf="users.length" class="font-['Urbanist'] text-base text-gray-400 mt-3">
+            {{ users.length }} résultat{{ users.length > 1 ? 's' : '' }}
+        </p>
         <div
-            class="w-3/4 border-solid border-2 border-gray-300 rounded m-auto mt-5 max-h-52 p-4 overflow-auto flex gap-4 flex-col"
+            *ngIf="users && users.length > 0"
+            class="w-full rounded m-auto max-h-80 p-4 overflow-auto flex gap-4 flex-row flex-wrap justify-around"
         >
             <app-user-card-add-friend
                 *ngFor="let user of users"
                 [user]="user"
             ></app-user-card-add-friend>
         </div>
+        <p-message
+            *ngIf="isEmptySearch"
+            class="self-center mt-6"
+            severity="error"
+            text="Il n'y a pas d'utilisateur existant correspondant à votre recherche."
+        ></p-message>
+        <p-progressBar
+            mode="indeterminate"
+            [style]="{ height: '6px' }"
+            *ngIf="isLoading"
+        ></p-progressBar>
     </ng-template>
 </p-dialog>

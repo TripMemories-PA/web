@@ -1,0 +1,22 @@
+.button-element{
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  background: transparent;
+  border: none;
+  left: 10px;
+  top: 10px;
+}
+
+.button-element .pi-eye:before {
+  font-size: 10px;
+}
+
+.button-element-2 {
+  width: 35px;
+  height: 35px;
+}
+
+.button-element .pi-eye:before {
+  font-size: 10px;
+}

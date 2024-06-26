@@ -1,0 +1,30 @@
+<div class="card flex justify-content mt-10 ml-20">
+    <p-card
+        styleClass="ui-card-shadow"
+        class="bg-white"
+        [style]="{ width: '180px', boxShadow: 'inherit', borderRadius: 'inherit' }"
+    >
+        <ng-template pTemplate="header">
+            <img
+                ngSrc="{{
+                    monument?.cover?.url ??
+                        'https://decizia.com/blog/wp-content/uploads/2017/06/default-placeholder.png'
+                }}"
+                alt="{{ monument?.name }}"
+                class="rounded-md"
+                height="100"
+                width="100"
+            />
+        </ng-template>
+        <div class="flex flex-col gap-1">
+            <h2 class="text-sm">{{ city }}</h2>
+            <h3 class="text-base font-bold">{{ monument?.name }}</h3>
+            <span
+                (click)="goToPoi()"
+                class="text-[var(--primary)] text-sm cursor-pointer flex flex-row gap-1"
+                >Voir le {{ monument?.type?.name }}
+                <img ngSrc="assets/utils/arrow.png" width="22" height="22" />
+            </span>
+        </div>
+    </p-card>
+</div>

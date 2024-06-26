@@ -1,7 +1,13 @@
 ::ng-deep .p-menubar {
-  background: transparent;
-  border: none
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
 }
+
+::ng-deep .test .p-menubar {
+  background-color: var(--primary);
+}
+
 ::ng-deep .p-menubar p-menubarsub {
   margin: auto;
 }
@@ -23,4 +29,12 @@
 }
 ::ng-deep .p-menubar-end {
   margin: 0
+}
+
+::ng-deep .p-menuitem-content {
+  text-shadow: black 0 0 5px;
+}
+
+::ng-deep .p-menuitem-text {
+  color: white !important;
 }
