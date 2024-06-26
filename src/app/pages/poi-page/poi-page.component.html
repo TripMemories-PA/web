@@ -60,9 +60,7 @@
             >
         </div>
         <div class="mt-16">
-            <h3 class="text-4xl font-bold font-['Urbanist'] mb-10">
-                En ce moment à {{ poi.city?.name }}
-            </h3>
+            <h3 class="text-4xl font-bold font-['Urbanist'] mb-6">Autour de {{ poi.name }}</h3>
             <div class="flex flex-row flex-nowrap gap-10 overflow-hidden">
                 <app-currently-at-card
                     *ngFor="let currentlyAt of poiNear"
