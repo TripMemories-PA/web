@@ -10,6 +10,7 @@ import { User } from '../../models/user';
 import { FriendsService } from '../../services/friends/friends.service';
 import { DialogModule } from 'primeng/dialog';
 import { StyleClassModule } from 'primeng/styleclass';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-friend-card',
@@ -25,6 +26,7 @@ import { StyleClassModule } from 'primeng/styleclass';
         DialogModule,
         NgOptimizedImage,
         StyleClassModule,
+        RouterLink,
     ],
     templateUrl: './friend-card.component.html',
     styleUrl: './friend-card.component.css',
@@ -33,7 +35,10 @@ export class FriendCardComponent {
     @Input() user: User | undefined;
     @Output() reload: EventEmitter<any> = new EventEmitter();
 
-    constructor(private friendsService: FriendsService) {}
+    constructor(
+        private friendsService: FriendsService,
+        private router: Router,
+    ) {}
 
     isLoading: boolean = false;
 
@@ -58,5 +63,12 @@ export class FriendCardComponent {
                 console.error(err);
             },
         });
+    }
+
+    navigateToProfil(id: string | undefined) {
+        if (!id) {
+            return;
+        }
+        this.router.navigate(['/user', id]);
     }
 }

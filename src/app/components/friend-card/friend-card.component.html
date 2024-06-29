@@ -18,7 +18,13 @@
                     class="object-cover rounded-xl"
                     fill
                 />
-                <button pButton class="button-element" icon="pi pi-eye" [rounded]="true"></button>
+                <button
+                    pButton
+                    (click)="navigateToProfil(user?.id)"
+                    class="button-element"
+                    icon="pi pi-eye"
+                    [rounded]="true"
+                ></button>
             </div>
             <div class="flex flex-row justify-around">
                 <div class="flex flex-col mr-4">

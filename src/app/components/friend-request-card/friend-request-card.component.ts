@@ -8,6 +8,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { SharedModule } from 'primeng/api';
 import { FriendRequestInfoModel } from '../../models/friendRequestInfo.model';
 import { FriendsRequestsService } from '../../services/friends-requests/friends-requests.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-friend-request-card',
@@ -21,6 +22,7 @@ import { FriendsRequestsService } from '../../services/friends-requests/friends-
         ProgressBarModule,
         SharedModule,
         NgOptimizedImage,
+        RouterLink,
     ],
     templateUrl: './friend-request-card.component.html',
     styleUrl: './friend-request-card.component.css',

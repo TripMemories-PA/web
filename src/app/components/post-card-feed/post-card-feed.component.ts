@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { NgOptimizedImage } from '@angular/common';
 import { MessageService, SharedModule } from 'primeng/api';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { PostModel } from '../../models/post.model';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
@@ -19,6 +19,7 @@ import { PostsService } from '../../services/posts/posts.service';
         RatingModule,
         FormsModule,
         InputIconModule,
+        RouterLink,
     ],
     providers: [MessageService],
     templateUrl: './post-card-feed.component.html',

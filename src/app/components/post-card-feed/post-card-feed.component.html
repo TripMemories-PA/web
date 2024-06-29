@@ -1,7 +1,7 @@
 <div class="card flex justify-content-center">
     <p-card
         styleClass="ui-card-shadow"
-        class="bg-white"
+        class="bg-white cursor-pointer"
         [style]="{ width: '360px', boxShadow: 'inherit', borderRadius: 'inherit' }"
     >
         <ng-template pTemplate="header">
@@ -11,6 +11,7 @@
                         'https://decizia.com/blog/wp-content/uploads/2017/06/default-placeholder.png'
                 }}"
                 alt="{{ post.id }}"
+                [routerLink]="['/post', post.id]"
                 class="rounded-2xl"
                 height="100"
                 width="100"
