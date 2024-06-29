@@ -28,7 +28,7 @@ export class CommentsSectionComponent implements OnInit {
         private authService: AuthService,
     ) {}
 
-    @Input() postId: string = '';
+    @Input() postId?: string | number = '';
     @Input() postUrl?: string = '';
     @Input() showDialog: boolean = false;
     show: boolean = false;
@@ -48,7 +48,10 @@ export class CommentsSectionComponent implements OnInit {
     }
 
     getComments(): void {
-        this.postService.getPostComments(this.postId).subscribe({
+        if (!this.postId) {
+            return;
+        }
+        this.postService.getPostComments(this.postId.toString()).subscribe({
             next: (response) => {
                 this.comments = response.data;
             },

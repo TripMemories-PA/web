@@ -13,7 +13,7 @@ import { CommentsService } from '../../services/comments/comments.service';
     styleUrl: './comment-form.component.css',
 })
 export class CommentFormComponent {
-    @Input() postId: string = '';
+    @Input() postId?: string | number = '';
     content: string = '';
     @Output() emitter: EventEmitter<any> = new EventEmitter();
 

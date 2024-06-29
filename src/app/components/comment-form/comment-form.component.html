@@ -1,7 +1,10 @@
-<textarea
-    pInputTextarea
-    [(ngModel)]="content"
-    placeholder="Entrez votre commentaire"
-    rows="5"
-></textarea>
-<button pButton (click)="postComment()" label="Commenter"></button>
+<div class="comment-form-container">
+    <textarea
+        pInputTextarea
+        [(ngModel)]="content"
+        placeholder="Entrez votre commentaire"
+        rows="5"
+        class="comment-textarea"
+    ></textarea>
+    <button pButton (click)="postComment()" label="Commenter" class="comment-button"></button>
+</div>
