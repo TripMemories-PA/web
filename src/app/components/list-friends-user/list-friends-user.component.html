@@ -1,0 +1,10 @@
+<div class="p-4 flex flex-row flex-wrap gap-12 justify-center">
+    <ng-container *ngIf="friends && friends.length > 0; else noFriends">
+        <div *ngFor="let friend of friends" class="mb-4 w-1/4">
+            <app-friend-card [user]="friend"></app-friend-card>
+        </div>
+    </ng-container>
+    <ng-template #noFriends>
+        <p class="text-center text-red-500">L'utilisateur n'a pas d'amis 😥</p>
+    </ng-template>
+</div>

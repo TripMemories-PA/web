@@ -27,10 +27,10 @@
         </div>
         <div [ngSwitch]="activeTab">
             <ng-container *ngSwitchCase="'posts'">
-                <app-my-posts></app-my-posts>
+                <app-user-posts [posts]="lastPosts"></app-user-posts>
             </ng-container>
             <ng-container *ngSwitchCase="'friends'">
-                <app-my-friends />
+                <app-user-friends [friends]="friends" />
             </ng-container>
         </div>
     </div>

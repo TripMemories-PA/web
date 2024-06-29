@@ -1,1 +1,13 @@
-<p>user-posts works!</p>
+<div class="flex flex-row flex-wrap gap-20">
+    <ng-container *ngIf="posts && posts.length > 0; else noPosts">
+        <app-post-card
+            *ngFor="let post of posts"
+            [post]="post"
+            [city]="post.poi?.city?.name"
+            [myPost]="false"
+        ></app-post-card>
+    </ng-container>
+    <ng-template #noPosts>
+        <p class="text-center text-red-500">L'utilisateur n'a pas de posts 😥</p>
+    </ng-template>
+</div>

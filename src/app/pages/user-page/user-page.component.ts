@@ -11,6 +11,8 @@ import { NgSwitch, NgSwitchCase } from '@angular/common';
 import { ProfilInfoComponent } from '../../components/profil-info/profil-info.component';
 import { UserInfoComponent } from '../../components/user-info/user-info.component';
 import { BannerUserComponent } from '../../components/banner-user/banner-user.component';
+import { UserFriendsComponent } from '../../container/user/user-friends/user-friends.component';
+import { UserPostsComponent } from '../../container/user/user-posts/user-posts.component';
 
 @Component({
     selector: 'app-user-page',
@@ -25,6 +27,8 @@ import { BannerUserComponent } from '../../components/banner-user/banner-user.co
         NgSwitch,
         UserInfoComponent,
         BannerUserComponent,
+        UserFriendsComponent,
+        UserPostsComponent,
     ],
     templateUrl: './user-page.component.html',
     styleUrl: './user-page.component.css',
@@ -66,7 +70,7 @@ export class UserPageComponent implements OnInit {
                     this.profilPic = user.avatar?.url;
                 },
                 error: (error) => {
-                    console.error(error);
+                    this._router.navigate(['/']);
                 },
             });
 

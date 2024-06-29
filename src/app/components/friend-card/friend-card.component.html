@@ -33,6 +33,7 @@
                         size="small"
                         [rounded]="true"
                         icon="pi pi-comment"
+                        *ngIf="user?.isFriend"
                         class="mr-2 button-element-2"
                     ></button>
                     <button
@@ -40,6 +41,7 @@
                         [rounded]="true"
                         icon="pi pi-trash"
                         class="button-element-2"
+                        *ngIf="user?.isFriend"
                         (click)="visible = true"
                     ></button>
                 </div>
