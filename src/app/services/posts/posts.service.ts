@@ -6,6 +6,8 @@ import { PostsResponse } from '../../models/response/posts.response';
 import { PostModel } from '../../models/post.model';
 import { IFileImage } from '../../models/interface/FileImage';
 import { PostCreationModel } from '../../models/request/post.model';
+import { CommentPostRequest } from '../../models/request/commentPost.request';
+import { CommentsResponse } from '../../models/response/comments.response';
 
 const URL = environment.apiUrl + '/posts';
 const httpOptions = {
@@ -32,12 +34,35 @@ export class PostsService {
         return this.http.get<PostModel>(`${URL}/${id}`, isConnected ? undefined : httpOptions);
     }
 
+    getPostComments(
+        id: string,
+        perPage?: string,
+        page: string = '1',
+        isConnected: boolean = false,
+    ) {
+        const params = new URLSearchParams();
+        params.append('page', page);
+        params.append('perPage', perPage ?? '10');
+        return this.http.get<CommentsResponse>(
+            `${URL}/${id}/comments?${params.toString()}`,
+            isConnected ? undefined : httpOptions,
+        );
+    }
+
     createPost(post: PostCreationModel) {
         return this.http.post(`${URL}`, post);
     }
 
+    storePostComments(comment: CommentPostRequest) {
+        return this.http.post(`${URL}/comments`, comment);
+    }
+
     deletePost(id: number) {
         return this.http.delete(`${URL}/${id}`);
+    }
+
+    deletePostComment(id: number | string) {
+        return this.http.delete(`${URL}/comments/${id}`);
     }
 
     sendImagePost(data: FormData) {

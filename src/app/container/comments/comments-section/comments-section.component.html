@@ -1,0 +1,17 @@
+<p-dialog
+    class="flex flex-col"
+    [modal]="true"
+    [draggable]="false"
+    [(visible)]="showDialog"
+    [style]="{ width: '50rem', height: '100rem', borderRadius: '9999px' }"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+>
+    <ng-template pTemplate="content">
+        <div class="flex flex-row">
+            <div class="flex-1 relative h-full w-full">
+                <img [ngSrc]="postUrl" alt="placeholder" class="w-full h-full object-cover" fill />
+            </div>
+            <div class="flex-1"></div>
+        </div>
+    </ng-template>
+</p-dialog>
