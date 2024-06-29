@@ -51,46 +51,48 @@ export class UserPageComponent implements OnInit {
     activeTab: string = 'posts';
 
     ngOnInit(): void {
-        const id = this._activatedRoute.snapshot.paramMap.get('id');
-        if (!id) {
-            this._router.navigate(['/']);
-            return;
-        }
-        if (this.authServices.user?.id == id) {
-            this._router.navigate(['/profil']);
-            return;
-        }
-        this.userServices
-            .getUser(id, this.authServices.user?.access_token !== undefined)
-            .subscribe({
-                next: (user) => {
-                    this.user = user;
-                    this.nbrMonuments = user.poisCount;
-                    this.banner = user.banner?.url;
-                    this.profilPic = user.avatar?.url;
+        this._activatedRoute.paramMap.subscribe((params) => {
+            const id = params.get('id');
+            if (!id) {
+                this._router.navigate(['/']);
+                return;
+            }
+            if (this.authServices.user?.id == id) {
+                this._router.navigate(['/profil']);
+                return;
+            }
+            this.userServices
+                .getUser(id, this.authServices.user?.access_token !== undefined)
+                .subscribe({
+                    next: (user) => {
+                        this.user = user;
+                        this.nbrMonuments = user.poisCount;
+                        this.banner = user.banner?.url;
+                        this.profilPic = user.avatar?.url;
+                    },
+                    error: (error) => {
+                        this._router.navigate(['/']);
+                    },
+                });
+
+            this.userServices.getUserPosts(id).subscribe({
+                next: (posts) => {
+                    this.lastPosts = posts.data;
                 },
                 error: (error) => {
-                    this._router.navigate(['/']);
+                    console.error(error);
                 },
             });
 
-        this.userServices.getUserPosts(id).subscribe({
-            next: (posts) => {
-                this.lastPosts = posts.data;
-            },
-            error: (error) => {
-                console.error(error);
-            },
-        });
-
-        this.userServices.getUserFriends(id).subscribe({
-            next: (friends) => {
-                this.friends = friends.data;
-                this.nbrFriends = friends.data.length;
-            },
-            error: (error) => {
-                console.error(error);
-            },
+            this.userServices.getUserFriends(id).subscribe({
+                next: (friends) => {
+                    this.friends = friends.data;
+                    this.nbrFriends = friends.data.length;
+                },
+                error: (error) => {
+                    console.error(error);
+                },
+            });
         });
     }
 
