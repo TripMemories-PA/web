@@ -77,6 +77,7 @@ export class HeaderComponent implements OnInit {
                 this.showBackgroundColor = !(
                     url.includes('/search-city') ||
                     url.includes('/profil') ||
+                    url.includes('/user') ||
                     url.includes('/poi')
                 );
             }

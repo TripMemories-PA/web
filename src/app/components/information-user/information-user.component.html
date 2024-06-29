@@ -1,0 +1,152 @@
+<div class="ml-16 flex flex-row gap-12">
+    <div class="mt-3">
+        <ng-container>
+            <div class="flex flex-row items-center gap-2">
+                <p class="text-3xl font-bold text-['Urbanist']">
+                    {{ user?.firstname }} {{ user?.lastname }}
+                </p>
+            </div>
+        </ng-container>
+        <p class="text-xl mt-3 text-['Urbanist']">&#64;{{ user?.username }}</p>
+        <p class="text-md font-bold text-['Urbanist']">France</p>
+    </div>
+    <div class="relative ml-16 mr-16 flex flex-col justify-center">
+        <p class="text-center mb-2 text-3xl font-bold text-['Urbanist']">{{ nbrFriends ?? 0 }}</p>
+        <p class="text-center text-md text-['Urbanist']">Amis ajoutés</p>
+    </div>
+    <div class="relative flex mr-16 flex-col justify-center">
+        <p class="text-center mb-2 text-3xl font-bold text-['Urbanist']">{{ nbrMonuments ?? 0 }}</p>
+        <p class="text-center text-md text-['Urbanist']">Monuments visités</p>
+    </div>
+    <ng-container *ngIf="modifyAccount">
+        <p-dialog header="Modifier vos informations" [(visible)]="modifyAccount" [modal]="true">
+            <form class="flex flex-col gap-6">
+                <div class="!flex !justify-center !flex-col !items-center">
+                    <span class="p-float-label w-3/4">
+                        <input
+                            id="username"
+                            name="username"
+                            type="text"
+                            class="w-full"
+                            [(ngModel)]="userValues.username"
+                            [placeholder]="this.userValues.username || 'Nom d\'utilisateur'"
+                            pInputText
+                        />
+                    </span>
+                    <span class="p-float-label mt-5 w-3/4">
+                        <input
+                            id="firstname"
+                            type="text"
+                            name="firstname"
+                            class="w-full"
+                            [(ngModel)]="userValues.firstname"
+                            [placeholder]="this.userValues.firstname || 'Prénom'"
+                            pInputText
+                        />
+                    </span>
+                    <span class="p-float-label mt-5 w-3/4">
+                        <input
+                            id="lastname"
+                            type="text"
+                            name="lastname"
+                            class="w-full"
+                            [(ngModel)]="userValues.lastname"
+                            [placeholder]="this.userValues.lastname || 'Nom'"
+                            pInputText
+                        />
+                    </span>
+                    <span class="p-float-label mt-5 w-3/4">
+                        <input
+                            id="email"
+                            type="text"
+                            name="email"
+                            class="w-full"
+                            [(ngModel)]="userValues.email"
+                            [placeholder]="this.userValues.email || 'Email'"
+                            pInputText
+                        />
+                    </span>
+                </div>
+                <div class="!flex !justify-center !flex-col !items-center">
+                    <button
+                        (click)="submit()"
+                        [disabled]="isLoading"
+                        id="submit-button"
+                        class="text-white bg-[color:var(--primary)]"
+                        pButton
+                        label="Enregistrer"
+                    ></button>
+                    <span class="mt-5 text-[color:var(--success)]" *ngIf="ok">{{ ok }}</span>
+                    <span class="mt-5 text-[color:var(--error)]" *ngIf="error">{{ error }}</span>
+                </div>
+            </form>
+            <p-progressBar
+                mode="indeterminate"
+                *ngIf="isLoading"
+                [style]="{ height: '6px', width: '100%', marginTop: '10px' }"
+            ></p-progressBar>
+        </p-dialog>
+    </ng-container>
+    <button
+        pButton
+        type="button"
+        class="text-white bg-[color:var(--error)] m-auto"
+        label="Supprimer L'ami"
+        *ngIf="user?.isFriend"
+        (click)="visible = true"
+    ></button>
+    <button
+        pButton
+        type="button"
+        class="text-white bg-[color:var(--primary)] m-auto"
+        label="Ajouter en tant qu'ami"
+        *ngIf="!user?.isFriend"
+        [disabled]="user?.hasReceivedFriendRequest || user?.hasSentFriendRequest"
+        (click)="visible = true"
+    ></button>
+    <p-progressBar
+        mode="indeterminate"
+        *ngIf="isLoading"
+        [style]="{ height: '6px', width: '100%', marginTop: '10px' }"
+    ></p-progressBar>
+</div>
+<div class="card flex justify-content-center">
+    <p-dialog
+        header="Êtes-vous sûr de vouloir supprimer votre ami ?"
+        [modal]="true"
+        *ngIf="user?.isFriend"
+        [(visible)]="visible"
+        [style]="{ width: '25rem' }"
+    >
+        <span class="p-text-secondary block mb-5">La suppression d'ami est irréversible</span>
+        <div class="flex justify-content-end gap-2">
+            <p-button label="Non" severity="secondary" (click)="visible = false" />
+            <p-button label="Oui" (click)="deleteFriend()" />
+        </div>
+        <p-progressBar
+            mode="indeterminate"
+            *ngIf="isLoading"
+            [style]="{ height: '6px', width: '100%' }"
+        ></p-progressBar>
+    </p-dialog>
+    <p-dialog
+        header="Ajouter un nouvel ami ?"
+        [modal]="true"
+        *ngIf="!user?.isFriend"
+        [(visible)]="visible"
+        [style]="{ width: '25rem' }"
+    >
+        <span class="p-text-secondary block mb-5"
+            >Voulez vous ajouter {{ user?.username }} en tant qu'ami ?</span
+        >
+        <div class="flex justify-content-end gap-2">
+            <p-button label="Non" severity="secondary" (click)="visible = false" />
+            <p-button label="Oui" (click)="addFriend()" />
+        </div>
+        <p-progressBar
+            mode="indeterminate"
+            *ngIf="isLoading"
+            [style]="{ height: '6px', width: '100%' }"
+        ></p-progressBar>
+    </p-dialog>
+</div>
