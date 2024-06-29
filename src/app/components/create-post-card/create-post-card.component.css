@@ -9,6 +9,7 @@
 .title-input,
 .rating,
 .experience,
+.monument,
 .tags {
   display: flex;
   flex-direction: column;

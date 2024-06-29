@@ -61,6 +61,6 @@ export class UserCardAddFriendComponent {
         if (this.user === undefined) {
             return;
         }
-        this.router.navigate(['/profile', this.user.id]);
+        this.router.navigate(['/user', this.user.id]);
     }
 }

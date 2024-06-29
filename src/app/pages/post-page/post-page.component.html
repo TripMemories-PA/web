@@ -9,6 +9,7 @@
                 post?.createdBy?.avatar?.url ??
                     'https://oasys.ch/wp-content/uploads/2019/03/photo-avatar-profil.png'
             }}"
+            [routerLink]="['/user', post?.createdBy?.id]"
             alt="Profile"
             class="w-10 h-10 rounded-full mr-3"
             priority
@@ -53,6 +54,7 @@
                 type="button"
                 icon="pi pi-comment"
                 label="Commenter"
+                (click)="showComments = true"
                 class="p-button-text"
             ></button>
             <div>
@@ -80,3 +82,9 @@
         <p class="text-gray-600 text-sm">{{ post?.likesCount }} like</p>
     </div>
 </div>
+<app-comments-section
+    [showDialog]="showComments"
+    [postId]="postId"
+    [postUrl]="post?.image?.url"
+    (setShowDialog)="closeComments()"
+></app-comments-section>

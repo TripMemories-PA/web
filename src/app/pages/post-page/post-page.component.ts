@@ -1,15 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PostsService } from '../../services/posts/posts.service';
 import { PostModel } from '../../models/post.model';
 import { ButtonModule } from 'primeng/button';
-import { NgOptimizedImage, Location } from '@angular/common';
+import { Location, NgOptimizedImage } from '@angular/common';
 import { TimeAgoPipe } from '../../time-ago.pipe';
 import { TooltipModule } from 'primeng/tooltip';
 import { AuthService } from '../../services/auth/auth.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmPopup, ConfirmPopupModule } from 'primeng/confirmpopup';
+import { CommentsSectionComponent } from '../../container/comments/comments-section/comments-section.component';
 
 @Component({
     selector: 'app-post-page',
@@ -21,6 +22,8 @@ import { ConfirmPopup, ConfirmPopupModule } from 'primeng/confirmpopup';
         TooltipModule,
         ToastModule,
         ConfirmPopupModule,
+        RouterLink,
+        CommentsSectionComponent,
     ],
     providers: [MessageService, ConfirmationService],
     templateUrl: './post-page.component.html',
@@ -45,6 +48,7 @@ export class PostPageComponent implements OnInit {
     ok: string = '';
     error: string = '';
     alreadyLiked: boolean = false;
+    showComments: boolean = false;
 
     ngOnInit() {
         this._activatedRoute.paramMap.subscribe((params) => {
@@ -141,5 +145,9 @@ export class PostPageComponent implements OnInit {
 
     getBack() {
         this._location.back();
+    }
+
+    closeComments() {
+        this.showComments = false;
     }
 }

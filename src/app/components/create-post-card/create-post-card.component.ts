@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { RatingModule } from 'primeng/rating';
 import { InputTextModule } from 'primeng/inputtext';
 import { FileSelectEvent, FileUploadModule } from 'primeng/fileupload';
@@ -10,6 +10,10 @@ import { PostCreationModel } from '../../models/request/post.model';
 import { FormsModule } from '@angular/forms';
 import { MessageModule } from 'primeng/message';
 import { NgIf } from '@angular/common';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { PoiModel } from '../../models/Poi.model';
+import { DropdownModule } from 'primeng/dropdown';
+import { PoisService } from '../../services/pois/pois.service';
 
 @Component({
     selector: 'app-create-post-card',
@@ -23,13 +27,16 @@ import { NgIf } from '@angular/common';
         FormsModule,
         MessageModule,
         NgIf,
+        MultiSelectModule,
+        DropdownModule,
     ],
     templateUrl: './create-post-card.component.html',
     styleUrl: './create-post-card.component.css',
 })
-export class CreatePostCardComponent {
+export class CreatePostCardComponent implements OnInit {
     constructor(
         private postService: PostsService,
+        private poiService: PoisService,
         private router: Router,
     ) {}
 
@@ -37,14 +44,18 @@ export class CreatePostCardComponent {
     error: string | null = null;
     success: string | null = null;
     loading: boolean = false;
+    loadingPoi: boolean = false;
+    poi: PoiModel[] = [];
+    selectedPoi?: PoiModel;
 
     @Input() inputPoiId?: number;
+    @Input() inputPoiName?: string;
 
     post: PostCreationModel = {
         title: '',
         content: '',
         imageId: 0,
-        poiId: this.inputPoiId ?? 3407,
+        poiId: this.inputPoiId ?? -1,
         note: undefined,
     };
 
@@ -52,8 +63,13 @@ export class CreatePostCardComponent {
         this.file = event.currentFiles[0];
     }
 
+    updatePoiId() {
+        this.post.poiId = this.selectedPoi?.id ?? -1;
+    }
+
     submitPost() {
         this.loading = true;
+        console.log(this.post);
         if (!this.file) {
             console.log('no file');
             this.error = 'Veuillez ajouter une image';
@@ -64,7 +80,8 @@ export class CreatePostCardComponent {
             !this.post.title ||
             !this.post.content ||
             this.post.note === undefined ||
-            !this.post.poiId
+            !this.post.poiId ||
+            this.post.poiId === -1
         ) {
             console.log('missing fields');
             this.error = 'Tout les champs sont obligatoires';
@@ -94,6 +111,23 @@ export class CreatePostCardComponent {
             error: (error) => {
                 this.loading = false;
                 this.error = "Une erreur est survenue lors de l'envoi de l'image";
+                console.error(error);
+            },
+        });
+    }
+
+    ngOnInit(): void {
+        this.loadingPoi = true;
+        if (this.inputPoiId && this.inputPoiName) {
+            return;
+        }
+        this.poiService.getPOIs('100000000').subscribe({
+            next: (response) => {
+                this.loadingPoi = false;
+                this.poi = response.data;
+            },
+            error: (error) => {
+                this.loadingPoi = false;
                 console.error(error);
             },
         });
