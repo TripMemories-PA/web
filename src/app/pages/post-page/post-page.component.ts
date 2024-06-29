@@ -3,7 +3,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PostsService } from '../../services/posts/posts.service';
 import { PostModel } from '../../models/post.model';
 import { ButtonModule } from 'primeng/button';
-import { NgOptimizedImage, Location } from '@angular/common';
+import { Location, NgOptimizedImage } from '@angular/common';
 import { TimeAgoPipe } from '../../time-ago.pipe';
 import { TooltipModule } from 'primeng/tooltip';
 import { AuthService } from '../../services/auth/auth.service';

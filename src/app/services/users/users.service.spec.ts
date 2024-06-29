@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 
 import { UsersService } from './users.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { AuthComponent } from '../../pages/auth/auth.component';
 
 describe('UsersService', () => {
     let service: UsersService;

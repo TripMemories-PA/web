@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 
 import { FriendsRequestsService } from './friends-requests.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { AuthComponent } from '../../pages/auth/auth.component';
 
 describe('FriendsRequestsService', () => {
     let service: FriendsRequestsService;
