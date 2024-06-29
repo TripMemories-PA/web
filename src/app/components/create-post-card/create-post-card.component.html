@@ -37,7 +37,28 @@
             placeholder="Partagez votre expérience"
         ></textarea>
     </div>
-
+    <div class="monument">
+        <h3>Mon monument visité</h3>
+        <p-dropdown
+            [options]="poi"
+            [(ngModel)]="selectedPoi"
+            [filter]="true"
+            filterBy="name"
+            [showClear]="true"
+            [virtualScroll]="true"
+            [virtualScrollItemSize]="38"
+            optionLabel="name"
+            [placeholder]="
+                inputPoiId
+                    ? inputPoiName
+                    : loadingPoi
+                      ? 'Chargement...'
+                      : 'Séléctionne ton monument'
+            "
+            (ngModelChange)="updatePoiId()"
+            [disabled]="inputPoiId !== undefined || loading || loadingPoi"
+        />
+    </div>
     <div class="tags">
         <h3>Les +</h3>
         <p-chips></p-chips>
