@@ -1,0 +1,48 @@
+<p-dialog
+    class="flex flex-col"
+    [modal]="true"
+    [draggable]="false"
+    [(visible)]="showDialog"
+    (onHide)="onCloseDialog()"
+    [baseZIndex]="1000"
+    [style]="{ width: '60rem', height: '100rem', borderRadius: '9999px' }"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+>
+    <ng-template pTemplate="content">
+        <div class="flex flex-row gap-4 h-full">
+            <div class="flex-1 relative">
+                <img
+                    [ngSrc]="
+                        postUrl ??
+                        'https://www.socialmediaexaminer.com/wp-content/uploads/2022/04/responding-to-instagram-comments.png'
+                    "
+                    alt="placeholder"
+                    class="absolute object-cover"
+                    fill
+                />
+            </div>
+            <div class="flex flex-col">
+                <div class="flex-[80] flex flex-col gap-4 overflow-x-auto">
+                    <app-comment
+                        *ngFor="let comment of comments"
+                        [comment]="comment.content"
+                        [author]="comment.createdBy"
+                        [date]="comment.createdAt"
+                        [nbrLikes]="comment.likesCount"
+                        [isLiked]="comment.isLiked"
+                        [commentId]="comment.id"
+                        [isMyPost]="comment.createdById === IdAuthor"
+                        (emitter)="getComments()"
+                        class="mb-3"
+                    ></app-comment>
+                </div>
+                <div class="flex-[20]">
+                    <app-comment-form
+                        [postId]="postId"
+                        (emitter)="getComments()"
+                    ></app-comment-form>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>

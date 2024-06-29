@@ -8,6 +8,7 @@ import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { InputIconModule } from 'primeng/inputicon';
 import { PostsService } from '../../services/posts/posts.service';
+import { CommentsSectionComponent } from '../../container/comments/comments-section/comments-section.component';
 
 @Component({
     selector: 'app-post-card-feed',
@@ -20,6 +21,7 @@ import { PostsService } from '../../services/posts/posts.service';
         FormsModule,
         InputIconModule,
         RouterLink,
+        CommentsSectionComponent,
     ],
     providers: [MessageService],
     templateUrl: './post-card-feed.component.html',
@@ -38,6 +40,7 @@ export class PostCardFeedComponent implements OnInit {
     dateParsed: string[] = ['', ''];
     postLiked: boolean | undefined = false;
     postLikesCount: number | undefined = 0;
+    showComments: boolean = false;
 
     goToPost() {
         this.router.navigate([`/post/${this.post.id}`]);
@@ -113,5 +116,9 @@ export class PostCardFeedComponent implements OnInit {
                 },
             });
         }
+    }
+
+    closeComments() {
+        this.showComments = false;
     }
 }
