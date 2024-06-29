@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PoisService } from '../../services/pois/pois.service';
 import { PoiModel } from '../../models/Poi.model';
 import { CityCardComponent } from '../../components/city-card/city-card.component';
 import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';

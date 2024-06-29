@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { User, UserRegister } from '../../models/user';
+import { UserRegister } from '../../models/user';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { CardModule } from 'primeng/card';

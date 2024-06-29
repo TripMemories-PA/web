@@ -4,6 +4,7 @@ import { HttpClient, HttpContext } from '@angular/common/http';
 import { NO_AUTH } from '../request.interceptor';
 import { PoiModel } from '../../models/Poi.model';
 import { PoisPostResponse, PoisSearchResponse } from '../../models/response/pois.response';
+
 const URL = environment.apiUrl + '/pois';
 const httpOptions = {
     context: new HttpContext().set(NO_AUTH, true),
