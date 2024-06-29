@@ -6,7 +6,6 @@ import { PostsResponse } from '../../models/response/posts.response';
 import { PostModel } from '../../models/post.model';
 import { IFileImage } from '../../models/interface/FileImage';
 import { PostCreationModel } from '../../models/request/post.model';
-import { CommentPostRequest } from '../../models/request/commentPost.request';
 import { CommentsResponse } from '../../models/response/comments.response';
 
 const URL = environment.apiUrl + '/posts';
@@ -53,27 +52,19 @@ export class PostsService {
         return this.http.post(`${URL}`, post);
     }
 
-    storePostComments(comment: CommentPostRequest) {
-        return this.http.post(`${URL}/comments`, comment);
-    }
-
     deletePost(id: number) {
         return this.http.delete(`${URL}/${id}`);
-    }
-
-    deletePostComment(id: number | string) {
-        return this.http.delete(`${URL}/comments/${id}`);
     }
 
     sendImagePost(data: FormData) {
         return this.http.post<IFileImage>(`${URL}/image`, data);
     }
 
-    likePost(id: number) {
+    likePost(id: number | string) {
         return this.http.post(`${URL}/${id}/like`, {});
     }
 
-    deleteLikePost(id: number) {
+    deleteLikePost(id: number | string) {
         return this.http.delete(`${URL}/${id}/like`, {});
     }
 }

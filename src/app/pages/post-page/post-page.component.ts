@@ -10,6 +10,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmPopup, ConfirmPopupModule } from 'primeng/confirmpopup';
+import { CommentsSectionComponent } from '../../container/comments/comments-section/comments-section.component';
 
 @Component({
     selector: 'app-post-page',
@@ -22,6 +23,7 @@ import { ConfirmPopup, ConfirmPopupModule } from 'primeng/confirmpopup';
         ToastModule,
         ConfirmPopupModule,
         RouterLink,
+        CommentsSectionComponent,
     ],
     providers: [MessageService, ConfirmationService],
     templateUrl: './post-page.component.html',
@@ -46,6 +48,7 @@ export class PostPageComponent implements OnInit {
     ok: string = '';
     error: string = '';
     alreadyLiked: boolean = false;
+    showComments: boolean = false;
 
     ngOnInit() {
         this._activatedRoute.paramMap.subscribe((params) => {
@@ -142,5 +145,9 @@ export class PostPageComponent implements OnInit {
 
     getBack() {
         this._location.back();
+    }
+
+    closeComments() {
+        this.showComments = false;
     }
 }

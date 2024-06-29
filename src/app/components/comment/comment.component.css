@@ -1,0 +1,33 @@
+.comment-container {
+  position: relative;
+  .comment-header,
+  .comment-reply,
+  .comment-footer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .comment-username {
+    font-weight: bold;
+    margin-left: 10px;
+  }
+
+  .comment-body {
+    margin-left: 40px;
+  }
+
+  .comment-date,
+  .comment-likes {
+    font-size: 0.9em;
+    color: gray;
+    margin-right: 10px;
+  }
+  .deletePost {
+    font-size: 0.9em;
+    color: gray;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+}
