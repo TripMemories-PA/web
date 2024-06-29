@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PostCardFeedComponent } from './post-card-feed.component';
+import { InformationUserComponent } from './information-user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-describe('PostCardFeedComponent', () => {
-    let component: PostCardFeedComponent;
-    let fixture: ComponentFixture<PostCardFeedComponent>;
+describe('InformationUserComponent', () => {
+    let component: InformationUserComponent;
+    let fixture: ComponentFixture<InformationUserComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [PostCardFeedComponent, HttpClientModule, RouterModule.forRoot([])],
+            imports: [InformationUserComponent, HttpClientModule, RouterModule.forRoot([])],
         }).compileComponents();
 
-        fixture = TestBed.createComponent(PostCardFeedComponent);
+        fixture = TestBed.createComponent(InformationUserComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

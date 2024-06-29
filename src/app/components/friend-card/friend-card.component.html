@@ -18,7 +18,13 @@
                     class="object-cover rounded-xl"
                     fill
                 />
-                <button pButton class="button-element" icon="pi pi-eye" [rounded]="true"></button>
+                <button
+                    pButton
+                    (click)="navigateToProfil(user?.id)"
+                    class="button-element"
+                    icon="pi pi-eye"
+                    [rounded]="true"
+                ></button>
             </div>
             <div class="flex flex-row justify-around">
                 <div class="flex flex-col mr-4">
@@ -33,6 +39,7 @@
                         size="small"
                         [rounded]="true"
                         icon="pi pi-comment"
+                        *ngIf="user?.isFriend"
                         class="mr-2 button-element-2"
                     ></button>
                     <button
@@ -40,6 +47,7 @@
                         [rounded]="true"
                         icon="pi pi-trash"
                         class="button-element-2"
+                        *ngIf="user?.isFriend"
                         (click)="visible = true"
                     ></button>
                 </div>

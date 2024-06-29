@@ -22,6 +22,7 @@
                     pButton
                     class="button-element-friend-request-card"
                     icon="pi pi-eye"
+                    [routerLink]="['/user', friendRequest?.sender?.id]"
                     [rounded]="true"
                 ></button>
             </div>

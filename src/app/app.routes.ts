@@ -9,6 +9,7 @@ import { MonumentSearchPageComponent } from './pages/monument-search-page/monume
 import { PoiPageComponent } from './pages/poi-page/poi-page.component';
 import { PostPageComponent } from './pages/post-page/post-page.component';
 import { FeedPageComponent } from './pages/feed-page/feed-page.component';
+import { UserPageComponent } from './pages/user-page/user-page.component';
 
 export const routes: Routes = [
     {
@@ -46,6 +47,10 @@ export const routes: Routes = [
     {
         path: 'profil',
         component: ProfilPageComponent,
+    },
+    {
+        path: 'user/:id',
+        component: UserPageComponent,
     },
     {
         path: 'feed',

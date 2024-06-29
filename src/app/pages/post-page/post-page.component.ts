@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PostsService } from '../../services/posts/posts.service';
 import { PostModel } from '../../models/post.model';
 import { ButtonModule } from 'primeng/button';
@@ -21,6 +21,7 @@ import { ConfirmPopup, ConfirmPopupModule } from 'primeng/confirmpopup';
         TooltipModule,
         ToastModule,
         ConfirmPopupModule,
+        RouterLink,
     ],
     providers: [MessageService, ConfirmationService],
     templateUrl: './post-page.component.html',
