@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PoisService } from '../../services/pois/pois.service';
 import { PoiModel } from '../../models/Poi.model';
@@ -31,6 +31,8 @@ import { ButtonModule } from 'primeng/button';
     styleUrl: './poi-page.component.css',
 })
 export class PoiPageComponent implements OnInit {
+    @ViewChild('scrollContainer', { static: true }) scrollContainer!: ElementRef;
+
     poi: PoiModel = new PoiModel();
     poiPosts: PostModel[] = [];
     poiNear: PoiModel[] = [];
@@ -102,6 +104,20 @@ export class PoiPageComponent implements OnInit {
             error: (error) => {
                 console.error(error);
             },
+        });
+    }
+
+    scrollLeft(): void {
+        this.scrollContainer.nativeElement.scrollBy({
+            left: -200, // Défilement à gauche par 200 pixels
+            behavior: 'smooth',
+        });
+    }
+
+    scrollRight(): void {
+        this.scrollContainer.nativeElement.scrollBy({
+            left: 200, // Défilement à droite par 200 pixels
+            behavior: 'smooth',
         });
     }
 }
