@@ -76,6 +76,7 @@ export class HeaderComponent implements OnInit {
                 const url = event.urlAfterRedirects;
                 this.showBackgroundColor = !(
                     url.includes('/search-city') ||
+                    url.includes('/search') ||
                     url.includes('/profil') ||
                     url.includes('/user') ||
                     url.includes('/poi')

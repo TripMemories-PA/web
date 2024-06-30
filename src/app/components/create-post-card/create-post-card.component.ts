@@ -121,7 +121,7 @@ export class CreatePostCardComponent implements OnInit {
         if (this.inputPoiId && this.inputPoiName) {
             return;
         }
-        this.poiService.getPOIs('100000000').subscribe({
+        this.poiService.getPOIs('1', '100000000').subscribe({
             next: (response) => {
                 this.loadingPoi = false;
                 this.poi = response.data;
