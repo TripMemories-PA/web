@@ -1,4 +1,4 @@
-<div class="card flex justify-content-center cursor-pointer">
+<div (click)="visible = true" class="card flex justify-content-center cursor-pointer">
     <p-card styleClass="ui-card-shadow" class="bg-white" [style]="{ width: '360px' }">
         <ng-template pTemplate="header">
             <div class="w-full h-[16rem] relative">
@@ -39,23 +39,16 @@
 </div>
 <div class="card flex justify-content-center">
     <p-dialog
-        header="Êtes-vous sûr de vouloir supprimer votre post ?"
+        header="Modifier le billet un billet"
+        class="flex flex-col"
         [modal]="true"
+        [draggable]="false"
         [(visible)]="visible"
-        [style]="{ width: '25rem' }"
+        [style]="{ width: '50rem', borderRadius: '9999px' }"
+        [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
     >
-        <span class="p-text-secondary block mb-5"
-            >La suppression de votre post, supprimera toutes ses données, ainsi que les likes et
-            commentaires associés.
-        </span>
-        <div class="flex justify-content-end gap-2">
-            <p-button label="Non" severity="secondary" (click)="visible = false" />
-            <p-button label="Oui" (click)="gotToShop()" />
-        </div>
-        <p-progressBar
-            mode="indeterminate"
-            *ngIf="loading"
-            [style]="{ height: '6px', width: '100%' }"
-        ></p-progressBar>
+        <ng-template pTemplate="content">
+            <app-create-ticket [ticket]="ticket"></app-create-ticket>
+        </ng-template>
     </p-dialog>
 </div>

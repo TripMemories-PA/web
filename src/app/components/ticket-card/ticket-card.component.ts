@@ -6,6 +6,8 @@ import { NgIf, NgOptimizedImage } from '@angular/common';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { SharedModule } from 'primeng/api';
 import { TicketModel } from '../../models/ticket.model';
+import { CreatePostCardComponent } from '../create-post-card/create-post-card.component';
+import { CreateTicketComponent } from '../create-ticket/create-ticket.component';
 
 @Component({
     selector: 'app-ticket-card',
@@ -18,6 +20,8 @@ import { TicketModel } from '../../models/ticket.model';
         NgOptimizedImage,
         ProgressBarModule,
         SharedModule,
+        CreatePostCardComponent,
+        CreateTicketComponent,
     ],
     templateUrl: './ticket-card.component.html',
     styleUrl: './ticket-card.component.css',

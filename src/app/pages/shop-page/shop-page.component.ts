@@ -2,16 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { TicketModel } from '../../models/ticket.model';
 import { TicketCardComponent } from '../../components/ticket-card/ticket-card.component';
 import { NgForOf } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { CreateTicketComponent } from '../../components/create-ticket/create-ticket.component';
 
 @Component({
     selector: 'app-shop-page',
     standalone: true,
-    imports: [TicketCardComponent, NgForOf],
+    imports: [TicketCardComponent, NgForOf, ButtonModule, DialogModule, CreateTicketComponent],
     templateUrl: './shop-page.component.html',
     styleUrl: './shop-page.component.css',
 })
 export class ShopPageComponent implements OnInit {
     tickets: TicketModel[] = [];
+    visible = false;
 
     ngOnInit() {
         for (let i = 0; i < 10; i++) {
