@@ -5,6 +5,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { HeaderComponent } from './components/header/header.component';
 import { NgIf } from '@angular/common';
 import { FooterComponent } from './components/footer/footer.component';
+import { loadStripe } from '@stripe/stripe-js';
 
 @Component({
     selector: 'app-root',
@@ -16,7 +17,9 @@ import { FooterComponent } from './components/footer/footer.component';
 export class AppComponent implements OnInit {
     title = 'TripMemories';
     showHeaderFooter: boolean = true;
-    constructor(private router: Router) {}
+    constructor(private router: Router) {
+        loadStripe(import.meta.env['NG_APP_STRIPE_PUBLIC_KEY']);
+    }
     ngOnInit(): void {
         this.router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {
